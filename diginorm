@@ -1,0 +1,18 @@
+## DigiNorm Lane 4 and Lane 5 Female Trouble-Shooting
+
+#I keep getting an error message that my orphan file is empty. The orphan files for lane 4 and lane 5 were combined using a soft link. I check to make sure the files contain data and they do. So then I made a new folder called 'orhpans'in the '/home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/' to see if having the orphans in a different directory than the paired end (PE) files might make it easier for the software to find the data. 
+
+#This is the new sbatch that I submitted this morning. 
+
+#!/bin/bash -l
+#SBATCH -J DIGINORM_job
+#SBATCH -t 72:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=4
+
+PROJECTROOT=/home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/
+DIGINORM=/home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/DigiOut/
+cd $DIGINORM/
+normalize-by-median.py -p -k 20 -C 20 -M 4e9 \
+  --savegraph $DIGINORM/normC20k20.ct -u \ /home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/orphans/orphanslane4lane5female.fq.gz \
+  $PROJECTROOT/*.pe.qc.fq.gz 
