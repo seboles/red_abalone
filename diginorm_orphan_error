@@ -1,0 +1,47 @@
+#I am still gettign the same error message about diginorm not being able to find my orphan files.
+
+'''** ERROR: [Errno 2] No such file or directory: ' /home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/orphans/orphanslane4lane5female.fq.gz'
+** Failed on  /home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/orphans/orphanslane4lane5female.fq.gz: 
+** Exiting!
+
+===========================================================================
+Job Finished
+
+Name                : DIGINORM_job
+User                : seboles
+Partition           : high
+Nodes               : c9-67
+Cores               : 4
+State               : FAILED
+Submit              : 2017-07-24T11:07:12
+Start               : 2017-07-24T11:07:13
+End                 : 2017-07-25T06:33:42
+Reserved walltime   : 3-00:00:00
+Used walltime       :   19:26:29
+Used CPU time       :   16:52:46
+% User (Computation): 99.63%
+% System (I/O)      :  0.37%
+Mem reserved        : 2600M/core
+Max Mem used        : 3.74G (c9-67)
+Max Disk Write      : 22.62G (c9-67)
+Max Disk Read       : 63.11G (c9-67) '''
+
+#I looked up one of Titus' khmer protocols and modified my didginorm command. Here is Titus' command.
+
+'''
+normalize-by-median.py -k 20 -C 20 -N 4 -x 2e8 -s normC20k20.ct *.pe.qc.fq.gz orphans.fq.gz'''
+
+#This is what my sbatch command looks like
+
+'''#!/bin/bash -l
+#SBATCH -J DIGINORM_job
+#SBATCH -t 72:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=4
+
+PROJECTROOT=/home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/
+DIGINORM=/home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/DigiOut/
+cd $DIGINORM/
+normalize-by-median.py -p -k 20 -C 20 -M 4e9 \
+  --savegraph $DIGINORM/normC20k20.ct -u \ /home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/orphans/orphanslane4lane5female.fq.gz \
+$PROJECTROOT/*.pe.qc.fq.gz orphanslane4lane5female.fq.gz'''
