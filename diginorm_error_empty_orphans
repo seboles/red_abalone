@@ -1,0 +1,31 @@
+##Diginorm is not able to locate my orphan files. So I tried modifying my script. This is the script that I tried. It did not work. It failed immediatley.
+
+'''#!/bin/bash -l
+#SBATCH -J DIGINORM_job
+#SBATCH -t 72:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=4
+
+PROJECTROOT=/home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/
+DIGINORM=/home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/DigiOut/
+cd $DIGINORM/
+normalize-by-median.py -p -k 20 -C 20 -M 4e9 \
+  --savegraph $DIGINORM/normC20k20.ct -u \ 
+$PROJECTROOT/*.pe.qc.fq.gz orphanslane4lane5female.fq.gz'''
+
+##I am going to try a different way to point diginorm at my files. Here is the script that I am going to try. I assigned the orhpan file to the '''PROJECTROOT''' to see if this will work. Fingers crossed it will work.
+
+'''#!/bin/bash -l
+#SBATCH -J DIGINORM_job
+#SBATCH -t 72:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=4
+
+PROJECTROOT=/home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/
+DIGINORM=/home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/DigiOut/
+cd $DIGINORM/
+normalize-by-median.py -p -k 20 -C 20 -M 4e9 \
+  --savegraph $DIGINORM/normC20k20.ct -u \ $PROJECTROOT/orphans/orphanslane4lane5female.fq.gz \
+$PROJECTROOT/*.pe.qc.fq.gz orphanslane4lane5female.fq.gz'''
+
+#This command is running and I will find out tomorrow morning if it worked.
