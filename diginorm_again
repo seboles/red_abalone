@@ -1,0 +1,14 @@
+#Still getting the same error message about not being able to find my orphan files. Here is the script that I just tried again... it is running. I really, really, really want this to work so I can move forawrd.
+
+'''#!/bin/bash -l
+#SBATCH -J DIGINORM_job
+#SBATCH -t 72:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=4
+
+PROJECTROOT=/home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/
+DIGINORM=/home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/DigiOut/
+cd $DIGINORM/
+normalize-by-median.py -p -k 20 -C 20 -M 4e9 \
+  --savegraph $DIGINORM/normC20k20.ct -u \ $PROJECTROOT/orphans/orphanslane4lane5female.fq.gz \
+$PROJECTROOT/*.pe.qc.fq.gz'''
