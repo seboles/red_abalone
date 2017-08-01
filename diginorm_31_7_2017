@@ -1,0 +1,43 @@
+##Diginorm on Friday did not work. This is super frustating. Asking for help. But just to be sure, I am running another version of the script. Hopefully it works so that I can move on. 
+
+##This is the previous error message.
+** ERROR: [Errno 2] No such file or directory: ' /home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi//orphans/orphanslane4lane5female.fq.gz'
+** Failed on  /home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi//orphans/orphanslane4lane5female.fq.gz: 
+** Exiting!
+
+===========================================================================
+Job Finished
+
+Name                : DIGINORM_job
+User                : seboles
+Partition           : high
+Nodes               : c9-67
+Cores               : 4
+State               : FAILED
+Submit              : 2017-07-27T08:56:39
+Start               : 2017-07-27T08:56:39
+End                 : 2017-07-28T02:39:29
+Reserved walltime   : 3-00:00:00
+Used walltime       :   17:42:50
+Used CPU time       :   17:17:40
+% User (Computation): 99.80%
+% System (I/O)      :  0.20%
+Mem reserved        : 2600M/core
+Max Mem used        : 3.74G (c9-67)
+Max Disk Write      : 22.61G (c9-67)
+Max Disk Read       : 63.11G (c9-67)
+
+##This is the new code that I tried.
+
+'''#!/bin/bash -l
+#SBATCH -J DIGINORM_job
+#SBATCH -t 72:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=4
+
+PROJECTROOT=/home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/
+DIGINORM=/home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/DigiOut/
+cd $DIGINORM/
+normalize-by-median.py -p -k 20 -C 20 -M 4e9 \
+  --savegraph $DIGINORM/normC20k20.ct -u \ $PROJECTROOT/orphanslane4lane5female.fq.gz \
+$PROJECTROOT/*.pe.qc.fq.gz'''
