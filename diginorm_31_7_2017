@@ -42,4 +42,4 @@ normalize-by-median.py -p -k 20 -C 20 -M 4e9 \
   --savegraph $DIGINORM/normC20k20.ct -u \ $PROJECTROOT/orphanslane4lane5female.fq.gz \
 $PROJECTROOT/*.pe.qc.fq.gz```
 
-##Update: This job faile. It took about 32 hours to run. I asked for help (2.Aug.17)
+##Update: This job failed. It took about 32 hours to run. I asked for help (2.Aug.17)
