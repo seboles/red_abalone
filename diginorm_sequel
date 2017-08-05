@@ -1,0 +1,19 @@
+#The space before ```--``` was not the solution to my problem of dignorm not being able to find my orhpan files. I am going to try to ```cat``` my orphan files again. 
+
+#Here is the script for combining the orphans again. It worked, the file has data in it. I am going to try running the diginorm job again. 
+```cat /home/seboles/abaloneraw/DataLane4/FemaleLane4/TRIM/orphanslane4female.fq.gz /home/seboles/abaloneraw/DataLane5/RawLane5/FemaleLane5/TRIMFEMALE5/orphanslane5female.fq.gz > orphanslane4lane5female.fq.gz```
+
+```#!/bin/bash -l
+#SBATCH -J DIGINORM_job
+#SBATCH -t 72:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=4
+
+PROJECTROOT=/home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/
+DIGINORM=/home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/DigiOut/
+cd $DIGINORM/
+normalize-by-median.py -p -k 20 -C 20 -M 4e9 \
+--savegraph $DIGINORM/normC20k20.ct -u \ $PROJECTROOT/orphanslane4lane5female.fq.gz \
+$PROJECTROOT/*.pe.qc.fq.gz```
+
+#The job is running so I will find out in a day or so if it worked.
