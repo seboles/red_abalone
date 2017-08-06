@@ -17,3 +17,5 @@ normalize-by-median.py -p -k 20 -C 20 -M 4e9 \
 $PROJECTROOT/*.pe.qc.fq.gz```
 
 #The job is running so I will find out in a day or so if it worked.
+
+#Update: this job didnt' work. Blart!
