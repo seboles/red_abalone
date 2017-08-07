@@ -1,0 +1,24 @@
+#I am trying to create a soft link ```ln -s``` for my orphan files rather that ```cat``` to see if I can get diginorm to work. 
+
+#Lane 4 Orphan Soft Link
+```seboles@farm:~/abaloneraw/CombinedLane4Lane5FemaleDigi$ ln -s 
+ln -s /home/seboles/abaloneraw/DataLane4/FemaleLane4/TRIM/*_orphans* .```
+
+#Lane 5 Orphan Soft Link
+```ln -s /home/seboles/abaloneraw/DataLane5/RawLane5/FemaleLane5/TRIMFEMALE5/*_orphans* .```
+
+#Here is the DIGINORM job that I just submitted. I really hope this works.
+
+```#!/bin/bash -l
+#SBATCH -J DIGINORM_job
+#SBATCH -t 72:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=4
+
+PROJECTROOT=/home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/
+DIGINORM=/home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/DigiOut/
+cd $DIGINORM/
+normalize-by-median.py -p -k 20 -C 20 -M 4e9 \
+--savegraph $DIGINORM/normC20k20.ct -u \ $PROJECTROOT/*_orphans* \
+$PROJECTROOT/*.pe.qc.fq.gz```
+
