@@ -22,3 +22,4 @@ normalize-by-median.py -p -k 20 -C 20 -M 4e9 \
 --savegraph $DIGINORM/normC20k20.ct -u \ $PROJECTROOT/*_orphans* \
 $PROJECTROOT/*.pe.qc.fq.gz```
 
+#This job failed again. 
