@@ -1,5 +1,7 @@
 #I tweeked by diginorm command a little bit. It is running. Hopefully this friggin works. Here is the command that I am using. 
 
+#sbatch digilane4lane5female2.sh
+
 ```#!/bin/bash -l
 #SBATCH -J DIGINORM_job
 #SBATCH -t 72:00:00
@@ -11,4 +13,34 @@ DIGINORM=/home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/DigiOut/
 cd $DIGINORM/
 normalize-by-median.py -p -k 20 -C 20 -M 4e9 \
 --savegraph $DIGINORM/normC20k20.ct -u \ $PROJECTROOT/*_orphans.fq.gz* \
+$PROJECTROOT/*.pe.qc.fq.gz```
+
+#Here are a few more tweeks that I made. sbatch digilane4lane5female3.sh
+
+```#!/bin/bash -l
+#SBATCH -J DIGINORM_job
+#SBATCH -t 72:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=4
+
+PROJECTROOT=/home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/
+DIGINORM=/home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/DigiOut/
+cd $DIGINORM/
+normalize-by-median.py -p -k 20 -C 20 -M 4e9 \
+--savegraph $DIGINORM/normC20k20.ct -u \ orphans.fq.gz \
+$PROJECTROOT/*.fq.gz```
+
+#sbatch digilane4lane5female4.sh
+
+```#!/bin/bash -l
+#SBATCH -J DIGINORM_job
+#SBATCH -t 72:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=4
+
+PROJECTROOT=/home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/
+DIGINORM=/home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/DigiOut/
+cd $DIGINORM/
+normalize-by-median.py -p -k 20 -C 20 -M 4e9 \
+--savegraph $DIGINORM/normC20k20.ct -u \ orphans.fq.gz \
 $PROJECTROOT/*.pe.qc.fq.gz```
