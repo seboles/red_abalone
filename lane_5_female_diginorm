@@ -1,0 +1,14 @@
+# I am running diginorm on just lane 5 female. It is running. Hopefully, this will work so then I can maybe troubleshoot my other issues. Here is the command for the diginorm job. 
+
+```#!/bin/bash -l
+#SBATCH -J DIGINORM_job
+#SBATCH -t 72:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=4
+
+PROJECTROOT=/home/seboles/abaloneraw/digilane5/
+DIGINORM=/home/seboles/abaloneraw/digilane5/DigiOut/
+cd $DIGINORM
+normalize-by-median.py -p -k 20 -C 20 -M 4e9 \
+--savegraph $DIGINORM/normC20k20.ct -u \ /home/seboles/abaloneraw/digilane5/female_5_orphans.fq.gz \
+$PROJECTROOT/*.pe.qc.fq.gz```
