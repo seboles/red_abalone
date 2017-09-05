@@ -1,7 +1,9 @@
 #This is how I made it read/write edit for everyone.
-chmod a+w /home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/orphans/orphanslane4lane5female.fq.gz
+```chmod a+w /home/seboles/abaloneraw/CombinedLane4Lane5FemaleDigi/orphans/orphanslane4lane5female.fq.gz```
 
-#srun will allow us to no longer be on the head node onto a compute node so I am only using the reosurces fo that particular node. Interactively logging in.
+#srun will allow us to no longer be on the head node onto a compute node so I am only using the reosurces fo that particular node. Interactively logging in.To access the node directly with 20g of memory:
+
+```srun -p high -t 24:00:00 --mem=20000 --pty bash```
 
 #Here is the new script that I am running with Lisa. We added memory (whoops) and increased the CPU 
 
