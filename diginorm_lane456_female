@@ -1,0 +1,26 @@
+### Make sure that you are in the directory you want the files to be linked into when you enter the following commands. 
+
+###First, create soft links for all three lanes of orphan files. 
+#Lane 4 Orphan Soft Link
+```seboles@farm:~/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi$ ln -s 
+ln -s /home/seboles/abaloneraw/DataLane4/FemaleLane4/TRIM/*_orphans* .```
+
+#Lane 5 Orphan Soft Link
+```ln -s /home/seboles/abaloneraw/DataLane5/RawLane5/FemaleLane5/TRIMFEMALE5/*_orphans* .```
+
+#Lane 6 Orphan Soft Link
+```seboles@farm:~/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi$ ln -s 
+ln -s /home/seboles/abaloneraw/DataLane6/RawLane6/FemaleLane6/female_6_orphans.fq.gz .```
+
+###Second,creaste soft links to all the PE data from the three different lanes. 
+
+#Lane 4 PE Soft Link to PE Data 
+```ln -s /home/seboles/abaloneraw/DataLane4/FemaleLane4/interleave/*.pe* .```
+
+#Lane 5 Soft Link to PE Data
+
+```ln -s /home/seboles/abaloneraw/DataLane5/RawLane5/FemaleLane5/INTERLEAVE/*.pe* .```
+
+#Lane 6 Soft Link to PE Data - ***TBD I need to interleave my files for this***
+
+```ln -s 
