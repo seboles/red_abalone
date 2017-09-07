@@ -17,7 +17,6 @@ normalize-by-median.py -p -k 20 -C 20 -M 4e9 \
 $PROJECTROOT/*.pe.qc.fq.gz
 rm $PROJECTROOT/orphans.fq.gz```
 
-
 #This is the old command
 ```#!/bin/bash -l
 #SBATCH -J DIGINORM_job
