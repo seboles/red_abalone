@@ -1,0 +1,32 @@
+## Lane 6 Female Interleave. Anaconda is the package manager that will run this operation of combining the PE reads. Need to activate the khmer environment. This should change handle from "seboles@farm:~$" to "(khmer_env)seboles@farm:~$". Double check to see if dammit and split-paired-reads.py. Run all of these commands in the same directory that the sbatch command is located. 
+
+```source ~/.bashrc```
+```source activate khmer_env```
+```pip install dammit```
+```split-paired-reads.py```
+```sbatch interleavelane6female2.sh```
+##Here is the sbatch command.
+
+```#!/bin/bash -l
+#SBATCH -J interleave_job
+#SBATCH -t 12:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=4
+
+PROJECTROOT=/home/seboles/abaloneraw/DataLane6/RawLane6/FemaleLane6/TRIMFEMALELANE6/
+INTERLEAVEDIR=/home/seboles/abaloneraw/DataLane6/RawLane6/FemaleLane6/interleave/
+for filename in $PROJECTROOT/*_R1_*.qc.fq.gz
+do
+     # first, make the base by removing .extract.fastq.gz
+     base=$(basename $filename .qc.fq.gz)
+     echo $base
+
+     # now, construct the R2 filename by replacing R1 with R2
+     baseR2=${base/_R1_/_R2_}
+     echo $baseR2
+     
+     # construct the output filename
+     output=$INTERLEAVEDIR/${base/_R1/}.pe.qc.fq.gz
+     echo output
+     (interleave-reads.py $PROJECTROOT/${base}.qc.fq.gz $PROJECTROOT/${baseR2}.qc.fq.gz | gzip > $output)
+done```
