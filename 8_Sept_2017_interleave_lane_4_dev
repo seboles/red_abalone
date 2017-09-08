@@ -1,0 +1,32 @@
+##interleave lane 4 developmental stages
+
+```source ~/.bashrc```
+```source activate khmer_env```
+```pip install dammit```
+```split-paired-reads.py```
+```sbatch interleavelane6female2.sh```
+##Here is the sbatch command. 
+
+```#!/bin/bash -l
+#SBATCH -J interleave_job
+#SBATCH -t 12:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=4
+
+PROJECTROOT=/home/seboles/abaloneraw/DataLane4/LarvaeLane4/TRIM/
+INTERLEAVEDIR=/home/seboles/abaloneraw/DataLane4/LarvaeLane4/INTERLEAVE/
+for filename in $PROJECTROOT/*_R1_*.qc.fq.gz
+do
+     # first, make the base by removing .extract.fastq.gz
+     base=$(basename $filename .qc.fq.gz)
+     echo $base
+
+     # now, construct the R2 filename by replacing R1 with R2
+     baseR2=${base/_R1_/_R2_}
+     echo $baseR2
+     
+     # construct the output filename
+     output=$INTERLEAVEDIR/${base/_R1/}.pe.qc.fq.gz
+     echo output
+     (interleave-reads.py $PROJECTROOT/${base}.qc.fq.gz $PROJECTROOT/${baseR2}.qc.fq.gz | gzip > $output)
+done```
