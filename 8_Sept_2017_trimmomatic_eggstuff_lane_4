@@ -1,0 +1,31 @@
+
+```#!/bin/bash -l
+#SBATCH -J array_job
+#SBATCH -t 12:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=4
+
+for filename in /home/seboles/abaloneraw/DataLane4/ExtraLane4/*_R1_*.fastq.gz
+do
+     # first, make the base by removing fastq.gz
+     base=$(basename $filename .fastq.gz)
+     echo $base
+
+     # now, construct the R2 filename by replacing R1 with R2
+     baseR2=${base/_R1_/_R2_}
+     echo $baseR2
+
+     # finally, run Trimmomatic
+     java -Xmx10g -jar /home/nreid/bin/trimmomatic-0.33/trimmomatic-0.33.jar PE \
+     /home/seboles/abaloneraw/DataLane4/ExtraLane4/${base}.fastq.gz /home/seboles/abaloneraw/DataLane4/ExtraLane4/${baseR2}.fastq.gz \
+     ${base}.qc.fq.gz s1_se \
+     ${baseR2}.qc.fq.gz s2_se \
+     ILLUMINACLIP:/home/nreid/rnaseq/NEBnextAdapt.fa:2:40:15 \
+     LEADING:2 TRAILING:2 \
+     SLIDINGWINDOW:4:2 \
+     MINLEN:25
+
+     # save the orphans
+     gzip -9c s1_se s2_se >> orphans.fq.gz
+     rm -f s1_se s2_se
+done```
