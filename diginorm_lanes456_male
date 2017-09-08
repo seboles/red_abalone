@@ -1,0 +1,28 @@
+##Combine the PE files into one location using a soft link.
+
+##Lane 4
+```ln -s /home/seboles/abaloneraw/DataLane4/MaleLane4/INTERLEAVE/*.pe.qc.fq.gz .```
+##Lane 5
+```ln -s /home/seboles/abaloneraw/DataLane5/RawLane5/MaleLane5/interleave/*.pe.qc.fq.gz .```
+##Lane 6
+```ln -s /home/seboles/abaloneraw/DataLane6/RawLane6/MaleLane6/interleave/*.pe.qc.fq.gz .```
+
+##Soft link all of orphan files from lanes 4,5,6 into PROJECTROOT.
+
+```#!/bin/bash -l
+#SBATCH -J DIGINORM_job
+#SBATCH -t 72:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=48000
+module load bio
+set -x
+PROJECTROOT=/home/seboles/abaloneraw/male_lane456_diginorm/
+DIGINORM=/home/seboles/abaloneraw/male_lane456_diginorm/DigiOut/
+cd $DIGINORM/
+cat $PROJECTROOT/*_orphans.fq.gz > $PROJECTROOT/orphans.fq.gz
+normalize-by-median.py -p -k 20 -C 20 -M 4e9 \
+--savegraph $DIGINORM/normC20k20.ct -u $PROJECTROOT/orphans.fq.gz \
+$PROJECTROOT/*.pe.qc.fq.gz
+rm $PROJECTROOT/orphans.fq.gz```
+
