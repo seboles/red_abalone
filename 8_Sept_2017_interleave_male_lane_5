@@ -1,8 +1,10 @@
+```source ~/.bashrc```
+```source activate khmer_env```
+```pip install dammit```
+```split-paired-reads.py```
+##Here is the sbatch command. 
 
-
-
-
-#!/bin/bash -l
+```#!/bin/bash -l
 #SBATCH -J interleave_job
 #SBATCH -t 12:00:00
 #SBATCH -p high
@@ -24,4 +26,4 @@ do
      output=$INTERLEAVEDIR/${base/_R1/}.pe.qc.fq.gz
      echo output
      (interleave-reads.py $PROJECTROOT/${base}.qc.fq.gz $PROJECTROOT/${baseR2}.qc.fq.gz | gzip > $output)
-done
+done```
