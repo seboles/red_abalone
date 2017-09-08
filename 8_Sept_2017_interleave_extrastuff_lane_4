@@ -4,7 +4,7 @@
 #SBATCH -p high
 #SBATCH --cpus-per-task=4
 
-PROJECTROOT=/home/seboles/abaloneraw/DataLane4/ExtraLane4/
+PROJECTROOT=/home/seboles/abaloneraw/DataLane4/ExtraLane4/TRIM/
 INTERLEAVEDIR=/home/seboles/abaloneraw/DataLane4/ExtraLane4/INTERLEAVE/
 for filename in $PROJECTROOT/*_R1_*.qc.fq.gz
 do
