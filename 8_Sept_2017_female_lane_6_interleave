@@ -5,7 +5,7 @@
 ```pip install dammit```
 ```split-paired-reads.py```
 ```sbatch interleavelane6female2.sh```
-##Here is the sbatch command.
+##Here is the sbatch command. 
 
 ```#!/bin/bash -l
 #SBATCH -J interleave_job
