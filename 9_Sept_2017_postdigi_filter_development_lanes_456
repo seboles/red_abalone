@@ -1,0 +1,14 @@
+```source ~/.bashrc```
+```source activate khmer_env```
+
+
+```#!/bin/bash -l
+#SBATCH -J postdigi_job
+#SBATCH -t 24:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=24000
+
+DIGINORM=/home/seboles/abaloneraw/development_lanes456_diginorm/DigiOut/
+cd $DIGINORM/
+filter-abund.py -V -Z 18 $DIGINORM/normC20k20.ct $DIGINORM/*.keep```
