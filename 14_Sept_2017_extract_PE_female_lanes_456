@@ -1,0 +1,16 @@
+
+
+```#!/bin/bash -l
+#SBATCH -J array_job
+#SBATCH -t 24:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=8
+module load bio
+PROJECTROOT=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/DIGINORMOUT/
+EXTRACT=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/EXTRACT/
+cd $EXTRACT/
+for file in /home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/DIGINORMOUT/*.pe.*.abundfilt
+do 
+  extract-paired-reads.py ${file} && \
+  rm ${file}
+done```
