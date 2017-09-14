@@ -7,6 +7,9 @@
 #SBATCH -p high
 #SBATCH --cpus-per-task=8
 module load bio
+PROJECTROOT=/home/seboles/abaloneraw/male_lane456_diginorm/DigiOut/
+EXTRACT=/home/seboles/abaloneraw/male_lane456_diginorm/EXTRACT/
+cd $EXTRACT/
 for file in /home/seboles/abaloneraw/male_lane456_diginorm/DigiOut/*.pe.*.abundfilt
 do 
   extract-paired-reads.py ${file} && \
