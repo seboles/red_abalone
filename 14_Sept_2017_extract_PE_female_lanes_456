@@ -1,4 +1,5 @@
-
+```source ~/.bashrc```
+```source activate khmer_env```
 
 ```#!/bin/bash -l
 #SBATCH -J array_job
