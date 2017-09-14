@@ -10,7 +10,7 @@ module load bio
 PROJECTROOT=/home/seboles/abaloneraw/development_lanes456_diginorm/EXTRACT/
 SPLIT=/home/seboles/abaloneraw/development_lanes456_diginorm/splitPEreads/
 cd $SPLIT/
-for file in home/seboles/abaloneraw/development_lanes456_diginorm/EXTRACT/*.pe.qc.fq.gz.keep.abundfilt
+for file in /home/seboles/abaloneraw/development_lanes456_diginorm/EXTRACT/*.pe.qc.fq.gz.keep.abundfilt
 do 
   split-paired-reads.py ${file} && \
   rm ${file}
