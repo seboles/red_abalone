@@ -1,0 +1,18 @@
+```source ~/.bashrc```
+```source activate khmer_env```
+```pip install dammit```
+```module load bio```
+
+```#!/bin/bash -l
+#SBATCH -J array_job
+#SBATCH -t 24:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=8
+module load bio
+PROJECTROOT=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/EXTRACT/
+for file in $PROJECTROOT/*.abundfilt.pe
+do
+  newfile=${file%%.fq.gz.keep.abundfilt.pe}.keep.abundfilt.fq
+  mv ${file} ${newfile}
+  gzip ${newfile}
+done```
