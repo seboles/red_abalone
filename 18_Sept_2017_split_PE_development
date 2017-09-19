@@ -1,0 +1,21 @@
+```source ~/.bashrc```
+```source activate khmer_env```
+```module load bio```
+```#!/bin/bash -l
+#SBATCH -J array_job
+#SBATCH -t 24:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=8
+module load bio
+PROJECTROOT=/home/seboles/abaloneraw/male_lane456_diginorm/EXTRACT/
+SPLIT=/home/seboles/abaloneraw/male_lane456_diginorm/splitPEreads/
+cd $SPLIT/
+for file in $PROJECTROOT/*.pe.qc.keep.abundfilt.fq.gz
+do
+  split-paired-reads.py ${file}
+done
+   
+cat *.1 > left.fq
+cat *.2 > right.fq
+   
+gunzip -c $PROJECTROOT/orphans.keep.abundfilt.fq.gz >> left.fq```
