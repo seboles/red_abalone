@@ -1,0 +1,96 @@
+###Diginorm
+```#!/bin/bash -l
+#SBATCH -J DIGINORM_job
+#SBATCH -t 72:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=10
+#SBATCH --mem=64000
+module load bio
+set -x
+PROJECTROOT=/home/seboles/abaloneraw/development_lanes456_diginorm/
+DIGINORM=/home/seboles/abaloneraw/development_lanes456_diginorm/DigiOut/
+cd $DIGINORM/
+cat $PROJECTROOT/*_orphans.fq.gz > $PROJECTROOT/orphans.fq.gz
+normalize-by-median.py -p -k 20 -C 20 -M 4e9 \
+--savegraph $DIGINORM/normC20k20.ct -u $PROJECTROOT/orphans.fq.gz \
+$PROJECTROOT/*.pe.qc.fq.gz
+rm $PROJECTROOT/orphans.fq.gz```
+
+###Abundance Filtering - trim off errors
+```#!/bin/bash -l
+#SBATCH -J postdigi_job
+#SBATCH -t 24:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=24000
+
+DIGINORM=/home/seboles/abaloneraw/development_lanes456_diginorm/DigiOut/
+cd $DIGINORM/
+filter-abund.py -V -Z 18 $DIGINORM/normC20k20.ct $DIGINORM/*.keep```
+###Extract PE
+```#!/bin/bash -l
+#SBATCH -J array_job
+#SBATCH -t 24:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=8
+module load bio
+PROJECTROOT=/home/seboles/abaloneraw/development_lanes456_diginorm/DigiOut/
+EXTRACT=/home/seboles/abaloneraw/development_lanes456_diginorm/EXTRACT/
+cd $EXTRACT/
+for file in /home/seboles/abaloneraw/development_lanes456_diginorm/DigiOut/*.pe.*.abundfilt
+do 
+  extract-paired-reads.py ${file} && \
+  rm ${file}
+done```
+
+
+###Combine PE
+```#!/bin/bash -l
+#SBATCH -J array_job
+#SBATCH -t 24:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=8
+module load bio
+PROJECTROOT=/home/seboles/abaloneraw/development_lanes456_diginorm/EXTRACT/
+for file in $PROJECTROOT/*.abundfilt.pe
+do
+  newfile=${file%%.fq.gz.keep.abundfilt.pe}.keep.abundfilt.fq
+  mv ${file} ${newfile}
+  gzip ${newfile}
+done```
+
+###Compress and rename orphans files
+```#!/bin/bash -l
+#SBATCH -J array_job
+#SBATCH -t 24:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=8
+module load bio
+PROJECTROOT=/home/seboles/abaloneraw/development_lanes456_diginorm/EXTRACT/ 
+gzip -9c orphans.qc.fq.gz.keep.abundfilt > orphans.keep.abundfilt.fq.gz && \
+  rm orphans.qc.fq.gz.keep.abundfilt
+for file in $PROJECTROOT/*.pe.*.abundfilt.se
+do
+  gzip -9c ${file} >> orphans.keep.abundfilt.fq.gz && \
+  rm ${file}
+done```
+
+###Split PE - Trinity expects SE reads, so you need to split them back up.
+```#!/bin/bash -l
+#SBATCH -J array_job
+#SBATCH -t 24:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=8
+module load bio
+PROJECTROOT=/home/seboles/abaloneraw/development_lanes456_diginorm/EXTRACT/
+SPLIT=/home/seboles/abaloneraw/development_lanes456_diginorm/splitPEreads/
+cd $SPLIT/
+for file in $PROJECTROOT/*.pe.qc.keep.abundfilt.fq.gz
+do
+  split-paired-reads.py ${file}
+done
+   
+cat *.1 > left.fq
+cat *.2 > right.fq
+   
+gunzip -c $PROJECTROOT/orphans.keep.abundfilt.fq.gz >> left.fq```
