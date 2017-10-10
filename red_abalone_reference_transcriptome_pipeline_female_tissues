@@ -36,3 +36,60 @@ cd $DIGINORM/
 filter-abund.py -V -Z 18 $DIGINORM/normC20k20.ct $DIGINORM/*.keep```
 
 #Extract PE reads
+```source ~/.bashrc```
+```source activate khmer_env```
+```module load bio```
+```#!/bin/bash -l
+#SBATCH -J array_job
+#SBATCH -t 24:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=8
+module load bio
+PROJECTROOT=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/DIGINORMOUT/
+EXTRACT=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/EXTRACT/
+cd $EXTRACT/
+for file in /home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/DIGINORMOUT/*.pe.*.abundfilt
+do 
+  extract-paired-reads.py ${file} && \
+  rm ${file}
+done```
+
+#Compress PE Reads
+```source ~/.bashrc```
+```source activate khmer_env```
+```pip install dammit```
+```module load bio```
+
+```#!/bin/bash -l
+#SBATCH -J array_job
+#SBATCH -t 24:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=8
+module load bio
+PROJECTROOT=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/EXTRACT/
+for file in $PROJECTROOT/*.abundfilt.pe
+do
+  newfile=${file%%.fq.gz.keep.abundfilt.pe}.keep.abundfilt.fq
+  mv ${file} ${newfile}
+  gzip ${newfile}
+done```
+
+#Zip Orphans
+```source ~/.bashrc```
+```source activate khmer_env```
+```pip install dammit```
+```module load bio```
+```#!/bin/bash -l
+#SBATCH -J array_job
+#SBATCH -t 24:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=8
+module load bio
+PROJECTROOT=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/EXTRACT/ 
+gzip -9c orphans.qc.fq.gz.keep.abundfilt > orphans.keep.abundfilt.fq.gz && \
+  rm orphans.qc.fq.gz.keep.abundfilt
+for file in $PROJECTROOT/*.pe.*.abundfilt.se
+do
+  gzip -9c ${file} >> orphans.keep.abundfilt.fq.gz && \
+  rm ${file}
+done```
