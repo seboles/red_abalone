@@ -1,0 +1,38 @@
+#Digital Normalization
+
+```source ~/.bashrc```
+```source activate khmer_env```
+``` module load bio```
+```#!/bin/bash -l
+#SBATCH -J DIGINORM_job
+#SBATCH -t 72:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=48000
+module load bio
+set -x
+PROJECTROOT=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/
+DIGINORM=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/DigiOut/
+cd $DIGINORM/
+cat $PROJECTROOT/*_orphans.fq.gz > $PROJECTROOT/orphans.fq.gz
+normalize-by-median.py -p -k 20 -C 20 -M 4e9 \
+--savegraph $DIGINORM/normC20k20.ct -u $PROJECTROOT/orphans.fq.gz \
+$PROJECTROOT/*.pe.qc.fq.gz
+rm $PROJECTROOT/orphans.fq.gz```
+
+#Abundance Filtering Post-Digital Normalization
+
+```source ~/.bashrc```
+```source activate khmer_env```
+```module load bio```
+```#!/bin/bash -l
+#SBATCH -J postdigi_job
+#SBATCH -t 24:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=24000
+DIGINORM=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/DigiOut/
+cd $DIGINORM/
+filter-abund.py -V -Z 18 $DIGINORM/normC20k20.ct $DIGINORM/*.keep```
+
+#Extract PE reads
