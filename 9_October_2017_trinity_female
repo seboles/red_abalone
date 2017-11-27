@@ -1,13 +1,19 @@
-```#!/bin/bash -l
+#!/bin/bash -l
 #SBATCH -J Trinity_job
-#SBATCH -t 168:00:00
-#SBATCH -p high
-#SBATCH --cpus-per-task=16
-#SBATCH --mem=64000
+#SBATCH -D /home/seboles/RNAseq_useful_scripts/
+#SBATCH -A millermrgrp
+#SBATCH -p bigmeml
+#SBATCH -t 336:00:00
+#SBATCH --cpus-per-task=32
+#SBATCH --mem=260000
 module load rsem/1.3.0
 module load trinity
+mkdir /scratch/$SLURM_JOBID/
 PROJECTROOT=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/splitPEreads/
-cd $PROJECTROOT/
+cd /scratch/$SLURM_JOBID/
+cp $PROJECTROOT/*.fq .
 Trinity --left left.fq \
-  --right right.fq --seqType fq --max_memory 14G \
-  --CPU 2```
+  --right right.fq --output /scratch/$SLURM_JOBID/redabalonefemale_trinity_out --full_cleanup --seqType fq --max_memory 256G \
+  --CPU 30
+cp /scratch/$SLURM_JOBID/redabalonefemale_trinity_out.Trinity.fasta /home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/Trinity/
+rm -rf /scratch/$SLURM_JOBID* 
