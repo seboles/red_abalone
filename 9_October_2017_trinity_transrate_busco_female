@@ -1,0 +1,58 @@
+### This is the Trinity Command
+```#!/bin/bash -l
+#SBATCH -J Trinity_job
+#SBATCH -D /home/seboles/RNAseq_useful_scripts/
+#SBATCH -A millermrgrp
+#SBATCH -p bigmeml
+#SBATCH -t 336:00:00
+#SBATCH --cpus-per-task=32
+#SBATCH --mem=260000
+module load rsem/1.3.0
+module load trinity
+mkdir /scratch/$SLURM_JOBID/
+PROJECTROOT=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/splitPEreads/
+cd /scratch/$SLURM_JOBID/
+cp $PROJECTROOT/*.fq .
+Trinity --left left.fq \
+  --right right.fq --output /scratch/$SLURM_JOBID/redabalonefemale_trinity_out --full_cleanup --seqType fq --max_memory 256G \
+  --CPU 30
+cp /scratch/$SLURM_JOBID/redabalonefemale_trinity_out.Trinity.fasta /home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/Trinity/
+rm -rf /scratch/$SLURM_JOBID*``` 
+
+###This is the transrate command for sequence base only (assembly only). Make sure to use the full path name of the Trinity file because this command is run on the head node. 
+
+```cd /home/seboles/transrate-1.0.3-linux-x86_64/
+echo 'export PATH=$PATH:"/home/seboles/transrate-1.0.3-linux-x86_64"' >> ~/.bashrcsource 
+source ~/.bashrc
+transrate
+transrate --assembly=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/Trinity/redabalonefemale_trinity_out.Trinity.fasta```
+
+### Here is my Transrate output
+[ INFO] 2017-11-29 12:59:00 : Results will be saved in /home/seboles/transrate-1.0.3-linux-x86_64/transrate_results/redabalonefemale_trinity_out.Trinity
+[ INFO] 2017-11-29 12:59:00 : Calculating contig metrics...
+[ INFO] 2017-11-29 13:06:08 : Contig metrics:
+[ INFO] 2017-11-29 13:06:08 : -----------------------------------
+[ INFO] 2017-11-29 13:06:08 : n seqs                      1137490
+[ INFO] 2017-11-29 13:06:08 : smallest                        201
+[ INFO] 2017-11-29 13:06:08 : largest                       29736
+[ INFO] 2017-11-29 13:06:08 : n bases                   779726527
+[ INFO] 2017-11-29 13:06:08 : mean len                     685.48
+[ INFO] 2017-11-29 13:06:08 : n under 200                       0
+[ INFO] 2017-11-29 13:06:08 : n over 1k                    181837
+[ INFO] 2017-11-29 13:06:08 : n over 10k                      546
+[ INFO] 2017-11-29 13:06:08 : n with orf                   153569
+[ INFO] 2017-11-29 13:06:08 : mean orf percent               48.5
+[ INFO] 2017-11-29 13:06:08 : n90                             272
+[ INFO] 2017-11-29 13:06:08 : n70                             506
+[ INFO] 2017-11-29 13:06:08 : n50                            1131
+[ INFO] 2017-11-29 13:06:08 : n30                            2289
+[ INFO] 2017-11-29 13:06:08 : n10                            4595
+[ INFO] 2017-11-29 13:06:08 : gc                             0.43
+[ INFO] 2017-11-29 13:06:08 : bases n                           0
+[ INFO] 2017-11-29 13:06:08 : proportion n                    0.0
+[ INFO] 2017-11-29 13:06:08 : Contig metrics done in 428 seconds
+
+
+
+
+
