@@ -21,7 +21,10 @@ rm -rf /scratch/$SLURM_JOBID*```
 
 ###This is the transrate command for sequence base only (assembly only). Make sure to use the full path name of the Trinity file because this command is run on the head node. 
 
+
 ```cd /home/seboles/transrate-1.0.3-linux-x86_64/
+./transrate --install-deps ref
+rm -f bin/librt.so.1
 echo 'export PATH=$PATH:"/home/seboles/transrate-1.0.3-linux-x86_64"' >> ~/.bashrcsource 
 source ~/.bashrc
 transrate
@@ -52,7 +55,7 @@ transrate --assembly=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleD
 [ INFO] 2017-11-29 13:06:08 : proportion n                    0.0
 [ INFO] 2017-11-29 13:06:08 : Contig metrics done in 428 seconds
 
-
+###BUSCO
 
 
 
