@@ -55,7 +55,7 @@ transrate --assembly=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleD
 [ INFO] 2017-11-29 13:06:08 : proportion n                    0.0
 [ INFO] 2017-11-29 13:06:08 : Contig metrics done in 428 seconds
 
-###BUSCO - commands not working as of yet
+###BUSCO - 
 
 ```cd /home/seboles/busco/config
 cp contig.ini.default config.ini
@@ -64,21 +64,23 @@ tar -xvzf metazoa_odb9.tar.gz
 export PATH=/home/seboles/busco/scripts:$PATH
 echo 'export PATH=/home/seboles/busco/scripts:$PATH' >> ~/.bashrc
 
+cd /home/seboles/busco/ curl -OL http://busco.ezlab.org/datasets/eukaryota_odb9.tar.gz
+
 PROJECTROOT=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/Trinity/
 sed 's_|_-_g' $PROJECTROOT/redabalonefemale_trinity_out.Trinity.fasta > Trinity.fixed.fasta
 
-## Run this in the dir containing fixed.fasta
-run_BUSCO.py
+## Run this in the dir containing fixed.fasta - commands not working as of yet
+```run_BUSCO.py
 -i Trinity.fixed.fasta 
 -o red_abalone_busco_metazoa 
 -l ~/home/seboles/busco/config/metazoa_odb9 
--m transcriptome --cpu 32
+-m transcriptome --cpu 32```
 
 
-run_BUSCO.py \
+```run_BUSCO.py \
 -i Trinity.fixed.fasta \
 -o ~/home/seboles/busco/metazoa_odb9 \
--m transcriptome --cpu 16
+-m transcriptome --cpu 16```
 
 
 
