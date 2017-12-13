@@ -1,0 +1,21 @@
+###BUSCO - 
+
+## Run this in the dir containing fixed.fasta - commands not working as of yet ahhhhhhhhhhhhhhhhhhhhhhh!
+```source ~/.bashrc```
+```source activate khmer_env```
+```cd /home/seboles/busco```
+```export PATH=/home/seboles/busco/scripts:$PATH```
+```echo 'export PATH=/home/seboles/busco/scripts:$PATH' >> ~/.bashrc```
+
+
+```python scripts/run_BUSCO.py -i Trinity.fixed.fasta -o redabalonebusco -l eukaryota_odb9 -m tran --cpu 32````
+##Here is the new error message.
+
+```(khmer_env)seboles@farm:~/busco$ python scripts/run_BUSCO.py -i Trinity.fixed.fasta -o redabalonebusco -l eukaryota_odb9 -m tran --cpu 32
+INFO	****************** Start a BUSCO 3.0.2 analysis, current time: 12/12/2017 13:48:52 ******************
+INFO	Configuration loaded from /home/seboles/busco/scripts/../config/config.ini
+INFO	Init tools...
+INFO	Check dependencies...
+ERROR	"hmmsearch" is not accessible, add or modify its path in the config file. Do not include the commmand in the path !
+ERROR	BUSCO analysis failed !
+ERROR	Check the logs, read the user guide, if you still need technical support, then please contact mailto:support@orthodb.org```
