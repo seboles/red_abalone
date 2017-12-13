@@ -1,0 +1,20 @@
+###BUSCO - 
+
+```cd /home/seboles/busco/config
+cp contig.ini.default config.ini
+cd /home/seboles/busco/ curl -OL http://busco.ezlab.org/datasets/eukaryota_odb9.tar.gz
+tar -xvzf eukaryota_odb9.tar.gz
+export PATH=/home/seboles/busco/scripts:$PATH
+echo 'export PATH=/home/seboles/busco/scripts:$PATH' >> ~/.bashrc```
+python scripts/run_BUSCO.py -i Trinity.fixed.fasta -o redabalonebusco -l eukaryota_odb9 -m tran --cpu 32````
+
+##Here is the new error message.
+
+```
+INFO	****************** Start a BUSCO 3.0.2 analysis, current time: 12/08/2017 13:42:52 ******************
+INFO	Configuration loaded from /home/seboles/busco/scripts/../config/config.ini
+INFO	Init tools...
+INFO	Check dependencies...
+ERROR	"hmmsearch" is not accessible, add or modify its path in the config file. Do not include the commmand in the path !
+ERROR	BUSCO analysis failed !
+ERROR	Check the logs, read the user guide, if you still need technical support, then please contact mailto:support@orthodb.org```
