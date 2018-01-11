@@ -1,0 +1,48 @@
+### How to install bioconda
+
+```(conda config --add channels r)```
+```conda config --add channels defaults```
+```conda config --add channels conda-forge```
+```conda config --add channels bioconda```
+
+## How to search conda
+```conda search busco```
+ 
+ ### Good to update every once in a while, but do so outside of the condo_env
+```conda update conda```
+ 
+ 
+ ## This is to create  new env... specifically versions of things
+```conda create -n busco_env busco=3.0.2 python=3.5```
+
+ ##run command
+```source activate busco_env```
+```run_busco -h```
+ 
+```history```
+
+##This is the command. Make sure that I am in the directory that contains the 'Trinity.fixed.fasta' file. It is located here: '/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/Trinity/Trinity.fixed.fasta'
+
+```run_busco -i Trinity.fixed.fasta -o redabalonebusco -l /home/seboles/busco/eukaryota_odb9 -m tran --cpu 32```
+
+###Here is the output from BUSCO
+Results:
+INFO	C:99.7%[S:12.9%,D:86.8%],F:0.3%,M:-0.0%,n:303
+INFO	302 Complete BUSCOs (C)
+INFO	39 Complete and single-copy BUSCOs (S)
+INFO	263 Complete and duplicated BUSCOs (D)
+INFO	1 Fragmented BUSCOs (F)
+INFO	0 Missing BUSCOs (M)
+INFO	303 Total BUSCO groups searched
+INFO	BUSCO analysis done. Total running time: 764.3785994052887 seconds
+INFO	Results written in /home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/Trinity/run_redabalonebusco/b
+
+
+
+
+#This is how to locate a file in this directory
+```find abaloneraw -iname "*fixed*"```
+
+
+
+/home/seboles/busco/Trinity.fixed.fasta
