@@ -25,6 +25,8 @@
 
 ```run_busco -i Trinity.fixed.fasta -o redabalonebusco -l /home/seboles/busco/eukaryota_odb9 -m tran --cpu 32```
 
+
+
 ###Here is the output from BUSCO
 Results:
 INFO	C:99.7%[S:12.9%,D:86.8%],F:0.3%,M:-0.0%,n:303
