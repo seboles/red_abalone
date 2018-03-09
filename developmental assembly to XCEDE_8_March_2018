@@ -1,0 +1,71 @@
+# Here is the location of my male right and left files for assembly.
+
+```/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/```
+
+## Here is my trinity script for the farm cluster. 
+
+```#!/bin/bash -l
+#SBATCH -J Trinity_job
+#SBATCH -D /home/seboles/RNAseq_useful_scripts/
+#SBATCH -A millermrgrp
+#SBATCH -p bigmeml
+#SBATCH -t 336:00:00
+#SBATCH --cpus-per-task=32
+#SBATCH --mem=260000
+module load rsem/1.3.0
+module load trinity
+mkdir /scratch/$SLURM_JOBID/
+PROJECTROOT=/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/
+cd /scratch/$SLURM_JOBID/
+cp $PROJECTROOT/*.fq .
+Trinity --left left.fq \
+  --right right.fq --output /scratch/$SLURM_JOBID/redabalonedmale_trinity_out --full_cleanup --seqType fq --max_memory 256G \
+  --CPU 30
+cp /scratch/$SLURM_JOBID/redabalonemale_trinity_out.Trinity.fasta /home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/Trinity_Male/
+rm -rf /scratch/$SLURM_JOBID*```
+
+## This is how to copy files? Here is an example below. When I try to follow the directions on the XCEDE website
+```https://portal.xsede.org/web/xup/data-management#scp```, I get an error message that says "Knowledgebase is temporarily unavailable."
+
+## Here is my failed globus trasnfer message
+
+```TASK DETAILS
+Task ID: 1b0b9406-18c9-11e8-b6ae-0ac6873fc732
+Task Type: TRANSFER
+Status: FAILED
+Source: farm.cse.ucdavis.edu (dbf0d27e-3b5e-11e7-bcfa-22000b9a448b)
+Destination: XSEDE PSC bridges (ce3000da-89a9-11e7-a97f-22000a92523b)
+Label: n/a
+
+https://www.globus.org/app/activity/1b0b9406-18c9-11e8-b6ae-0ac6873fc732```
+
+```scp seboles@farm.cse.ucdavis.edu:/home/seboles/abaloneraw/DataTemp/Female/*fastqc.html ~/Desktop/Terminal/RawSeqFASTQC
+*fastqc.html```
+
+### Here is the XCEDE Bridges command from Serena
+
+```#!/bin/bash
+#SBATCH -N 2
+#SBATCH -p LM
+#SBATCH --mem 200G
+#SBATCH --ntasks-per-node 28
+#SBATCH -t 96:00:00
+#SBATCH --mail-user=sacaplins@ucdavis.edu
+#SBATCH --mail-type=ALL
+
+echo commands to stdout
+set -x
+
+#working directory
+cd /pylon5/bi4ifup/caplins/willowi_assembly
+
+#load required modules
+
+module load trinity/2.4.0
+module load bowtie2
+module load gcc
+module load samtools
+
+Trinity --left left.fq --right right.fq --seqType fq --max_memory 50G --CPU 10```
+ ## Easiest to make sure that I am in the directory that contains my files. 
+```scp filename jetstreamusername@instance address:~/``` this is will send ti to my jet stream instance. 
