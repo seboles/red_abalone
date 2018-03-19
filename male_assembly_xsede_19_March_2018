@@ -1,0 +1,12 @@
+### This is how I log into xsede bridges through my terminal
+```ssh abalone@login.xsede.org```
+##Then I enter my xsede password into the terminal to get into the single sign on hub
+
+### Once I enter the command above, I will be prompted via the "Duo" app on my phone to confirm my identity
+
+###Once logged into the xsede through
+
+```gsissh bridges```
+
+### To get into my directory on bridges through my terminal 
+```cd /pylon5/bi4ifup/abalone/```
