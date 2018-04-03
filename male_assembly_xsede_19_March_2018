@@ -11,3 +11,23 @@
 ### To get into my directory on bridges through my terminal 
 ```cd /pylon5/bi4ifup/abalone/```
 
+## Now load the required modules for assembly
+```module load trinity/2.4.0
+module load bowtie2
+module load gcc
+module load samtools
+Trinity --left maleleft.fq --right maleright.fq --seqType fq --max_memory 250G --CPU 32```
+ 
+ ## Easiest to make sure that I am in the directory that contains my files. 
+```scp filename jetstreamusername@instance address:~/``` this is will send it to my jet stream instance.
+
+##The Jetstream instance <Centos 7 (7_4) Development GUI> is running and ready for use.
+Your Instance Information:
+* Name: Centos 7 (7_4) Development GUI
+* IP Address: 129.114.104.95
+* SSH Username: abalone
+* SSH Keys deployed for root: abalone
+* UUID: c70a5a21-8fbc-4e81-93ff-abc2ddfff836
+* Cloud Provider: Jetstream - TACC
+* Launched at: Mar, 21 2018 19:55:21 UTC (Mar, 21 2018 14:55:21 Arizona time)
+This e-mail notification was auto-generated after instance launch.
