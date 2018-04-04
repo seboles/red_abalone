@@ -1,0 +1,19 @@
+###sbatch on XSEDE. Make sure I cd into ```/pylon5/bi4ifup/abalone/male_assembly``` where my files are located
+
+```#!/bin/bash
+#SBATCH -N 2
+#SBATCH -p LM
+#SBATCH --mem 200G
+#SBATCH --ntasks-per-node 32
+#SBATCH -t 150:00:00
+#SBATCH --mail-user=seboles@ucdavis.edu
+#SBATCH --mail-type=ALL
+
+echo commands to stdout
+set -x
+module load trinity/2.4.0
+module load bowtie2
+module load gcc
+module load samtools
+
+Trinity --left maleleft.fq --right maleright.fq --seqType fq --max_memory 250G --CPU 32```
