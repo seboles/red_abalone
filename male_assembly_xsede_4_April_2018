@@ -1,5 +1,17 @@
-###sbatch on XSEDE. Make sure I cd into ```/pylon5/bi4ifup/abalone/male_assembly``` where my files are located
+##sbatch on XSEDE. Make sure I cd into ```/pylon5/bi4ifup/abalone/male_assembly``` where my files are located
 
+## Here is the error message that I get.
+```SLURM Job_id=2736317 Name=maletrinityxsede.sh Failed, Run time 00:03:02, FAILED, ExitCode 2```
+
+## To login into XSEDE
+```ssh abalone@login.xsede.org```
+```gsissh bridges```
+```cd /pylon5/bi4ifup/abalone/male_assembly```
+
+## To get to my jetstream instance
+```ssh abalone@129.114.104.95```
+
+## My SBATCH command
 ```#!/bin/bash
 #SBATCH -N 2
 #SBATCH -p LM
@@ -8,12 +20,12 @@
 #SBATCH -t 150:00:00
 #SBATCH --mail-user=seboles@ucdavis.edu
 #SBATCH --mail-type=ALL
-
 echo commands to stdout
 set -x
 module load trinity/2.4.0
 module load bowtie2
 module load gcc
 module load samtools
-
 Trinity --left maleleft.fq --right maleright.fq --seqType fq --max_memory 250G --CPU 32```
+
+scp trinity_out_dir /home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/Trinity_Male
