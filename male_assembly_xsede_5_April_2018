@@ -1,0 +1,48 @@
+##sbatch on XSEDE. Make sure I cd into ```/pylon5/bi4ifup/abalone/male_assembly``` where my files are located
+
+## Here is the error message that I get.
+```SLURM Job_id=2736317 Name=maletrinityxsede.sh Failed, Run time 00:03:02, FAILED, ExitCode 2```
+
+## To login into XSEDE
+```ssh abalone@login.xsede.org```
+```gsissh bridges```
+```cd /pylon5/bi4ifup/abalone/male_assembly```
+
+## To get to my jetstream instance
+```ssh abalone@129.114.104.95```
+
+## My SBATCH command
+```#!/bin/bash
+#SBATCH -N 2
+#SBATCH -p LM
+#SBATCH --mem 200G
+#SBATCH --ntasks-per-node 32
+#SBATCH -t 150:00:00
+#SBATCH --mail-user=seboles@ucdavis.edu
+#SBATCH --mail-type=ALL
+echo commands to stdout
+set -x
+cd /pylon5/bi4ifup/abalone/male_assembly
+module load trinity/2.4.0
+module load bowtie2
+module load gcc
+module load samtools
+Trinity --left maleleft.fq --right maleright.fq --seqType fq --max_memory 250G --CPU 32```
+
+## Error Message for slurm-2740512.out 
+
+```-ERROR: couldn't run the network check to confirm latest Trinity software version.```
+Error, cmd: /opt/packages/trinity/2.4.0/util/..//trinity-plugins/jellyfish/bin/jellyfish count -t 32 -m 25 -s 37408772591  --canonical  both.fa died with ret 9 at /opt/packages/trinity/2.4.0/util/insilico_read_normalization.pl line 758.
+Error, cmd: /opt/packages/trinity/2.4.0/util/insilico_read_normalization.pl --seqType fq --JM 250G  --max_cov 50 --CPU 32 --output /pylon5/bi4ifup/abalone/male_assembly/trinity_out_dir/insilico_read_normalization   --max_pct_stdev 10000  --left /pylon5/bi4ifup/abalone/male_assembly/maleleft.fq --right /pylon5/bi4ifup/abalone/male_assembly/maleright.fq --pairs_together --PARALLEL_STATS   died with ret 512 at /opt/packages/trinity/2.4.0/Trinity line 2462.
+slurmstepd: error: Exceeded step memory limit at some point.```
+
+```Trinity version: Trinity-v2.4.0
+** NOTE: Latest version of Trinity is Trinity-v2.6.6, and can be obtained at:
+	https://github.com/trinityrnaseq/trinityrnaseq/releases```
+  
+  ## Error Message from slurm-2736317.out
+  Error, cmd: /opt/packages/trinity/2.4.0/util/..//trinity-plugins/jellyfish/bin/jellyfish count -t 32 -m 25 -s 37408772591  --canonical  both.fa died with ret 9 at /opt/packages/trinity/2.4.0/util/insilico_read_normalization.pl line 758.
+Error, cmd: /opt/packages/trinity/2.4.0/util/insilico_read_normalization.pl --seqType fq --JM 250G  --max_cov 50 --CPU 32 --output /pylon5/bi4ifup/abalone/male_assembly/trinity_out_dir/insilico_read_normalization   --max_pct_stdev 10000  --left /pylon5/bi4ifup/abalone/male_assembly/maleleft.fq --right /pylon5/bi4ifup/abalone/male_assembly/maleright.fq --pairs_together --PARALLEL_STATS   died with ret 512 at /opt/packages/trinity/2.4.0/Trinity line 2462.
+slurmstepd: error: Exceeded step memory limit at some point.
+slurmstepd: error: Exceeded job memory limit at some point.
+
