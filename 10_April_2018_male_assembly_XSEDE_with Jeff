@@ -16,11 +16,12 @@
 #SBATCH --mail-type=ALL
 echo commands to stdout
 set -x
-module load trinity/2.6.6
+#module load trinity/2.6.6
+Trinity=/home/abalone/Trinityrnaseq-v2.6.6/Trinity
 module load bowtie2
 module load gcc
 module load samtools
-Trinity --left maleleft.fq --right maleright.fq --seqType fq --max_memory 250G --CPU 32```
+$Trinity --left maleleft.fq --right maleright.fq --seqType fq --max_memory 250G --CPU 32```
 
 ## Here is the new slurm message that I got
 
@@ -132,3 +133,5 @@ slurmstepd: error: Exceeded step memory limit at some point.```
 ## Here is the email error message
 
 ```SLURM Job_id=2773382 Name=xsedemaleassembly.sh Failed, Run time 00:00:03, FAILED, ExitCode 127```
+
+## To load trinit, I need to load my own updated version of trinity, not what is available on the cluster/server I am using. 
