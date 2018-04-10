@@ -1,0 +1,81 @@
+## This is how I login to XSEDE via the terminal. The error message 
+
+```sssh abalone@login.xsede.org```
+```gsissh bridges```
+```cd /pylon5/bi4ifup/abalone/male_assembly```
+```cat slurm-2736317.out```
+
+## Here is my slurm output from XSEDE
+
+```commands to stdout
++ module load trinity/2.4.0
+++ /usr/bin/modulecmd bash load trinity/2.4.0
++ eval
++ module load bowtie2
+++ /usr/bin/modulecmd bash load bowtie2
++ eval
++ module load gcc
+++ /usr/bin/modulecmd bash load gcc
++ eval
++ module load samtools
+++ /usr/bin/modulecmd bash load samtools
++ eval
++ Trinity --left maleleft.fq --right maleright.fq --seqType fq --max_memory 250G --CPU 32
+Left read files: $VAR1 = [
+          'maleleft.fq'
+        ];
+Right read files: $VAR1 = [
+          'maleright.fq'
+        ];
+Trinity version: Trinity-v2.4.0
+** NOTE: Latest version of Trinity is Trinity-v2.6.6, and can be obtained at:
+	https://github.com/trinityrnaseq/trinityrnaseq/releases
+
+Wednesday, April 4, 2018: 16:02:47	CMD: java -Xmx64m -XX:ParallelGCThreads=2 -jar /opt/packages/trinity/2.4.0/util/support_scripts/ExitTester.jar 0
+Wednesday, April 4, 2018: 16:02:48	CMD: java -Xmx64m -XX:ParallelGCThreads=2 -jar /opt/packages/trinity/2.4.0/util/support_scripts/ExitTester.jar 1
+Wednesday, April 4, 2018: 16:02:48	CMD: mkdir -p /pylon5/bi4ifup/abalone/male_assembly/trinity_out_dir
+Wednesday, April 4, 2018: 16:02:48	CMD: mkdir -p /pylon5/bi4ifup/abalone/male_assembly/trinity_out_dir/chrysalis
+
+
+----------------------------------------------------------------------------------
+-------------- Trinity Phase 1: Clustering of RNA-Seq Reads  ---------------------
+----------------------------------------------------------------------------------
+
+---------------------------------------------------------------
+------------ In silico Read Normalization ---------------------
+-- (Removing Excess Reads Beyond 50 Coverage --
+---------------------------------------------------------------
+
+# running normalization on reads: $VAR1 = [
+          [
+            '/pylon5/bi4ifup/abalone/male_assembly/maleleft.fq'
+          ],
+          [
+            '/pylon5/bi4ifup/abalone/male_assembly/maleright.fq'
+          ]
+        ];
+
+
+Wednesday, April 4, 2018: 16:02:48	CMD: /opt/packages/trinity/2.4.0/util/insilico_read_normalization.pl --seqType fq --JM 250G  --max_cov 50 --CPU 32 --output /pylon5/bi4ifup/abalone/male_assembly/trinity_out_dir/insilico_read_normalization   --max_pct_stdev 10000  --left /pylon5/bi4ifup/abalone/male_assembly/maleleft.fq --right /pylon5/bi4ifup/abalone/male_assembly/maleright.fq --pairs_together --PARALLEL_STATS  
+Converting input files. (both directions in parallel)CMD: seqtk-trinity seq -A /pylon5/bi4ifup/abalone/male_assembly/maleleft.fq >> left.fa
+CMD: seqtk-trinity seq -A /pylon5/bi4ifup/abalone/male_assembly/maleright.fq >> right.fa
+CMD finished (18 seconds)
+CMD finished (22 seconds)
+CMD: touch left.fa.ok
+CMD finished (0 seconds)
+CMD: touch right.fa.ok
+CMD finished (1 seconds)
+Done converting input files.CMD: cat left.fa right.fa > both.fa
+CMD finished (7 seconds)
+CMD: touch both.fa.ok
+-------------------------------------------
+----------- Jellyfish  --------------------
+-- (building a k-mer catalog from reads) --
+-------------------------------------------
+
+CMD finished (0 seconds)
+CMD: /opt/packages/trinity/2.4.0/util/..//trinity-plugins/jellyfish/bin/jellyfish count -t 32 -m 25 -s 37408772591  --canonical  both.fa
+Error, cmd: /opt/packages/trinity/2.4.0/util/..//trinity-plugins/jellyfish/bin/jellyfish count -t 32 -m 25 -s 37408772591  --canonical  both.fa died with ret 9 at /opt/packages/trinity/2.4.0/util/insilico_read_normalization.pl line 758.
+Error, cmd: /opt/packages/trinity/2.4.0/util/insilico_read_normalization.pl --seqType fq --JM 250G  --max_cov 50 --CPU 32 --output /pylon5/bi4ifup/abalone/male_assembly/trinity_out_dir/insilico_read_normalization   --max_pct_stdev 10000  --left /pylon5/bi4ifup/abalone/male_assembly/maleleft.fq --right /pylon5/bi4ifup/abalone/male_assembly/maleright.fq --pairs_together --PARALLEL_STATS   died with ret 512 at /opt/packages/trinity/2.4.0/Trinity line 2462.
+slurmstepd: error: Exceeded step memory limit at some point.
+slurmstepd: error: Exceeded job memory limit at some point.```
