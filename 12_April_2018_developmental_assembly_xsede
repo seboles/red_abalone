@@ -1,0 +1,23 @@
+### Developmental assembly on XSEDE. 
+
+```ssh abalone@login.xsede.org```
+```gsissh bridges```
+
+``` sbatch developmentalassemblyxsede.sh```
+```#!/bin/bash
+#SBATCH -N 2
+#SBATCH -p LM
+#SBATCH --mem 500G
+#SBATCH --ntasks-per-node 32
+#SBATCH -t 150:00:00
+#SBATCH --mail-user=seboles@ucdavis.edu
+#SBATCH --mail-type=ALL
+echo commands to stdout
+set -x
+module load trinity/2.4.0
+module load bowtie2
+module load gcc
+module load samtools
+Trinity --left leftdevelopment.fq --right rightdevelopment.fq --seqType fq --max_memory 250G --CPU 32```
+
+  
