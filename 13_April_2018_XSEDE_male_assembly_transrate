@@ -1,20 +1,43 @@
-## Her eis the command for running transrate
+### Transrate does like pipe ```|``` that are remaining from Trinity. In order to remove the pipes, enter this command in the directory containing the trinitymale.fasta file. Enter the following two commands line by line in the said directory. 
+
+```PROJECTROOT=/home/seboles/abaloneraw/male_lane456_diginorm/```
+```sed 's_|_-_g' $PROJECTROOT/Trinitymale.fasta > Trinitymale.fixed.fasta```
+
+source ~/.bashrc
+module load transrate
+
+## Here is the command for running transrate. Make sure that I am in the directory for transrate when running this command. Make sure that the left.fq and right.fq files are in the same directory as the assembly so they can be compared. 
+
+```transrate --assembly=Trinitymale.fixed.fasta --threads=2 \
+--left=maleleft.fq \
+--right=maleright.fq \
+--output=/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/Trinity_Male/```
 
 
-cd /home/seboles/transrate-1.0.3-linux-x86_64/
+
+```cd /home/seboles/transrate-1.0.3-linux-x86_64/
 ./transrate --install-deps ref
 rm -f bin/librt.so.1
 echo 'export PATH=$PATH:"/home/seboles/transrate-1.0.3-linux-x86_64"' >> ~/.bashrcsource 
 source ~/.bashrc
 transrate
-transrate --assembly=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/Trinity/redabalonefemale_trinity_out.Trinity.fasta```
+transrate --assembly=/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male```
 
 
-```cd transrate-1.0.3-linux-x86_64 
-./transrate --install-deps ref
-rm -f bin/librt.so.1
-echo 'export PATH=$PATH:"/home/seboles/transrate-1.0.3-linux-x86_64"' >> ~/.bashrc
-source ~/.bashrc
-transrate --assembly=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/Trinity/redabalonefemale_trinity_out.Trinity.fasta```
-
-/home/seboles/abaloneraw/male_lane456_diginorm/Trinitymale.fasta
+seboles@farm:~/transrate-1.0.3-linux-x86_64$ transrate --assembly=/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male
+[ INFO] 2018-04-13 14:48:22 : Loading assembly: /home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male
+/share/apps/transrate-1.0.3/lib/app/ruby/2.2.0/gems/bio-1.5.0/lib/bio/io/flatfile/buffer.rb:272:in `getc': Is a directory @ io_fillbuf - fd:8 /home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male (Errno::EISDIR)
+	from /share/apps/transrate-1.0.3/lib/app/ruby/2.2.0/gems/bio-1.5.0/lib/bio/io/flatfile/buffer.rb:272:in `getc'
+	from /share/apps/transrate-1.0.3/lib/app/ruby/2.2.0/gems/bio-1.5.0/lib/bio/io/flatfile/buffer.rb:309:in `skip_spaces'
+	from /share/apps/transrate-1.0.3/lib/app/ruby/2.2.0/gems/bio-1.5.0/lib/bio/io/flatfile/splitter.rb:174:in `skip_leader'
+	from /share/apps/transrate-1.0.3/lib/app/ruby/2.2.0/gems/bio-1.5.0/lib/bio/io/flatfile.rb:283:in `next_entry'
+	from /share/apps/transrate-1.0.3/lib/app/ruby/2.2.0/gems/bio-1.5.0/lib/bio/io/flatfile.rb:335:in `each_entry'
+	from /share/apps/transrate-1.0.3/lib/app/lib/transrate/assembly.rb:44:in `initialize'
+	from /share/apps/transrate-1.0.3/lib/app/lib/transrate/cmdline.rb:389:in `new'
+	from /share/apps/transrate-1.0.3/lib/app/lib/transrate/cmdline.rb:389:in `analyse_assembly'
+	from /share/apps/transrate-1.0.3/lib/app/lib/transrate/cmdline.rb:38:in `block (2 levels) in run'
+	from /share/apps/transrate-1.0.3/lib/app/lib/transrate/cmdline.rb:37:in `zip'
+	from /share/apps/transrate-1.0.3/lib/app/lib/transrate/cmdline.rb:37:in `block in run'
+	from /share/apps/transrate-1.0.3/lib/app/lib/transrate/cmdline.rb:32:in `chdir'
+	from /share/apps/transrate-1.0.3/lib/app/lib/transrate/cmdline.rb:32:in `run'
+	from /share/apps/transrate-1.0.3/lib/app/bin/transrate:23:in `<main>'
