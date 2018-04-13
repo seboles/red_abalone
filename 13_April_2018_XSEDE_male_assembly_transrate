@@ -1,0 +1,20 @@
+## Her eis the command for running transrate
+
+
+cd /home/seboles/transrate-1.0.3-linux-x86_64/
+./transrate --install-deps ref
+rm -f bin/librt.so.1
+echo 'export PATH=$PATH:"/home/seboles/transrate-1.0.3-linux-x86_64"' >> ~/.bashrcsource 
+source ~/.bashrc
+transrate
+transrate --assembly=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/Trinity/redabalonefemale_trinity_out.Trinity.fasta```
+
+
+```cd transrate-1.0.3-linux-x86_64 
+./transrate --install-deps ref
+rm -f bin/librt.so.1
+echo 'export PATH=$PATH:"/home/seboles/transrate-1.0.3-linux-x86_64"' >> ~/.bashrc
+source ~/.bashrc
+transrate --assembly=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/Trinity/redabalonefemale_trinity_out.Trinity.fasta```
+
+/home/seboles/abaloneraw/male_lane456_diginorm/Trinitymale.fasta
