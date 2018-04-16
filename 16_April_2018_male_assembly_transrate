@@ -2,5 +2,12 @@
 
 ```transrate --assembly=/mnt/research/ged/lisa/mmetsp/imicrobe/nt/MMETSP1475.nt.fa.fixed.fa --threads=8 --left=/mnt/scratch/ljcohen/mmetsp_sra/uncultured_eukaryote/SRR1300545/trim/SRR1300545.trim_1P.fq --right=/mnt/scratch/ljcohen/mmetsp_sra/uncultured_eukaryote/SRR1300545/trim/SRR1300545.trim_2P.fq --output=/tmp/transrate_out.uncultured_eukaryote_SRR1300545_MMETSP1475```
 
-## Here is my sample code. 
+source ~/.bashrc
+module load transrate
 
+## Here is the command for running transrate. Make sure that I am in the directory for transrate when running this command. Make sure that the left.fq and right.fq files are in the same directory as the assembly so they can be compared. 
+
+```transrate --assembly=/home/seboles/abaloneraw/male_lane456_diginorm/Trinitymale.fixed.fasta --threads=2 \
+--left=maleleft.fq \
+--right=maleright.fq \
+--output=/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/Trinity_Male/```
