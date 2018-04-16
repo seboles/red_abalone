@@ -1,0 +1,6 @@
+## Trasnrate again with Lisa's advice. Here is her sample code.
+
+```transrate --assembly=/mnt/research/ged/lisa/mmetsp/imicrobe/nt/MMETSP1475.nt.fa.fixed.fa --threads=8 --left=/mnt/scratch/ljcohen/mmetsp_sra/uncultured_eukaryote/SRR1300545/trim/SRR1300545.trim_1P.fq --right=/mnt/scratch/ljcohen/mmetsp_sra/uncultured_eukaryote/SRR1300545/trim/SRR1300545.trim_2P.fq --output=/tmp/transrate_out.uncultured_eukaryote_SRR1300545_MMETSP1475```
+
+## Here is my sample code. 
+
