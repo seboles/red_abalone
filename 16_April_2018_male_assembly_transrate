@@ -34,3 +34,8 @@ transrate --assembly=/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SP
 --right=/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/maleright.fq \
 --output=/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/Trinity_Male/```
 
+# Screen - Benefit of screen is to shut down computer and let the job keep going
+# Control AD to get out of screen and screen -r to get back
+# You can only watch "jobs"
+# Download 5 & 6 lanes from slims
+
