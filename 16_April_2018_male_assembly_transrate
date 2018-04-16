@@ -7,7 +7,14 @@ module load transrate
 
 ## Here is the command for running transrate. Make sure that I am in the directory for transrate when running this command. Make sure that the left.fq and right.fq files are in the same directory as the assembly so they can be compared. 
 
-```transrate --assembly=/home/seboles/abaloneraw/male_lane456_diginorm/Trinitymale.fixed.fasta --threads=2 \
---left=maleleft.fq \
---right=maleright.fq \
+```transrate --assembly=/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/Trinitymale.fixed.fasta --threads=2 \
+--left=/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/maleleft.fq \
+--right=/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/maleright.fq \
 --output=/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/Trinity_Male/```
+
+## Here is the error message about salmon 
+
+```Dependencies are missing:
+  - salmon (0.6.0)
+You are running the packaged version of transrate
+This comes with the read-metrics dependencies pre-installed```
