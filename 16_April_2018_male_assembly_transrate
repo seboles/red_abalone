@@ -18,3 +18,19 @@ module load transrate
   - salmon (0.6.0)
 You are running the packaged version of transrate
 This comes with the read-metrics dependencies pre-installed```
+
+
+## Trying this now. The `librt.so.1` file in the transrate software dir is checking/requiring a certain version of salmon, which is out of date. we'll just delete that requirement file and should work) (edited)
+
+```cd /home/seboles/transrate-1.0.3-linux-x86_64/```
+
+```./transrate --install-deps ref
+rm -f bin/librt.so.1
+echo 'export PATH=$PATH:"/home/seboles/transrate-1.0.3-linux-x86_64"' >> ~/.bashrcsource 
+source ~/.bashrc
+transrate
+transrate --assembly=/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/Trinitymale.fixed.fasta --threads=2 \
+--left=/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/maleleft.fq \
+--right=/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/maleright.fq \
+--output=/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/Trinity_Male/```
+
