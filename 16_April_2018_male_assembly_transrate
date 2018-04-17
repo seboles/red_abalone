@@ -34,6 +34,41 @@ transrate --assembly=/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SP
 --right=/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/maleright.fq \
 --output=/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/Trinity_Male/```
 
+## It worked!
+
+[ INFO] 2018-04-16 16:27:15 : Loading assembly: /home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/Trinitymale.fixed.fasta
+[ INFO] 2018-04-16 16:32:14 : Analysing assembly: /home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/Trinitymale.fixed.fasta
+[ INFO] 2018-04-16 16:32:14 : Results will be saved in /home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/Trinity_Male/Trinitymale.fixed
+[ INFO] 2018-04-16 16:32:14 : Calculating contig metrics...
+[ INFO] 2018-04-16 16:32:45 : Contig metrics:
+[ INFO] 2018-04-16 16:32:45 : -----------------------------------
+[ INFO] 2018-04-16 16:32:45 : n seqs                       246828
+[ INFO] 2018-04-16 16:32:45 : smallest                        201
+[ INFO] 2018-04-16 16:32:45 : largest                       27669
+[ INFO] 2018-04-16 16:32:45 : n bases                   145602954
+[ INFO] 2018-04-16 16:32:45 : mean len                      589.9
+[ INFO] 2018-04-16 16:32:45 : n under 200                       0
+[ INFO] 2018-04-16 16:32:45 : n over 1k                     30033
+[ INFO] 2018-04-16 16:32:45 : n over 10k                      121
+[ INFO] 2018-04-16 16:32:45 : n with orf                    21186
+[ INFO] 2018-04-16 16:32:45 : mean orf percent              46.07
+[ INFO] 2018-04-16 16:32:45 : n90                             257
+[ INFO] 2018-04-16 16:32:45 : n70                             410
+[ INFO] 2018-04-16 16:32:45 : n50                             803
+[ INFO] 2018-04-16 16:32:45 : n30                            1782
+[ INFO] 2018-04-16 16:32:45 : n10                            4090
+[ INFO] 2018-04-16 16:32:45 : gc                             0.41
+[ INFO] 2018-04-16 16:32:45 : bases n                           0
+[ INFO] 2018-04-16 16:32:45 : proportion n                    0.0
+[ INFO] 2018-04-16 16:32:45 : Contig metrics done in 32 seconds
+[ INFO] 2018-04-16 16:32:45 : Calculating read diagnostics...
+[ERROR] 2018-04-16 16:32:46 : Failed to build Snap index
+Welcome to SNAP version 1.0dev.96.
+
+
+FASTA file doesn't beging with a contig name (i.e., the first line doesn't start with '>').
+SNAP exited with exit code 1 from line 129 of file SNAPLib/FASTA.cpp
+
 # Screen - Benefit of screen is to shut down computer and let the job keep going
 # Control AD to get out of screen and screen -r to get back
 # You can only watch "jobs"
