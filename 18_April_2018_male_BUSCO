@@ -1,0 +1,88 @@
+## Order of operations issue> Make sur ethat I am in the busco directory ```/home/seboles/busco```. 
+
+```source ~/.bashrc```
+```source activate busco_env```
+```run_busco -h```
+
+##This is the command. Make sure that I am in the directory that contains the 'Trinitymale.fixed.fasta' file. It is located here: ```/home/seboles/abaloneraw/male_lane456_diginorm/Trinitymale.fixed.fasta```
+
+```run_busco -i Trinitymale.fixed.fasta -o redabalonemalebusco -l /home/seboles/busco/metazoa_odb9 -m tran --cpu 32```
+
+## Here is the error message that I just got. 
+
+```(busco_env) seboles@farm:~/abaloneraw/male_lane456_diginorm$ run_busco -i Trinitymale.fixed.fasta -o redabalonemalebusco -l /home/seboles/busco/metazoa_odb9 -m tran --cpu 32
+INFO	****************** Start a BUSCO 3.0.2 analysis, current time: 04/18/2018 12:08:42 ******************
+INFO	Configuration loaded from /home/seboles/anaconda2/envs/busco_env/bin/../config/config.ini
+INFO	Init tools...
+INFO	Check dependencies...
+INFO	Check input file...
+INFO	To reproduce this run: python /home/seboles/anaconda2/envs/busco_env/bin/run_busco -i Trinitymale.fixed.fasta -o redabalonemalebusco -l /home/seboles/busco/metazoa_odb9/ -m transcriptome -c 32
+INFO	Mode is: transcriptome
+INFO	The lineage dataset is: metazoa_odb9 (eukaryota)
+INFO	Temp directory is ./tmp/
+INFO	****** Step 1/2, current time: 04/18/2018 12:08:54 ******
+INFO	Create blast database...
+INFO	[makeblastdb]	Building a new DB, current time: 04/18/2018 12:08:54
+INFO	[makeblastdb]	New DB name:   /home/seboles/abaloneraw/male_lane456_diginorm/tmp/redabalonemalebusco_2697594458
+INFO	[makeblastdb]	New DB title:  Trinitymale.fixed.fasta
+INFO	[makeblastdb]	Sequence type: Nucleotide
+INFO	[makeblastdb]	Keep MBits: T
+INFO	[makeblastdb]	Maximum file size: 1000000000B
+INFO	[makeblastdb]	BLAST options error: Trinitymale.fixed.fasta does not match input format type, default input type is FASTA
+INFO	[makeblastdb]	1 of 1 task(s) completed at 04/18/2018 12:08:54
+INFO	Running tblastn, writing output to /home/seboles/abaloneraw/male_lane456_diginorm/run_redabalonemalebusco/blast_output/tblastn_redabalonemalebusco.tsv...
+INFO	[tblastn]	BLAST Database error: No alias or index file found for nucleotide database [./tmp/redabalonemalebusco_2697594458] in search path [/home/seboles/abaloneraw/male_lane456_diginorm::]
+INFO	[tblastn]	1 of 1 task(s) completed at 04/18/2018 12:08:55
+INFO	****** Step 2/2, current time: 04/18/2018 12:08:55 ******
+INFO	Maximum number of candidate transcript per BUSCO limited to: 3
+INFO	Getting coordinates for candidate transcripts...
+INFO	Extracting candidate transcripts...
+INFO	Translating candidate transcripts...
+INFO	Running HMMER to confirm transcript orthology:
+INFO	Results:
+INFO	C:0.0%[S:0.0%,D:0.0%],F:0.0%,M:100.0%,n:978
+INFO	0 Complete BUSCOs (C)
+INFO	0 Complete and single-copy BUSCOs (S)
+INFO	0 Complete and duplicated BUSCOs (D)
+INFO	0 Fragmented BUSCOs (F)
+INFO	978 Missing BUSCOs (M)
+INFO	978 Total BUSCO groups searched
+INFO	[bash]	rm: cannot remove './tmp/temp_redabalonemalebusco_2697594458': No such file or directory
+INFO	[bash]	rm: cannot remove './tmp/*redabalonemalebusco_2697594458_.temp': No such file or directory
+INFO	[bash]	rm: cannot remove './tmp/redabalonemalebusco_2697594458.*ns?': No such file or directory
+INFO	[bash]	rm: cannot remove './tmp/redabalonemalebusco_2697594458.*nin': No such file or directory
+INFO	[bash]	rm: cannot remove './tmp/redabalonemalebusco_2697594458.*nhr': No such file or directory
+INFO	BUSCO analysis done. Total running time: 17.006571292877197 seconds
+INFO	Results written in /home/seboles/abaloneraw/male_lane456_diginorm/run_redabalonemalebusco/
+
+(busco_env) seboles@farm:~/abaloneraw/male_lane456_diginorm$ run_busco -i Trinitymale.fixed.fasta -o redabalonemalebusco -l /home/seboles/busco/metazoa_odb9 -m tran --cpu 32
+INFO	****************** Start a BUSCO 3.0.2 analysis, current time: 04/18/2018 12:09:36 ******************
+INFO	Configuration loaded from /home/seboles/anaconda2/envs/busco_env/bin/../config/config.ini
+INFO	Init tools...
+INFO	Check dependencies...
+INFO	Check input file...
+INFO	To reproduce this run: python /home/seboles/anaconda2/envs/busco_env/bin/run_busco -i Trinitymale.fixed.fasta -o redabalonemalebusco -l /home/seboles/busco/metazoa_odb9/ -m transcriptome -c 32
+INFO	Mode is: transcriptome
+INFO	The lineage dataset is: metazoa_odb9 (eukaryota)
+ERROR	A run with that name already exists...
+	If you are sure you wish to overwrite existing files, please use the -f option
+ERROR	BUSCO analysis failed !
+ERROR	Check the logs, read the user guide, if you still need technical support, then please contact mailto:support@orthodb.org```
+
+### Now trying this code.
+
+```cd /home/seboles/busco/config
+cp contig.ini.default config.ini
+cd /home/seboles/busco/ curl -OL http://busco.ezlab.org/datasets/metazoa_odb9.tar.gz
+tar -xvzf metazoa_odb9.tar.gz
+export PATH=/home/seboles/busco/scripts:$PATH
+echo 'export PATH=/home/seboles/busco/scripts:$PATH' >> ~/.bashrc
+
+PROJECTROOT=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/Trinity/
+sed 's_|_-_g' $PROJECTROOT/redabalonefemale_trinity_out.Trinity.fasta > Trinity.fixed.fasta
+
+## Run this in the dir containing fixed.fasta
+run_BUSCO.py \
+-i Trinitymale.fixed.fasta \
+-o male_busco_metazoa -l ~/home/seboles/busco/config/metazoa_odb9 \
+-m transcriptome --cpu 32
