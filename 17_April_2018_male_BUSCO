@@ -1,0 +1,13 @@
+## Order of operations issue> Make sur ethat I am in the busco directory ```/home/seboles/busco```. 
+
+```source ~/.bashrc```
+```source activate busco_env```
+
+
+
+##This is the command. Make sure that I am in the directory that contains the 'Trinity.fixed.fasta' file. It is located here: '/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/Trinity/Trinity.fixed.fasta'
+
+```run_busco -i Trinity.fixed.fasta -o redabalonebusco -l /home/seboles/busco/eukaryota_odb9 -m tran --cpu 32```
+
+
+/home/seboles/abaloneraw/male_lane456_diginorm
