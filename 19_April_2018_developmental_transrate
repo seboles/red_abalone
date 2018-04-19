@@ -1,0 +1,52 @@
+
+### Transrate does like pipe ```|``` that are remaining from Trinity. In order to remove the pipes, enter this command in the directory containing the trinitymale.fasta file. Enter the following two commands line by line in the said directory. 
+
+```PROJECTROOT=/home/seboles/abaloneraw/development_lanes456_diginorm/Trinity_Development_Assembly/```
+```sed 's_|_-_g' $PROJECTROOT/Trinitydevelopment.fasta > Trinitydevelopment.fixed.fasta```
+
+## Developmental transrate
+```cd /home/seboles/transrate-1.0.3-linux-x86_64/```
+```./transrate --install-deps ref
+rm -f bin/librt.so.1
+echo 'export PATH=$PATH:"/home/seboles/transrate-1.0.3-linux-x86_64"' >> ~/.bashrcsource 
+source ~/.bashrc
+transrate
+transrate --assembly=/home/seboles/abaloneraw/development_lanes456_diginorm/Trinity_Development_Assembly/Trinitydevelopment.fixed.fasta --threads=2 \
+--left=/home/seboles/abaloneraw/development_lanes456_diginorm/splitPEreads/leftdevelopment.fq \
+--right=/home/seboles/abaloneraw/development_lanes456_diginorm/splitPEreads/rightdevelopment.fq \
+--output=/home/seboles/abaloneraw/development_lanes456_diginorm/transrate```
+
+## Here are the results. There is an error code in there.
+
+```[ INFO] 2018-04-19 12:22:16 : Loading assembly: /home/seboles/abaloneraw/development_lanes456_diginorm/Trinity_Development_Assembly/Trinitydevelopment.fixed.fasta
+[ INFO] 2018-04-19 12:25:03 : Analysing assembly: /home/seboles/abaloneraw/development_lanes456_diginorm/Trinity_Development_Assembly/Trinitydevelopment.fixed.fasta
+[ INFO] 2018-04-19 12:25:03 : Results will be saved in /home/seboles/abaloneraw/development_lanes456_diginorm/transrate/Trinitydevelopment.fixed
+[ INFO] 2018-04-19 12:25:03 : Calculating contig metrics...
+[ INFO] 2018-04-19 12:28:13 : Contig metrics:
+[ INFO] 2018-04-19 12:28:13 : -----------------------------------
+[ INFO] 2018-04-19 12:28:13 : n seqs                       819119
+[ INFO] 2018-04-19 12:28:13 : smallest                        201
+[ INFO] 2018-04-19 12:28:13 : largest                       17917
+[ INFO] 2018-04-19 12:28:13 : n bases                   436740830
+[ INFO] 2018-04-19 12:28:13 : mean len                     533.18
+[ INFO] 2018-04-19 12:28:13 : n under 200                       0
+[ INFO] 2018-04-19 12:28:13 : n over 1k                     94663
+[ INFO] 2018-04-19 12:28:13 : n over 10k                       54
+[ INFO] 2018-04-19 12:28:13 : n with orf                   103169
+[ INFO] 2018-04-19 12:28:13 : mean orf percent              55.47
+[ INFO] 2018-04-19 12:28:13 : n90                             241
+[ INFO] 2018-04-19 12:28:13 : n70                             382
+[ INFO] 2018-04-19 12:28:13 : n50                             711
+[ INFO] 2018-04-19 12:28:13 : n30                            1313
+[ INFO] 2018-04-19 12:28:13 : n10                            2706
+[ INFO] 2018-04-19 12:28:13 : gc                             0.44
+[ INFO] 2018-04-19 12:28:13 : bases n                           0
+[ INFO] 2018-04-19 12:28:13 : proportion n                    0.0
+[ INFO] 2018-04-19 12:28:13 : Contig metrics done in 190 seconds
+[ INFO] 2018-04-19 12:28:13 : Calculating read diagnostics...
+[ERROR] 2018-04-19 12:28:13 : Failed to build Snap index
+Welcome to SNAP version 1.0dev.96.
+
+Unable to open FASTA file '/home/seboles/abaloneraw/development_lanes456_diginorm/Trinity_Development_Assembly/Trinitydevelopment.fixed.fasta' (even though we already got its size)
+Unable to read FASTA file
+SNAP exited with exit code 1 from line 229 of file SNAPLib/GenomeIndex.cpp```
