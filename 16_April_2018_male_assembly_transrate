@@ -1,3 +1,46 @@
+## ran transrate again so it would write the files out. 
+
+```seboles@farm:~$ cd transrate-1.0.3-linux-x86_64 
+seboles@farm:~/transrate-1.0.3-linux-x86_64$ ./transrate --install-deps ref
+ 
+Checking dependencies
+All dependencies installed
+seboles@farm:~/transrate-1.0.3-linux-x86_64$ rm -f bin/librt.so.1
+seboles@farm:~/transrate-1.0.3-linux-x86_64$ echo 'export PATH=$PATH:"/home/seboles/transrate-1.0.3-linux-x86_64"' >> ~/.bashrc
+seboles@farm:~/transrate-1.0.3-linux-x86_64$ source ~/.bashrc
+seboles@farm:~/transrate-1.0.3-linux-x86_64$ transrate --assembly=/home/seboles/abaloneraw/male_lane456_diginorm/Trinitymale.fixed.fasta```
+
+```seboles@farm:~/transrate-1.0.3-linux-x86_64$ transrate --assembly=/home/seboles/abaloneraw/male_lane456_diginorm/Trinitymale.fixed.fasta
+[ INFO] 2018-04-19 11:25:21 : Loading assembly: /home/seboles/abaloneraw/male_lane456_diginorm/Trinitymale.fixed.fasta
+[ INFO] 2018-04-19 11:30:25 : Analysing assembly: /home/seboles/abaloneraw/male_lane456_diginorm/Trinitymale.fixed.fasta
+[ INFO] 2018-04-19 11:30:25 : Results will be saved in /home/seboles/transrate-1.0.3-linux-x86_64/transrate_results/Trinitymale.fixed
+[ INFO] 2018-04-19 11:30:25 : Calculating contig metrics...
+[ INFO] 2018-04-19 11:30:57 : Contig metrics:
+[ INFO] 2018-04-19 11:30:57 : -----------------------------------
+[ INFO] 2018-04-19 11:30:57 : n seqs                       246828
+[ INFO] 2018-04-19 11:30:57 : smallest                        201
+[ INFO] 2018-04-19 11:30:57 : largest                       27669
+[ INFO] 2018-04-19 11:30:57 : n bases                   145602954
+[ INFO] 2018-04-19 11:30:57 : mean len                      589.9
+[ INFO] 2018-04-19 11:30:57 : n under 200                       0
+[ INFO] 2018-04-19 11:30:57 : n over 1k                     30033
+[ INFO] 2018-04-19 11:30:57 : n over 10k                      121
+[ INFO] 2018-04-19 11:30:57 : n with orf                    21186
+[ INFO] 2018-04-19 11:30:57 : mean orf percent              46.07
+[ INFO] 2018-04-19 11:30:57 : n90                             257
+[ INFO] 2018-04-19 11:30:57 : n70                             410
+[ INFO] 2018-04-19 11:30:57 : n50                             803
+[ INFO] 2018-04-19 11:30:57 : n30                            1782
+[ INFO] 2018-04-19 11:30:57 : n10                            4090
+[ INFO] 2018-04-19 11:30:57 : gc                             0.41
+[ INFO] 2018-04-19 11:30:57 : bases n                           0
+[ INFO] 2018-04-19 11:30:57 : proportion n                    0.0
+[ INFO] 2018-04-19 11:30:57 : Contig metrics done in 32 seconds
+[ INFO] 2018-04-19 11:30:57 : No reads provided, skipping read diagnostics
+[ INFO] 2018-04-19 11:30:57 : No reference provided, skipping comparative diagnostics
+[ INFO] 2018-04-19 11:30:57 : Writing contig metrics for each contig to /home/seboles/transrate-1.0.3-linux-x86_64/transrate_results/Trinitymale.fixed/contigs.csv
+[ INFO] 2018-04-19 11:31:17 : Writing analysis results to assemblies.csv
+
 ## Trasnrate again with Lisa's advice. Here is her sample code.
 
 ```transrate --assembly=/mnt/research/ged/lisa/mmetsp/imicrobe/nt/MMETSP1475.nt.fa.fixed.fa --threads=8 --left=/mnt/scratch/ljcohen/mmetsp_sra/uncultured_eukaryote/SRR1300545/trim/SRR1300545.trim_1P.fq --right=/mnt/scratch/ljcohen/mmetsp_sra/uncultured_eukaryote/SRR1300545/trim/SRR1300545.trim_2P.fq --output=/tmp/transrate_out.uncultured_eukaryote_SRR1300545_MMETSP1475```
