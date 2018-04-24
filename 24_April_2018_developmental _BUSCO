@@ -1,0 +1,31 @@
+ ## Run in the BUSCO directory.
+ 
+ ```cd /home/seboles/busco```
+ ```source ~/.bashrc```
+ ```source activate busco_env```
+ 
+ ## Run this in directory containing Trinity.fasta 
+
+```cd /home/seboles/abaloneraw/development_lanes456_diginorm/Trinity_Development_Assembly/``` 
+```run_BUSCO.py \
+-i Trinitydevelopment.fasta \
+-o development_busco_metazoa -l /home/seboles/busco/config/metazoa_odb9 \
+-m transcriptome --cpu 32```
+
+## Here is the output
+
+```# BUSCO version is: 3.0.2 
+# The lineage dataset is: metazoa_odb9 (Creation date: 2016-02-13, number of species: 65, number of BUSCOs: 978)
+# To reproduce this run: python /home/seboles/anaconda2/envs/busco_env/bin/run_BUSCO.py -i Trinitydevelopment.fasta -o development_busco_metazoa -l /home/seboles/busco/config/metazoa_odb9/ -m transcriptome -c 32
+#
+# Summarized benchmarking in BUSCO notation for file Trinitydevelopment.fasta
+# BUSCO was run in mode: transcriptome
+
+	C:95.2%[S:35.4%,D:59.8%],F:4.8%,M:-0.0%,n:978
+
+	931	Complete BUSCOs (C)
+	346	Complete and single-copy BUSCOs (S)
+	585	Complete and duplicated BUSCOs (D)
+	47	Fragmented BUSCOs (F)
+	0	Missing BUSCOs (M)
+	978	Total BUSCO groups searched```
