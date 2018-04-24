@@ -1,0 +1,99 @@
+
+## Removed the pipes from trinity
+
+```PROJECTROOT=/home/seboles/abaloneraw/male_lane456_diginorm/```
+```sed 's_|_-_g' $PROJECTROOT/Trinity.fasta > Trinitymale.fixed.fasta```
+
+## Make sure that the file is still readable.
+
+``` head /home/seboles/abaloneraw/male_lane456_diginorm/Trinitymale.fixed.fasta```
+
+## Here is the output from that
+
+```>TRINITY_DN39967_c0_g1_i1 len=304 path=[1:0-125 660:126-149 128:150-168 659:169-192 171:193-303] [-1, 1, 660, 128, 659, 171, -2]
+GAACAACACCGTCAGCATGAACCACCAGCATTTGGACAACAACAACACCGTCAGCATGAA
+CTACCAGCATTTGGACGACAACAACACCATCAGCATGAATATCAATGAGTTGAATGAGAA
+CAGCACTGTCAGCATGAATGACCATCAGTTGGACAAGAACTCCATCGGCATGAATGGCCA
+ACAGTTTGATGAAAAGAACACCATCAGCATGATTGACAAGCAGTTGGATGAAAACAGCAC
+TATCGGCATGAATGACAAGCAGTTGCATGAAAACAGCACCATCGGCATGAACGACAAGAG
+ATCG
+>TRINITY_DN39951_c0_g1_i1 len=250 path=[623:0-35 38:36-52 55:53-87 746:88-111 114:112-112 115:113-119 745:120-143 146:144-249] [-1, 623, 38, 55, 746, 114, 115, 745, 146, -2]
+GCAAGCACCTGACAAATACTAGTTTAGGACACAGAAAATTATGAAGAGCCGTGTACCATG
+CATTGTAAATGGCAGCTCGCAACGGAGCTTGGTGCACATGCGACAGCGGCAGATAACGCA```
+
+## ran transrate again so it would write the files out. 
+
+```cd transrate-1.0.3-linux-x86_64``` 
+```./transrate --install-deps ref```
+```rm -f bin/librt.so.1```
+```echo 'export PATH=$PATH:"/home/seboles/transrate-1.0.3-linux-x86_64"' >> ~/.bashrc```
+```transrate --assembly=/home/seboles/abaloneraw/male_lane456_diginorm/Trinitymale.fixed.fasta```
+
+## It failed again. Paul Blart! Here is the output.
+
+[ INFO] 2018-04-24 11:12:55 : Loading assembly: /home/seboles/abaloneraw/male_lane456_diginorm/Trinitymale.fixed.fasta
+[ INFO] 2018-04-24 11:16:29 : Analysing assembly: /home/seboles/abaloneraw/male_lane456_diginorm/Trinitymale.fixed.fasta
+[ INFO] 2018-04-24 11:16:29 : Results will be saved in /home/seboles/transrate-1.0.3-linux-x86_64/transrate_results/Trinitymale.fixed
+[ INFO] 2018-04-24 11:16:29 : Calculating contig metrics...
+[ INFO] 2018-04-24 11:19:59 : Contig metrics:
+[ INFO] 2018-04-24 11:19:59 : -----------------------------------
+[ INFO] 2018-04-24 11:19:59 : n seqs                       885010
+[ INFO] 2018-04-24 11:19:59 : smallest                        201
+[ INFO] 2018-04-24 11:19:59 : largest                       27669
+[ INFO] 2018-04-24 11:19:59 : n bases                   628039164
+[ INFO] 2018-04-24 11:19:59 : mean len                     709.64
+[ INFO] 2018-04-24 11:19:59 : n under 200                       0
+[ INFO] 2018-04-24 11:19:59 : n over 1k                    157198
+[ INFO] 2018-04-24 11:19:59 : n over 10k                      427
+[ INFO] 2018-04-24 11:19:59 : n with orf                   107752
+[ INFO] 2018-04-24 11:19:59 : mean orf percent              44.58
+[ INFO] 2018-04-24 11:19:59 : n90                             282
+[ INFO] 2018-04-24 11:19:59 : n70                             556
+[ INFO] 2018-04-24 11:19:59 : n50                            1133
+[ INFO] 2018-04-24 11:19:59 : n30                            2125
+[ INFO] 2018-04-24 11:19:59 : n10                            4290
+[ INFO] 2018-04-24 11:19:59 : gc                             0.42
+[ INFO] 2018-04-24 11:19:59 : bases n                           0
+[ INFO] 2018-04-24 11:19:59 : proportion n                    0.0
+[ INFO] 2018-04-24 11:19:59 : Contig metrics done in 211 seconds
+[ INFO] 2018-04-24 11:19:59 : No reads provided, skipping read diagnostics
+[ INFO] 2018-04-24 11:19:59 : No reference provided, skipping comparative diagnostics
+[ INFO] 2018-04-24 11:19:59 : Writing contig metrics for each contig to /home/seboles/transrate-1.0.3-linux-x86_64/transrate_results/Trinitymale.fixed/contigs.csv
+[ INFO] 2018-04-24 11:20:59 : Writing analysis results to assemblies.csv
+
+## This failed again. So I will try running with the fixed.fasta by removing the pipes. 
+Checking dependencies
+All dependencies installed
+seboles@farm:~/transrate-1.0.3-linux-x86_64$ rm -f bin/librt.so.1
+seboles@farm:~/transrate-1.0.3-linux-x86_64$ echo 'export PATH=$PATH:"/home/seboles/transrate-1.0.3-linux-x86_64"' >> ~/.bashrc
+seboles@farm:~/transrate-1.0.3-linux-x86_64$ source ~/.bashrc
+seboles@farm:~/transrate-1.0.3-linux-x86_64$ transrate --assembly=/home/seboles/abaloneraw/male_lane456_diginorm/Trinity.fasta```
+```[ INFO] 2018-04-24 10:47:47 : Loading assembly: /home/seboles/abaloneraw/male_lane456_diginorm/Trinity.fasta
+[ INFO] 2018-04-24 10:51:49 : Analysing assembly: /home/seboles/abaloneraw/male_lane456_diginorm/Trinity.fasta
+[ INFO] 2018-04-24 10:51:49 : Results will be saved in /home/seboles/transrate-1.0.3-linux-x86_64/transrate_results/Trinity
+[ INFO] 2018-04-24 10:51:49 : Calculating contig metrics...
+[ INFO] 2018-04-24 10:55:21 : Contig metrics:
+[ INFO] 2018-04-24 10:55:21 : -----------------------------------
+[ INFO] 2018-04-24 10:55:21 : n seqs                       885010
+[ INFO] 2018-04-24 10:55:21 : smallest                        201
+[ INFO] 2018-04-24 10:55:21 : largest                       27669
+[ INFO] 2018-04-24 10:55:21 : n bases                   628039164
+[ INFO] 2018-04-24 10:55:21 : mean len                     709.64
+[ INFO] 2018-04-24 10:55:21 : n under 200                       0
+[ INFO] 2018-04-24 10:55:21 : n over 1k                    157198
+[ INFO] 2018-04-24 10:55:21 : n over 10k                      427
+[ INFO] 2018-04-24 10:55:21 : n with orf                   107752
+[ INFO] 2018-04-24 10:55:21 : mean orf percent              44.58
+[ INFO] 2018-04-24 10:55:21 : n90                             282
+[ INFO] 2018-04-24 10:55:21 : n70                             556
+[ INFO] 2018-04-24 10:55:21 : n50                            1133
+[ INFO] 2018-04-24 10:55:21 : n30                            2125
+[ INFO] 2018-04-24 10:55:21 : n10                            4290
+[ INFO] 2018-04-24 10:55:21 : gc                             0.42
+[ INFO] 2018-04-24 10:55:21 : bases n                           0
+[ INFO] 2018-04-24 10:55:21 : proportion n                    0.0
+[ INFO] 2018-04-24 10:55:21 : Contig metrics done in 212 seconds
+[ INFO] 2018-04-24 10:55:21 : No reads provided, skipping read diagnostics
+[ INFO] 2018-04-24 10:55:21 : No reference provided, skipping comparative diagnostics
+[ INFO] 2018-04-24 10:55:21 : Writing contig metrics for each contig to /home/seboles/transrate-1.0.3-linux-x86_64/transrate_results/Trinity/contigs.csv
+[ INFO] 2018-04-24 10:56:28 : Writing analysis results to assemblies.csv```
