@@ -1,0 +1,11 @@
+```#!/bin/bash -l
+#SBATCH -J transrate_job
+#SBATCH -D /home/seboles/transrate-1.0.3-linux-x86_64/
+#SBATCH -t 1:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=8
+source ~/.bashrc
+transrate --assembly=/home/seboles/abaloneraw/development_lanes456_diginorm/Trinity_Development_Assembly/Trinitydevelopment.fasta --threads=2 \
+--left=/home/seboles/abaloneraw/development_lanes456_diginorm/splitPEreads/leftdevelopment.fq \
+--right=/home/seboles/abaloneraw/development_lanes456_diginorm/splitPEreads/rightdevelopment.fq \
+--output=/home/seboles/abaloneraw/development_lanes456_diginorm/transrate/```
