@@ -11,10 +11,6 @@ EOF```
 #SBATCH -t 1:00:00
 #SBATCH -p high
 #SBATCH --cpus-per-task=2
-cd /home/seboles/transrate-1.0.3-linux-x86_64
-./transrate --install-deps ref
-rm -f bin/librt.so.1
-echo 'export PATH=$PATH:"/home/seboles/transrate-1.0.3-linux-x86_64"' >> ~/.bashrc
 source ~/.bashrc
 transrate --assembly=/home/seboles/abaloneraw/male_lane456_diginorm/Trinitymale.fixed.fasta --threads=2 \
 -left=/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/maleleft.fq \
