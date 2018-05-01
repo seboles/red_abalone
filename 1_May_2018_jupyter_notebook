@@ -1,0 +1,12 @@
+## run these in terminal (not logged into the farm)
+
+```cd ~```
+```curl -OL https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh```
+```bash Miniconda3-latest-MacOSX-x86_64.sh```
+```echo 'export PATH="$HOME/miniconda/bin:$PATH"' >> $HOME/.bashrc```
+
+## Press Q when done . Then wait til prompted an open a new terminal.
+
+```pip install jupyter```
+
+## When I entered this, a jupyter notebook web browser opened. I closed out of this per Lisa's instruction. 
