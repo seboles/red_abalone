@@ -1,0 +1,20 @@
+## Install xcode
+
+```xcode-select --install```
+```brew install wget```
+## I need to update my Ruby software. So do this line by line. 
+```mkdir ~/bin```
+```cd ~/bin/```
+```curl -# "http://ftp.gnu.org/gnu/wget/wget-1.17.tar.xz" -o "wget.tar.xz"```
+```tar xf wget.tar.xz```
+```cd wget-1.17```
+```./configure --with-ssl=openssl -with-libssl-prefix=/usr/local/ssl && make -j8 && make install```
+```ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"```
+```brew install wget --with-libressl```
+
+
+## Go the directory where I want my files located. In this case, I want to copy them to the Element hardrive
+```cd /Volumes/```
+```ls ```
+## I did an ls to make sure that my computer is recognizing the harddrive that is attached to my computer. 
+```cd Elements/```
