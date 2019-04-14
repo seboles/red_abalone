@@ -1,0 +1,15 @@
+## Re-Try to Upload to NCBI
+## Lane 4
+## cd into directory with raw sequence files
+```cd /home/seboles/abaloneraw/ABALONERAWSEQ/RAWLANE4```
+## ftp into the folder containing the .fastq files
+```ftp ftp-private.ncbi.nlm.nih.gov```
+## Username
+```subftp```
+## Password
+``` w4pYB9VQ```
+## Once in the directory containing the files cd into my folder at NIH
+```cd uploads/seboles@ucdavis.edu_it3tadFE```
+```cd redabalone_rawseq```
+```prompt```
+```mput *.fastq.gz```
