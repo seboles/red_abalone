@@ -1,3 +1,14 @@
+## Trying again with the old prompts bc that is what NCBI says to do... I guess. I don't think she actually read my email. She just sent me a generic response. 
+
+## Lane 4
+```cd /home/seboles/abaloneraw/ABALONERAWSEQ/RAWLANE4```
+```ftp ftp-private.ncbi.nlm.nih.gov```
+```subftp```
+``` w4pYB9VQ```
+```cd uploads/seboles@ucdavis.edu_it3tadFE```
+```cd redabalone_rawseq```
+```mput *.fastq.gz```
+
 ## Re-Try to Upload to NCBI
 ## Lane 4
 ## cd into directory with raw sequence files
