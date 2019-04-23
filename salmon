@@ -12,7 +12,7 @@
 
 # cd into that directory
 
-```/home/seboles/abaloneraw/Transcriptome_Assemblies/quantification/development```
+```cd /home/seboles/abaloneraw/Transcriptome_Assemblies/quantification/development```
 
 # Copy assemblies into this directory
 
@@ -31,11 +31,15 @@
 ```cp /home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/Trinity/redabalonefemale_trinity_out.Trinity.fasta .```
 
 
-# Index with Salmon
+# Index with Salmon Female
+
+# cd into that directory
+
+```cd /home/seboles/abaloneraw/Transcriptome_Assemblies/quantification/female```
 
 ```salmon index --index nema_index --transcripts redabalonefemale_trinity_out.Trinity.fasta --type quasi```
 
-# Output
+# Female Output
 
 Version Info: ### A newer version of Salmon is available. ####
 ###
@@ -67,3 +71,45 @@ khash had 372723877 keys
 saving hash to disk . . . done
 Elapsed time: 26.1482s
 [2019-04-23 12:53:31.603] [jLog] [info] done building index
+
+# Index with Salmon Development
+# cd into that directory
+```cd /home/seboles/abaloneraw/Transcriptome_Assemblies/quantification/development```
+```salmon index --index nema_index --transcripts Trinitydevelopment.fasta --type quasi```
+# Developmental Output
+
+Version Info: ### A newer version of Salmon is available. ####
+###
+The newest version, available at https://github.com/COMBINE-lab/salmon/releases 
+contains **important bug fixes** and improvements; please upgrade at your
+earliest convenience.
+###
+index ["nema_index"] did not previously exist  . . . creating it
+[2019-04-23 13:04:52.486] [jLog] [info] building index
+RapMap Indexer
+
+[Step 1 of 4] : counting k-mers
+counted k-mers for 810000 transcriptsElapsed time: 4.44941s
+
+Replaced 0 non-ATCG nucleotides
+Clipped poly-A tails from 1841 transcripts
+Building rank-select dictionary and saving to disk done
+Elapsed time: 0.0266729s
+Writing sequence data to file . . . done
+Elapsed time: 0.268287s
+[info] Building 32-bit suffix array (length of generalized text is 437527262)
+Building suffix array . . . success
+saving to disk . . . done
+Elapsed time: 0.911344s
+done
+Elapsed time: 61.7026s
+processed 437000000 positions
+khash had 254265627 keys
+saving hash to disk . . . done
+Elapsed time: 15.9892s
+[2019-04-23 13:09:51.515] [jLog] [info] done building index
+
+# Index with Salmon Male
+# cd into that directory
+
+```cd /home/seboles/abaloneraw/Transcriptome_Assemblies/quantification/male```
