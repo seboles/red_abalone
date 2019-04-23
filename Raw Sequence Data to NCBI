@@ -1,3 +1,21 @@
+## Log into transfer port c11-42
+```ssh -p 2022 seboles@farm.cse.ucdavis.edu```
+## cd into the directory containing raw sequence files
+```cd /home/seboles/abaloneraw/ABALONERAWSEQ/RAWLANE4```
+## ftp into NCBI
+```ftp -p ftp-private.ncbi.nlm.nih.gov```
+## username & password provided to you once you have are at step 6 (Files) of the SRA  
+## Once in follow follow the ftp directions provided 
+## In my case
+```cd uploads/seboles@ucdavis.edu_it3tadFE```
+## You will need to create a new directory to transfer the files
+```mkdir redabalone_rawseq```
+## cd into the directory you made
+```cd redabalone_rawseq```
+## This turns the interactive mode off so you do not have type 'yes' for every file.
+```prompt```
+```mput *.fastq.gz```
+
 ## Trying again with the old prompts bc that is what NCBI says to do... I guess. I don't think she actually read my email. She just sent me a generic response. 
 
 ## Lane 4
