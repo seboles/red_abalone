@@ -113,3 +113,37 @@ Elapsed time: 15.9892s
 # cd into that directory
 
 ```cd /home/seboles/abaloneraw/Transcriptome_Assemblies/quantification/male```
+```salmon index --index nema_index --transcripts Trinitymale.fixed.fasta --type quasi```
+
+# Male Output
+
+Version Info: ### A newer version of Salmon is available. ####
+###
+The newest version, available at https://github.com/COMBINE-lab/salmon/releases 
+contains **important bug fixes** and improvements; please upgrade at your
+earliest convenience.
+###
+index ["nema_index"] did not previously exist  . . . creating it
+[2019-04-23 13:12:35.779] [jLog] [info] building index
+RapMap Indexer
+
+[Step 1 of 4] : counting k-mers
+counted k-mers for 880000 transcriptsElapsed time: 5.93756s
+
+Replaced 0 non-ATCG nucleotides
+Clipped poly-A tails from 474 transcripts
+Building rank-select dictionary and saving to disk done
+Elapsed time: 0.0363072s
+Writing sequence data to file . . . done
+Elapsed time: 0.409728s
+[info] Building 32-bit suffix array (length of generalized text is 628916464)
+Building suffix array . . . success
+saving to disk . . . done
+Elapsed time: 1.30116s
+done
+Elapsed time: 90.0037s
+processed 628000000 positions
+khash had 283859937 keys
+saving hash to disk . . . done
+Elapsed time: 24.1984s
+[2019-04-23 13:19:16.584] [jLog] [info] done building index
