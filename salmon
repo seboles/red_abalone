@@ -1,0 +1,69 @@
+# Install Salmon
+
+```cd```
+```curl -L -O https://github.com/COMBINE-lab/salmon/releases/download/v0.7.0/Salmon-0.7.0_linux_x86_64.tar.gz```
+```tar xzf Salmon-0.7.0_linux_x86_64.tar.gz```
+```export PATH=$PATH:$HOME/SalmonBeta-0.7.0_linux_x86_64/bin```
+
+# Make a directory to work in 
+
+```mkdir Transcriptome_Assemblies```
+```mkdir quantification```
+
+# cd into that directory
+
+```/home/seboles/abaloneraw/Transcriptome_Assemblies/quantification/development```
+
+# Copy assemblies into this directory
+
+```cp /home/seboles/abaloneraw/development_lanes456_diginorm/Trinity_Development_Assembly/Trinitydevelopment.fasta .```
+
+# cd into that directory
+
+```cd /home/seboles/abaloneraw/Transcriptome_Assemblies/quantification/male```
+
+```cp /home/seboles/abaloneraw/male_lane456_diginorm/Trinitymale.fixed.fasta .```
+
+# cd into that directory
+
+```cd /home/seboles/abaloneraw/Transcriptome_Assemblies/quantification/female```
+
+```cp /home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/Trinity/redabalonefemale_trinity_out.Trinity.fasta .```
+
+
+# Index with Salmon
+
+```salmon index --index nema_index --transcripts redabalonefemale_trinity_out.Trinity.fasta --type quasi```
+
+# Output
+
+Version Info: ### A newer version of Salmon is available. ####
+###
+The newest version, available at https://github.com/COMBINE-lab/salmon/releases 
+contains **important bug fixes** and improvements; please upgrade at your
+earliest convenience.
+###
+index ["nema_index"] did not previously exist  . . . creating it
+[2019-04-23 12:44:57.405] [jLog] [info] building index
+RapMap Indexer
+
+[Step 1 of 4] : counting k-mers
+counted k-mers for 1130000 transcriptsElapsed time: 7.57396s
+
+Replaced 0 non-ATCG nucleotides
+Clipped poly-A tails from 4286 transcripts
+Building rank-select dictionary and saving to disk done
+Elapsed time: 0.0506085s
+Writing sequence data to file . . . done
+Elapsed time: 0.525926s
+[info] Building 32-bit suffix array (length of generalized text is 780743307)
+Building suffix array . . . success
+saving to disk . . . done
+Elapsed time: 1.71311s
+done
+Elapsed time: 119.425s
+processed 780000000 positions
+khash had 372723877 keys
+saving hash to disk . . . done
+Elapsed time: 26.1482s
+[2019-04-23 12:53:31.603] [jLog] [info] done building index
