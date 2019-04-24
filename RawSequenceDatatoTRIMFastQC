@@ -1,0 +1,144 @@
+#10_28_2016 Summary of Raw Sequence Data->FASTQC->Trimmomatic->FASTQC->Diginorm
+
+	cd abaloneraw/
+	/home/seboles/abaloneraw/DataTemp/Female
+
+	module load fastqc 
+
+	fastqc epitent-1_S99_L004_R1_001.fastq.gz 
+	fastqc epitent-1_S99_L004_R2_001.fastq.gz
+	fastqc epitent-2_S100_L004_R2_001.fastq.gz
+	fastqc fgonad-1_S101_L004_R1_001.fastq.gz
+	fastqc fgonad-1_S101_L004_R2_001.fastq.gz
+	fastqc fgonad-2_S102_L004_R1_001.fastq.gz
+	fastqc fgonad-2_S102_L004_R2_001.fastq.gz
+	fastqc foot-1_S103_L004_R1_001.fastq.gz
+	fastqc foot-1_S103_L004_R2_001.fastq.gz
+	fastqc foot-2_S104_L004_R1_001.fastq.gz
+	fastqc foot-2_S104_L004_R2_001.fastq.gz
+	fastqc ganglion-1_S105_L004_R1_001.fastq.gz
+	fastqc ganglion-1_S105_L004_R2_001.fastq.gz
+	fastqc ganglion-2_S106_L004_R1_001.fastq.gz
+	fastqc ganglion-2_S106_L004_R2_001.fastq.gz
+	fastqc gill-1_S107_L004_R1_001.fastq.gz
+	fastqc gill-1_S107_L004_R2_001.fastq.gz
+	fastqc gill-2_S108_L004_R1_001.fastq.gz
+	fastqc gill-2_S108_L004_R2_001.fastq.gz
+	fastqc heart-1_S109_L004_R1_001.fastq.gz
+	fastqc heart-1_S109_L004_R2_001.fastq.gz
+	fastqc heart-2_S110_L004_R1_001.fastq.gz
+	fastqc heart-2_S110_L004_R2_001.fastq.gz
+	fastqc kidney-1_S112_L004_R1_001.fastq.gz
+	fastqc kidney-1_S112_L004_R2_001.fastq.gz
+	fastqc kidney-2_S113_L004_R1_001.fastq.gz
+	fastqc kidney-2_S113_L004_R2_001.fastq.gz
+	fastqc liver-1_S116_L004_R1_001.fastq.gz
+	fastqc liver-1_S116_L004_R2_001.fastq.gz
+	fastqc liver-2_S117_L004_R1_001.fastq.gz
+	fastqc liver-2_S117_L004_R2_001.fastq.gz
+	fastqc mantle-2_S119_L004_R1_001.fastq.gz
+	fastqc mantle-2_S119_L004_R2_001.fastq.gz
+	fastqc cephalictent-1_S93_L004_R1_001.fastq.gz
+	fastqc cephalictent-1_S93_L004_R2_001.fastq.gz
+	fastqc cephalictent-2_S94_L004_R1_001.fastq.gz
+	fastqc cephalictent-2_S94_L004_R2_001.fastq.gz
+	fastqc epipodal-1_S97_L004_R1_001.fastq.gz
+	fastqc epipodal-1_S97_L004_R2_001.fastq.gz
+	fastqc epipodal-2_S98_L004_R1_001.fastq.gz
+	fastqc epipodal-2_S98_L004_R2_001.fastq.gz
+	
+#FASTQC Output. Open a new terminal and use the scp command to connect to the farm cluster. 
+#The script below tells the cluster that I want to move all files (*.html) from the TRIMFASTQC directory into the Terminal Folder on my desktop. Once they have been transferred, open the Terminal folder on desktop and click on the html files to view results.
+
+scp seboles@farm.cse.ucdavis.edu:/home/seboles/abaloneraw/DataTemp/Female/*fastqc.html ~/Desktop/Terminal/RawSeqFASTQC
+*fastqc.html
+
+#Now your fastqc outputs have been sent to your local computer. Now you can run Trimmomatic.
+
+#Trimmomatic For Loop - copy script from #! to done and put into "nano trim.sh" in the 
+
+#!/bin/bash -l
+#SBATCH -J array_job
+#SBATCH -t 12:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=4
+
+for filename in /home/seboles/abaloneraw/DataTemp/Female/*_R1_*.fastq.gz
+do
+     # first, make the base by removing fastq.gz
+     base=$(basename $filename .fastq.gz)
+     echo $base
+
+     # now, construct the R2 filename by replacing R1 with R2
+     baseR2=${base/_R1_/_R2_}
+     echo $baseR2
+
+     # finally, run Trimmomatic
+     java -Xmx10g -jar /home/nreid/bin/trimmomatic-0.33/trimmomatic-0.33.jar PE \
+     /home/seboles/abaloneraw/DataTemp/Female/${base}.fastq.gz /home/seboles/abaloneraw/DataTemp/Female/${baseR2}.fastq.gz \
+     ${base}.qc.fq.gz s1_se \
+     ${baseR2}.qc.fq.gz s2_se \
+     ILLUMINACLIP:/home/nreid/rnaseq/NEBnextAdapt.fa:2:40:15 \
+     LEADING:2 TRAILING:2 \
+     SLIDINGWINDOW:4:2 \
+     MINLEN:25
+
+     # save the orphans
+     gzip -9c s1_se s2_se >> orphans.fq.gz
+     rm -f s1_se s2_se
+done
+
+# In the farm terminal, type
+
+	sbatch trim.sh
+
+# To check to make sure the job is still running type, 
+
+	squeue -u seboles
+	
+	#or do this if you want to watch the process
+	
+	watch squeue -u seboles
+
+#This is the output for the trim.sh job submitted
+seboles@farm:~/abaloneraw/DataTemp/Female/TRIM$ ls -lah
+
+-rw-rw-r-- 1 seboles seboles 519M Oct 19 23:42 gill-2_S108_L004_R1_001.qc.fq.gz
+-rw-rw-r-- 1 seboles seboles 564M Oct 19 23:42 gill-2_S108_L004_R2_001.qc.fq.gz
+-rw-rw-r-- 1 seboles seboles 433M Oct 19 23:48 heart-1_S109_L004_R1_001.qc.fq.gz
+-rw-rw-r-- 1 seboles seboles 495M Oct 19 23:48 heart-1_S109_L004_R2_001.qc.fq.gz
+-rw-rw-r-- 1 seboles seboles 461M Oct 19 23:54 heart-2_S110_L004_R1_001.qc.fq.gz
+-rw-rw-r-- 1 seboles seboles 502M Oct 19 23:54 heart-2_S110_L004_R2_001.qc.fq.gz
+-rw-rw-r-- 1 seboles seboles 669M Oct 20 00:03 kidney-1_S112_L004_R1_001.qc.fq.gz
+-rw-rw-r-- 1 seboles seboles 757M Oct 20 00:03 kidney-1_S112_L004_R2_001.qc.fq.gz
+-rw-rw-r-- 1 seboles seboles 541M Oct 20 00:10 kidney-2_S113_L004_R1_001.qc.fq.gz
+-rw-rw-r-- 1 seboles seboles 616M Oct 20 00:10 kidney-2_S113_L004_R2_001.qc.fq.gz
+-rw-rw-r-- 1 seboles seboles 522M Oct 20 00:17 liver-1_S116_L004_R1_001.qc.fq.gz
+-rw-rw-r-- 1 seboles seboles 599M Oct 20 00:17 liver-1_S116_L004_R2_001.qc.fq.gz
+-rw-rw-r-- 1 seboles seboles 314M Oct 20 00:21 liver-2_S117_L004_R1_001.qc.fq.gz
+-rw-rw-r-- 1 seboles seboles 358M Oct 20 00:21 liver-2_S117_L004_R2_001.qc.fq.gz
+-rw-rw-r-- 1 seboles seboles 656M Oct 20 00:30 mantle-1_S118_L004_R1_001.qc.fq.gz
+-rw-rw-r-- 1 seboles seboles 735M Oct 20 00:30 mantle-1_S118_L004_R2_001.qc.fq.gz
+-rw-rw-r-- 1 seboles seboles 689M Oct 20 00:39 mantle-2_S119_L004_R1_001.qc.fq.gz
+-rw-rw-r-- 1 seboles seboles 780M Oct 20 00:39 mantle-2_S119_L004_R2_001.qc.fq.gz
+-rw-rw-r-- 1 seboles seboles 7.2M Oct 20 00:57 orphans.fq.gz
+-rw-rw-r-- 1 seboles seboles 568M Oct 20 00:47 postesophagus-1_S122_L004_R1_001.qc.fq.gz
+-rw-rw-r-- 1 seboles seboles 645M Oct 20 00:47 postesophagus-1_S122_L004_R2_001.qc.fq.gz
+-rw-rw-r-- 1 seboles seboles 741M Oct 20 00:57 postesophagus-2_S123_L004_R1_001.qc.fq.gz
+-rw-rw-r-- 1 seboles seboles 833M Oct 20 00:57 postesophagus-2_S123_L004_R2_001.qc.fq.gz
+-rw-rw-r-- 1 seboles seboles  26K Oct 20 00:57 slurm-10381397.out
+-rw-rw-r-- 1 seboles seboles  922 Oct 19 17:15 trim.sh
+
+#Now that you have trimmed off the adapters, you can run FASTQC on trimmed files.0
+
+PROJECTROOT=/home/seboles/abaloneraw/DataTemp/Female/TRIM/
+for filename in $PROJECTROOT/*.gz
+do
+	base=$(basename $filename)
+	echo fastqc -o $PROJECTROOT/TRIMFASTQC/ $filename 
+done
+
+# Now that you have run you script, you will want to view the out put. You need to save the html files to local computer. Use script below.
+
+scp seboles@farm.cse.ucdavis.edu:/home/seboles/abaloneraw/DataTemp/Female/TRIM/TRIMFASTQC/*.html ~/Desktop/Terminal/TRIMFASTQC/
+*.html
