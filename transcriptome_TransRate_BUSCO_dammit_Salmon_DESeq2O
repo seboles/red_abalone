@@ -1,0 +1,176 @@
+# The is the full post assembly pipeline for all three red abalone assemblies. I will break each assembly into it's own section to keep things organized.I will include the output files, granted they are not too large. 
+
+#### Red Abalone Female Transcriptome Post-Assembly Pipeline###
+
+## Female TransRate - run this in the `dir` `transrate-1.0.3-linux-x86_64`
+
+```#!/bin/bash -l
+#SBATCH -J female_transrate_job
+#SBATCH -D /home/seboles/transrate-1.0.3-linux-x86_64/
+#SBATCH -t 72:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=16
+source ~/.bashrc
+transrate --assembly=/home/seboles/abaloneraw/Transcriptome_Assemblies/quantification/female/redabalonefemale_trinity_out.Trinity.fasta --threads=2 \
+--left=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/splitPEreads/left.fq \
+--right=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/splitPEreads/right.fq \
+--output=/home/seboles/transrate-1.0.3-linux-x86_64/transrate_results/female_transrate_2019/```
+
+
+#### Red Abalone Early Development Transcriptome Post-Assembly Pipeline####
+
+## Early Development TransRate Command- run this in the `dir` `transrate-1.0.3-linux-x86_64`##
+
+```#!/bin/bash -l
+#SBATCH -J transrate_job
+#SBATCH -D /home/seboles/transrate-1.0.3-linux-x86_64/
+#SBATCH -t 12:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=16
+source ~/.bashrc
+transrate --assembly=/home/seboles/abaloneraw/development_lanes456_diginorm/Trinity_Development_Assembly/Trinitydevelopment.fasta --threads=2 \
+--left=/home/seboles/abaloneraw/development_lanes456_diginorm/splitPEreads/leftdevelopment.fq \
+--right=/home/seboles/abaloneraw/development_lanes456_diginorm/splitPEreads/rightdevelopment.fq \
+--output=/home/seboles/transrate-1.0.3-linux-x86_64/transrate_results/developmenttransrate/```
+
+## Early Development TransRate Output##
+
+==========================================
+SLURM_JOB_ID = 11707877
+SLURM_NODELIST = c9-86
+==========================================
+[ INFO] 2019-06-20 11:47:33 : Loading assembly: /home/seboles/abaloneraw/development_lanes456_diginorm/Trinity_Development_Assembly/Trinitydevelopment.fasta
+[ INFO] 2019-06-20 11:51:39 : Analysing assembly: /home/seboles/abaloneraw/development_lanes456_diginorm/Trinity_Development_Assembly/Trinitydevelopment.fasta
+[ INFO] 2019-06-20 11:51:39 : Results will be saved in /home/seboles/transrate-1.0.3-linux-x86_64/transrate_results/developmenttransrate/Trinitydevelopment
+[ INFO] 2019-06-20 11:51:39 : Calculating contig metrics...
+[ INFO] 2019-06-20 11:55:59 : Contig metrics:
+[ INFO] 2019-06-20 11:55:59 : -----------------------------------
+[ INFO] 2019-06-20 11:55:59 : n seqs                       819119
+[ INFO] 2019-06-20 11:55:59 : smallest                        201
+[ INFO] 2019-06-20 11:55:59 : largest                       17917
+[ INFO] 2019-06-20 11:55:59 : n bases                   436740830
+[ INFO] 2019-06-20 11:55:59 : mean len                     533.18
+[ INFO] 2019-06-20 11:55:59 : n under 200                       0
+[ INFO] 2019-06-20 11:55:59 : n over 1k                     94663
+[ INFO] 2019-06-20 11:55:59 : n over 10k                       54
+[ INFO] 2019-06-20 11:55:59 : n with orf                   103169
+[ INFO] 2019-06-20 11:55:59 : mean orf percent              55.47
+[ INFO] 2019-06-20 11:55:59 : n90                             241
+[ INFO] 2019-06-20 11:55:59 : n70                             382
+[ INFO] 2019-06-20 11:55:59 : n50                             711
+[ INFO] 2019-06-20 11:55:59 : n30                            1313
+[ INFO] 2019-06-20 11:55:59 : n10                            2706
+[ INFO] 2019-06-20 11:55:59 : gc                             0.44
+[ INFO] 2019-06-20 11:55:59 : bases n                           0
+[ INFO] 2019-06-20 11:55:59 : proportion n                    0.0
+[ INFO] 2019-06-20 11:55:59 : Contig metrics done in 260 seconds
+[ INFO] 2019-06-20 11:55:59 : Calculating read diagnostics...
+[ INFO] 2019-06-20 17:35:05 : Read mapping metrics:
+[ INFO] 2019-06-20 17:35:05 : -----------------------------------
+[ INFO] 2019-06-20 17:35:05 : fragments                  21022451
+[ INFO] 2019-06-20 17:35:05 : fragments mapped            9048973
+[ INFO] 2019-06-20 17:35:05 : p fragments mapped             0.43
+[ INFO] 2019-06-20 17:35:05 : good mappings               5636624
+[ INFO] 2019-06-20 17:35:05 : p good mapping                 0.27
+[ INFO] 2019-06-20 17:35:05 : bad mappings                3412349
+[ INFO] 2019-06-20 17:35:05 : potential bridges                 0
+[ INFO] 2019-06-20 17:35:05 : bases uncovered           206601269
+[ INFO] 2019-06-20 17:35:05 : p bases uncovered              0.47
+[ INFO] 2019-06-20 17:35:05 : contigs uncovbase            482175
+[ INFO] 2019-06-20 17:35:05 : p contigs uncovbase            0.59
+[ INFO] 2019-06-20 17:35:05 : contigs uncovered            819119
+[ INFO] 2019-06-20 17:35:05 : p contigs uncovered             1.0
+[ INFO] 2019-06-20 17:35:05 : contigs lowcovered           819119
+[ INFO] 2019-06-20 17:35:05 : p contigs lowcovered            1.0
+[ INFO] 2019-06-20 17:35:05 : contigs segmented            132486
+[ INFO] 2019-06-20 17:35:05 : p contigs segmented            0.16
+[ INFO] 2019-06-20 17:35:05 : Read metrics done in 20346 seconds
+[ INFO] 2019-06-20 17:35:05 : No reference provided, skipping comparative diagnostics
+[ INFO] 2019-06-20 17:38:45 : TRANSRATE ASSEMBLY SCORE     0.0305
+[ INFO] 2019-06-20 17:38:45 : -----------------------------------
+[ INFO] 2019-06-20 17:38:45 : TRANSRATE OPTIMAL SCORE      0.1185
+[ INFO] 2019-06-20 17:38:45 : TRANSRATE OPTIMAL CUTOFF     0.2557
+[ INFO] 2019-06-20 17:38:46 : good contigs                 392031
+[ INFO] 2019-06-20 17:38:46 : p good contigs                 0.48
+[ INFO] 2019-06-20 17:38:46 : Writing contig metrics for each contig to /home/seboles/transrate-1.0.3-linux-x86_64/transrate_results/developmenttransrate/Trinitydevelopment/contigs.csv
+[ INFO] 2019-06-20 17:42:30 : Writing analysis results to assemblies.csv
+
+
+
+#### Red Abalone Male Transcriptome Post-Assembly Pipeline####
+
+## Male TransRate - run this in the `dir` `transrate-1.0.3-linux-x86_64`##
+
+```#!/bin/bash -l
+#SBATCH -J transrate_job
+#SBATCH -D /home/seboles/transrate-1.0.3-linux-x86_64/
+#SBATCH -t 72:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=16
+source ~/.bashrc
+transrate --assembly=/home/seboles/abaloneraw/male_lane456_diginorm/Trinitymale.fixed.fasta --threads=32 \
+--left=/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/maleleft.fq \
+--right=/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/maleright.fq \
+--output=/home/seboles/transrate-1.0.3-linux-x86_64/transrate_results/maletransrate/```
+
+## Male TransRate Output ##
+
+==========================================
+SLURM_JOB_ID = 11811227
+SLURM_NODELIST = c8-65
+==========================================
+[ INFO] 2019-06-25 15:48:20 : Loading assembly: /home/seboles/abaloneraw/male_lane456_diginorm/Trinitymale.fixed.fasta
+[ INFO] 2019-06-25 15:54:04 : Analysing assembly: /home/seboles/abaloneraw/male_lane456_diginorm/Trinitymale.fixed.fasta
+[ INFO] 2019-06-25 15:54:04 : Results will be saved in /home/seboles/transrate-1.0.3-linux-x86_64/transrate_results/maletransrate/Trinitymale.fixed
+[ INFO] 2019-06-25 15:54:04 : Calculating contig metrics...
+[ INFO] 2019-06-25 15:58:58 : Contig metrics:
+[ INFO] 2019-06-25 15:58:58 : -----------------------------------
+[ INFO] 2019-06-25 15:58:58 : n seqs                       885010
+[ INFO] 2019-06-25 15:58:58 : smallest                        201
+[ INFO] 2019-06-25 15:58:58 : largest                       27669
+[ INFO] 2019-06-25 15:58:58 : n bases                   628039164
+[ INFO] 2019-06-25 15:58:58 : mean len                     709.64
+[ INFO] 2019-06-25 15:58:58 : n under 200                       0
+[ INFO] 2019-06-25 15:58:58 : n over 1k                    157198
+[ INFO] 2019-06-25 15:58:58 : n over 10k                      427
+[ INFO] 2019-06-25 15:58:58 : n with orf                   107752
+[ INFO] 2019-06-25 15:58:58 : mean orf percent              44.58
+[ INFO] 2019-06-25 15:58:58 : n90                             282
+[ INFO] 2019-06-25 15:58:58 : n70                             556
+[ INFO] 2019-06-25 15:58:58 : n50                            1133
+[ INFO] 2019-06-25 15:58:58 : n30                            2125
+[ INFO] 2019-06-25 15:58:58 : n10                            4290
+[ INFO] 2019-06-25 15:58:58 : gc                             0.42
+[ INFO] 2019-06-25 15:58:58 : bases n                           0
+[ INFO] 2019-06-25 15:58:58 : proportion n                    0.0
+[ INFO] 2019-06-25 15:58:58 : Contig metrics done in 294 seconds
+[ INFO] 2019-06-25 15:58:58 : Calculating read diagnostics...
+[ INFO] 2019-06-25 16:37:16 : Read mapping metrics:
+[ INFO] 2019-06-25 16:37:16 : -----------------------------------
+[ INFO] 2019-06-25 16:37:16 : fragments                  18258014
+[ INFO] 2019-06-25 16:37:16 : fragments mapped            6897197
+[ INFO] 2019-06-25 16:37:16 : p fragments mapped             0.38
+[ INFO] 2019-06-25 16:37:16 : good mappings               4990817
+[ INFO] 2019-06-25 16:37:16 : p good mapping                 0.27
+[ INFO] 2019-06-25 16:37:16 : bad mappings                1906380
+[ INFO] 2019-06-25 16:37:16 : potential bridges                 0
+[ INFO] 2019-06-25 16:37:16 : bases uncovered           381961742
+[ INFO] 2019-06-25 16:37:16 : p bases uncovered              0.61
+[ INFO] 2019-06-25 16:37:16 : contigs uncovbase            649189
+[ INFO] 2019-06-25 16:37:16 : p contigs uncovbase            0.73
+[ INFO] 2019-06-25 16:37:16 : contigs uncovered            885010
+[ INFO] 2019-06-25 16:37:16 : p contigs uncovered             1.0
+[ INFO] 2019-06-25 16:37:16 : contigs lowcovered           885010
+[ INFO] 2019-06-25 16:37:16 : p contigs lowcovered            1.0
+[ INFO] 2019-06-25 16:37:16 : contigs segmented             84943
+[ INFO] 2019-06-25 16:37:16 : p contigs segmented             0.1
+[ INFO] 2019-06-25 16:37:16 : Read metrics done in 2298 seconds
+[ INFO] 2019-06-25 16:37:16 : No reference provided, skipping comparative diagnostics
+[ INFO] 2019-06-25 16:41:04 : TRANSRATE ASSEMBLY SCORE     0.0273
+[ INFO] 2019-06-25 16:41:04 : -----------------------------------
+[ INFO] 2019-06-25 16:41:04 : TRANSRATE OPTIMAL SCORE      0.1234
+[ INFO] 2019-06-25 16:41:04 : TRANSRATE OPTIMAL CUTOFF     0.3301
+[ INFO] 2019-06-25 16:41:05 : good contigs                 378732
+[ INFO] 2019-06-25 16:41:05 : p good contigs                 0.43
+[ INFO] 2019-06-25 16:41:05 : Writing contig metrics for each contig to /home/seboles/transrate-1.0.3-linux-x86_64/transrate_results/maletransrate/Trinitymale.fixed/contigs.csv
+[ INFO] 2019-06-25 16:45:22 : Writing analysis results to assemblies.csv
