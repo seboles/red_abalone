@@ -75,6 +75,35 @@ sed 's_|_-_g' $PROJECTROOT/redabalonefemale_trinity_out.Trinity.fasta > Trinity.
 	
 ## Female Annotation with dammit ##
 
+# Run the dammit command 
+```#!/bin/bash -l  
+#SBATCH -J Female_Annotation
+#SBATCH -t 72:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=16
+PROJECTROOT=/home/seboles/abaloneraw/Transcriptome_Assemblies/quantification/female/
+source ~/.bashrc
+source activate py3.dammit
+cd /home/seboles/abaloneraw/Transcriptome_Assemblies/quantification/female/
+dammit annotate redabalonefemale_trinity_out.Trinity.fasta --busco-group metazoa --user-databases halruf_proteins.fasta --n_threads 4```
+
+# Female Parse-Out dammit - run these commands line by line 
+```source ~/.bashrc
+```source activate dammit-env```
+# `cd` into the directory containing the files dammit.fasta, dammit.gff3, stats.json
+```cd /home/seboles/annotation/female_annotation```
+```source ~/.bashrc```
+```python3```
+```import pandas as pd```
+```from dammit.fileio.gff3 import GFF3Parser```
+```gff_file = "redabalonefemale_trinity_out.Trinity.fasta.dammit.gff3"```
+```annotations = GFF3Parser(filename=gff_file).read()```
+```names = annotations.sort_values(by=['seqid', 'score'], ascending=True).query('score < 1e-05').drop_duplicates(subset='seqid')[['seqid', 'Name']]```
+```new_file = names.dropna(axis=0,how='all')```
+```new_file.head()```
+```new_file.to_csv("abalone_female_gene_name_id.csv")```
+```exit()```
+
 ## Female Quantitative read mapping with Salmon ##
   
 #### Red Abalone Early Development Transcriptome Assembly Pipeline####
@@ -205,6 +234,35 @@ sed 's_|_-_g' $PROJECTROOT/Trinitydevelopment.fasta > trinitydevelopment.fixed.f
 	978	Total BUSCO groups searched
 
 ## Early Development Annotation with dammit ##
+
+# Run the dammit command in the `dir` `RNASeq_useful_scripts`
+
+```#!/bin/bash -l  
+#SBATCH -J Development_Annotation
+#SBATCH -t 72:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=16
+source ~/.bashrc
+source activate dammit-env
+cd /home/seboles/abaloneraw/Transcriptome_Assemblies/dammit/development/
+dammit annotate /home/seboles/abaloneraw/Transcriptome_Assemblies/dammit/development/Trinitydevelopment.fasta --busco-group metazoa --user-databases halruf_proteins.fasta --n_threads 4```
+
+# Parse-out dammit results - enter these commands line by line.
+```source ~/.bashrc
+```source activate dammit-env```
+# `cd` into the directory containing the files dammit.fasta, dammit.gff3, stats.json
+```cd /home/seboles/annotation/developmental_annotation```
+```source ~/.bashrc```
+```python3```
+```import pandas as pd```
+```from dammit.fileio.gff3 import GFF3Parser```
+```gff_file = "Trinitydevelopment.fasta.dammit.gff3"```
+```annotations = GFF3Parser(filename=gff_file).read()```
+```names = annotations.sort_values(by=['seqid', 'score'], ascending=True).query('score < 1e-05').drop_duplicates(subset='seqid')[['seqid', 'Name']]```
+```new_file = names.dropna(axis=0,how='all')```
+```new_file.head()```
+```new_file.to_csv("abalone_development_gene_name_id.csv")```
+```exit()```
 
 ## Early Development Quantitative read mapping with Salmon ##
 
@@ -338,5 +396,36 @@ sed 's_|_-_g' $PROJECTROOT/Trinity.fasta > Trinitymale.fixed.fasta```
 	978	Total BUSCO groups searched
 	
 ## Male Annotation with dammit ##
+
+# Runn the dammit command
+
+```#!/bin/bash -l  
+#SBATCH -J Development_Annotation
+#SBATCH -t 72:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=16
+source ~/.bashrc
+source activate dammit-env
+cd /home/seboles/abaloneraw/Transcriptome_Assemblies/dammit/development/
+dammit annotate /home/seboles/abaloneraw/Transcriptome_Assemblies/dammit/development/Trinitydevelopment.fasta --busco-group metazoa --user-databases halruf_proteins.fasta --n_threads 4```
+
+# Male parse-put dammit results
+# Male Parse-Out dammit - enter these commands line by line.
+```source ~/.bashrc```
+```source activate dammit-env```
+# `cd` into the directory containing the files dammit.fasta, dammit.gff3, stats.json
+```cd /home/seboles/annotation/male_annotation```
+```source ~/.bashrc```
+```python3```
+```import pandas as pd```
+```from dammit.fileio.gff3 import GFF3Parser```
+```gff_file = "Trinitymale.fixed.fasta.dammit.gff3"```
+```annotations = GFF3Parser(filename=gff_file).read()```
+```names = annotations.sort_values(by=['seqid', 'score'], ascending=True).query('score < 1e-05').drop_duplicates(subset='seqid')[['seqid', 'Name']]```
+```new_file = names.dropna(axis=0,how='all')```
+```new_file.head()```
+```new_file.to_csv("abalone_male_gene_name_id.csv")```
+```exit()```
+
 
 ## Male Quantitative read mapping with Salmon ##
