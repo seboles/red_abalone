@@ -105,7 +105,39 @@ dammit annotate redabalonefemale_trinity_out.Trinity.fasta --busco-group metazoa
 ```exit()```
 
 ## Female Quantitative read mapping with Salmon ##
-  
+
+# Index Female Transcriptome to feed into Salmon
+```#!/bin/bash -l  
+#SBATCH -J female_salmon_index
+#SBATCH -t 50:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=16
+source ~/.bashrc
+source activate salmon
+cd /home/seboles/abaloneraw/salmon_quantification/SALMON_FEMALE/
+salmon index --index female_red_abalone_index --type quasi --transcripts /home/seboles/abaloneraw/salmon_quantification/SALMON_FEMALE/redabalonefemale_trinity.fasta```
+
+# Now run the Salmon command in the `dir` `SalmonBeta.../SALMON`
+
+```#!/bin/bash -l  
+#SBATCH -J female_salmon_map
+#SBATCH -t 300:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=24
+source ~/.bashrc
+source activate salmon
+cd /home/seboles/abaloneraw/salmon_quantification/SALMON_FEMALE/
+for R1 in *R1*.qc.fq.gz
+do
+sample=$(basename $R1 extract.qc.fq.gz)
+echo sample is $sample, R1 is $R1
+R2=${R1/R1/R2}
+echo R2 is $R2
+   salmon quant -i female_red_abalone_index -p 2 --libType IU -1 *R1_001.qc.fq.gz -2 *R2_001.qc.fq.gz ${i} -o ${sample}_quant --seqBias --gcBias --validateMappings
+done```
+
+## Female Assemnbly DESeq2 Differential Expression Analysis ## Coming soon!
+
 #### Red Abalone Early Development Transcriptome Assembly Pipeline####
 
 ## Early Development Trinity Assembly ##
@@ -265,6 +297,39 @@ dammit annotate /home/seboles/abaloneraw/Transcriptome_Assemblies/dammit/develop
 ```exit()```
 
 ## Early Development Quantitative read mapping with Salmon ##
+
+# Index Early Development Transcriptome to feed into Salmon
+
+```#!/bin/bash -l  
+#SBATCH -J developmental_salmon_index
+#SBATCH -t 50:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=16
+source ~/.bashrc
+source activate salmon
+cd /home/seboles/abaloneraw/salmon_quantification/SALMON_DEVELOPMENTAL/
+salmon index --index development_red_abalone_orfs --type quasi --transcripts /home/seboles/abaloneraw/salmon_quantification/SALMON_DEVELOPMENTAL/Trinitydevelopment.fasta```
+
+# Now run the Salmon quant command in the SalmonBeta.../SALMON `dir`. Make sure the name of the index is the same name used in the quant command. 
+
+```#!/bin/bash -l  
+#SBATCH -J development_salmon_map
+#SBATCH -t 200:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=24
+source ~/.bashrc
+source activate salmon
+cd /home/seboles/abaloneraw/salmon_quantification/SALMON_DEVELOPMENTAL/
+for R1 in *R1*.qc.fq.gz
+do
+sample=$(basename $R1 extract.qc.fq.gz)
+echo sample is $sample, R1 is $R1
+R2=${R1/R1/R2}
+echo R2 is $R2
+   salmon quant -i developmental_index -p 16 --libType IU -1 *R1_001.qc.fq.gz -2 *R2_001.qc.fq.gz ${i} -o ${sample}_quant --seqBias --gcBias --validateMappings
+done```
+
+## Early Development Assemnbly DESeq2 Differential Expression Analysis ## Coming soon!
 
 #### Red Abalone Male Transcriptome Assembly Pipeline ####
 
@@ -427,5 +492,37 @@ dammit annotate /home/seboles/abaloneraw/Transcriptome_Assemblies/dammit/develop
 ```new_file.to_csv("abalone_male_gene_name_id.csv")```
 ```exit()```
 
-
 ## Male Quantitative read mapping with Salmon ##
+
+# Index the transcriptome to feed into Salmon
+
+```#!/bin/bash -l  
+#SBATCH -J male_salmon_index
+#SBATCH -t 50:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=16
+source ~/.bashrc
+source activate salmon
+cd /home/seboles/abaloneraw/salmon_quantification/SALMON_MALE/
+salmon index --index maleredabalone_index --type quasi --transcripts /home/seboles/abaloneraw/salmon_quantification/SALMON_MALE/trinitymale.fasta```
+
+# Now run the Salmon command. 
+
+```#!/bin/bash -l  
+#SBATCH -J male_salmon_map
+#SBATCH -t 150:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=24
+source ~/.bashrc
+source activate salmon
+cd /home/seboles/abaloneraw/salmon_quantification/SALMON_MALE/
+for R1 in *R1*.qc.fq.gz
+do
+sample=$(basename $R1 extract.qc.fq.gz)
+echo sample is $sample, R1 is $R1
+R2=${R1/R1/R2}
+echo R2 is $R2
+   salmon quant -i maleredabalone_index -p 2 --libType IU -1 *R1_001.qc.fq.gz -2 *R2_001.qc.fq.gz ${i} -o ${sample}_quant --seqBias --gcBias --validateMappings
+done```
+
+## Male Assemnbly DESeq2 Differential Expression Analysis ## Coming soon!
