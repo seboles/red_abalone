@@ -1,6 +1,28 @@
-# The is the full post assembly pipeline for all three red abalone assemblies. I will break each assembly into it's own section to keep things organized.I will include the output files, granted they are not too large. 
+# The is the full assembly pipeline for all three red abalone assemblies. I will break each assembly into it's own section to keep things organized.I will include the output files, granted they are not too large. 
 
-#### Red Abalone Female Transcriptome Post-Assembly Pipeline###
+#### Red Abalone Female Transcriptome Assembly Pipeline###
+
+## Female Red Abalone Trinity - this was run on Dr. Mike Miller's big mem node on UC Davis' Farm Cluster - run this command in from the  `dir` `RNA_useful_scripts`
+
+```#!/bin/bash -l
+#SBATCH -J Trinity_job
+#SBATCH -D /home/seboles/RNAseq_useful_scripts/
+#SBATCH -A millermrgrp
+#SBATCH -p bigmeml
+#SBATCH -t 336:00:00
+#SBATCH --cpus-per-task=32
+#SBATCH --mem=260000
+module load rsem/1.3.0
+module load trinity
+mkdir /scratch/$SLURM_JOBID/
+PROJECTROOT=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/splitPEreads/
+cd /scratch/$SLURM_JOBID/
+cp $PROJECTROOT/*.fq .
+Trinity --left left.fq \
+  --right right.fq --output /scratch/$SLURM_JOBID/redabalonefemale_trinity_out --full_cleanup --seqType fq --max_memory 256G \
+  --CPU 30
+cp /scratch/$SLURM_JOBID/redabalonefemale_trinity_out.Trinity.fasta /home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/Trinity/
+rm -rf /scratch/$SLURM_JOBID*```
 
 ## Female TransRate - run this in the `dir` `transrate-1.0.3-linux-x86_64`
 
@@ -16,8 +38,65 @@ transrate --assembly=/home/seboles/abaloneraw/Transcriptome_Assemblies/quantific
 --right=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/splitPEreads/right.fq \
 --output=/home/seboles/transrate-1.0.3-linux-x86_64/transrate_results/female_transrate_2019/```
 
+## Female BUSCO ## - remove the pipes from Trinity assembly before running BUSCO.
 
-#### Red Abalone Early Development Transcriptome Post-Assembly Pipeline####
+# This section only needs to be entered the first time you install the packages. 
+```cd /home/seboles/busco/config```
+```cp contig.ini.default config.ini```
+```cd /home/seboles/busco/ curl -OL http://busco.ezlab.org/datasets/metazoa_odb9.tar.gz```
+```tar -xvzf metazoa_odb9.tar.gz```
+```export PATH=/home/seboles/busco/scripts:$PATH```
+```echo 'export PATH=/home/seboles/busco/scripts:$PATH' >> ~/.bashrc```
+
+# Now remove the pipes from the Trinity Assembly to feed into BUSCO. 
+
+```#!/bin/bash -l  
+#SBATCH -J female_BUSCO_pipe
+#SBATCH -t 700:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=16
+PROJECTROOT=/home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/Trinity/
+sed 's_|_-_g' $PROJECTROOT/redabalonefemale_trinity_out.Trinity.fasta > Trinity.fixed.fasta```
+
+# Now run the BUSCO command in the `dir` containing the fixed Trinity assembly with the pipe bricks removed. Note: I ran this on the head node for our farm cluster... I don't think I would do that again, I would sbactch a job in because the assemblies are ginormous. 
+
+# BUSCO Output includes the exact command that I used to generate the data. I will leave it at that rather than taking up extra space. 
+# The lineage dataset is: metazoa_odb9 (Creation date: 2016-02-13, number of species: 65, number of BUSCOs: 978)
+# To reproduce this run: python /home/seboles/anaconda2/envs/busco_env/bin/run_busco -i Trinity.fixed.fasta -o redabalonefemalebuscometazoa -l /home/seboles/busco/metazoa_odb9/ -m transcriptome -c 32
+# Summarized benchmarking in BUSCO notation for file Trinity.fixed.fasta
+# BUSCO was run in mode: transcriptome
+	C:99.9%[S:19.4%,D:80.5%],F:0.1%,M:-0.0%,n:978
+	977	Complete BUSCOs (C)
+	190	Complete and single-copy BUSCOs (S)
+	787	Complete and duplicated BUSCOs (D)
+	1	Fragmented BUSCOs (F)
+	0	Missing BUSCOs (M)
+	978	Total BUSCO groups searched
+  
+#### Red Abalone Early Development Transcriptome Assembly Pipeline####
+
+## Early Development Trinity Assembly ##
+
+```#!/bin/bash -l
+#SBATCH -J Trinity_job
+#SBATCH -D /home/seboles/RNAseq_useful_scripts/
+#SBATCH -A millermrgrp
+#SBATCH -p bigmemh
+#SBATCH -N 1
+#SBATCH -t 500:00:00
+#SBATCH --cpus-per-task=32
+#SBATCH --mem=260000
+module load rsem/1.3.0
+module load trinity
+mkdir /scratch/$SLURM_JOBID/
+PROJECTROOT=/home/seboles/abaloneraw/development_lanes456_diginorm/splitPEreads/
+cd /scratch/$SLURM_JOBID/
+cp $PROJECTROOT/*.fq .
+Trinity --left left.fq \
+  --right right.fq --output /scratch/$SLURM_JOBID/redabalonedevelopment_trinity_out --full_cleanup --seqType fq --max_memory 256G \
+  --CPU 30
+cp /scratch/$SLURM_JOBID/redabalonefemale_trinity_out.Trinity.fasta /home/seboles/abaloneraw/development_lanes456_diginorm/Trinity_Development_Assembly/
+rm -rf /scratch/$SLURM_JOBID*```
 
 ## Early Development TransRate Command- run this in the `dir` `transrate-1.0.3-linux-x86_64`##
 
@@ -93,11 +172,60 @@ SLURM_NODELIST = c9-86
 [ INFO] 2019-06-20 17:38:46 : good contigs                 392031
 [ INFO] 2019-06-20 17:38:46 : p good contigs                 0.48
 [ INFO] 2019-06-20 17:38:46 : Writing contig metrics for each contig to /home/seboles/transrate-1.0.3-linux-x86_64/transrate_results/developmenttransrate/Trinitydevelopment/contigs.csv
-[ INFO] 2019-06-20 17:42:30 : Writing analysis results to assemblies.csv
+[ INFO] 2019-06-20 17:42:30 : Writing analysis results to assemblies.csv```
+
+## Early Development BUSCO ## - remove the pipes from Trinity assembly before running BUSCO.
+
+```#!/bin/bash -l  
+#SBATCH -J development_BUSCO_pipe
+#SBATCH -t 700:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=16
+PROJECTROOT=/home/seboles/abaloneraw/development_lanes456_diginorm/Trinity_Development_Assembly/
+sed 's_|_-_g' $PROJECTROOT/Trinitydevelopment.fasta > trinitydevelopment.fixed.fasta```
+
+# BUSCO version is: 3.0.2 - This is the BUSCO output. It also includes the exact command I used to produce the data, so I will just leave it at that.
+
+# The lineage dataset is: metazoa_odb9 (Creation date: 2016-02-13, number of species: 65, number of BUSCOs: 978)
+# To reproduce this run: python /home/seboles/anaconda2/envs/busco_env/bin/run_BUSCO.py -i Trinitydevelopment.fasta -o development_busco_metazoa -l /home/seboles/busco/config/metazoa_odb9/ -m transcriptome -c 32
+# Summarized benchmarking in BUSCO notation for file Trinitydevelopment.fasta
+# BUSCO was run in mode: transcriptome
+
+	C:95.2%[S:35.4%,D:59.8%],F:4.8%,M:-0.0%,n:978
+
+	931	Complete BUSCOs (C)
+	346	Complete and single-copy BUSCOs (S)
+	585	Complete and duplicated BUSCOs (D)
+	47	Fragmented BUSCOs (F)
+	0	Missing BUSCOs (M)
+	978	Total BUSCO groups searched
 
 
+#### Red Abalone Male Transcriptome Assembly Pipeline ####
 
-#### Red Abalone Male Transcriptome Post-Assembly Pipeline####
+## Male Trinity Assembly ##
+
+```#!/bin/bash -l
+#SBATCH -J Trinity_job
+#SBATCH -D /home/seboles/RNAseq_useful_scripts/
+#SBATCH -A millermrgrp
+#SBATCH -p bigmemh
+#SBATCH -t 336:00:00
+#SBATCH -N 1
+#SBATCH --cpus-per-task=32
+#SBATCH --mem=260000
+module load rsem/1.3.0
+module load trinity
+mkdir /scratch/$SLURM_JOBID/
+PROJECTROOT=/home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/
+cd /scratch/$SLURM_JOBID/
+cp $PROJECTROOT/*.fq .
+Trinity --left left.fq \
+  --right right.fq --output /scratch/$SLURM_JOBID/redabalonedmale_trinity_out --full_cleanup --seqType fq --max_memory 256G \
+  --CPU 30
+cp /scratch/$SLURM_JOBID/redabalonemale_trinity_out.Trinity.fasta /home/seboles/abaloneraw/male_lane456_diginorm/extractPE/SPLIT_PE_REDO_Male/Trinity_Male/
+rm -rf /scratch/$SLURM_JOBID*```
+
 
 ## Male TransRate - run this in the `dir` `transrate-1.0.3-linux-x86_64`##
 
@@ -174,3 +302,20 @@ SLURM_NODELIST = c8-65
 [ INFO] 2019-06-25 16:41:05 : p good contigs                 0.43
 [ INFO] 2019-06-25 16:41:05 : Writing contig metrics for each contig to /home/seboles/transrate-1.0.3-linux-x86_64/transrate_results/maletransrate/Trinitymale.fixed/contigs.csv
 [ INFO] 2019-06-25 16:45:22 : Writing analysis results to assemblies.csv
+
+## Male BUSCO ## - make sure to remove the pipe bricks from the Trinity assembly before feeding into BUSCO
+
+# Run the BUSCO command - The esxact command used to generate data is included in the output. I will not repeat the command here. 
+
+# BUSCO version is: 3.0.2 
+# The lineage dataset is: metazoa_odb9 (Creation date: 2016-02-13, number of species: 65, number of BUSCOs: 978)
+# To reproduce this run: python /home/seboles/anaconda2/envs/busco_env/bin/run_BUSCO.py -i Trinity.fasta -o male3_busco_metazoa -l /home/seboles/busco/config/metazoa_odb9/ -m transcriptome -c 32
+# Summarized benchmarking in BUSCO notation for file Trinity.fasta
+# BUSCO was run in mode: transcriptome
+	C:98.0%[S:32.4%,D:65.6%],F:1.9%,M:0.1%,n:978
+	959	Complete BUSCOs (C)
+	317	Complete and single-copy BUSCOs (S)
+	642	Complete and duplicated BUSCOs (D)
+	19	Fragmented BUSCOs (F)
+	0	Missing BUSCOs (M)
+	978	Total BUSCO groups searched
