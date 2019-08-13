@@ -72,6 +72,10 @@ sed 's_|_-_g' $PROJECTROOT/redabalonefemale_trinity_out.Trinity.fasta > Trinity.
 	1	Fragmented BUSCOs (F)
 	0	Missing BUSCOs (M)
 	978	Total BUSCO groups searched
+	
+## Female Annotation with dammit ##
+
+## Female Quantitative read mapping with Salmon ##
   
 #### Red Abalone Early Development Transcriptome Assembly Pipeline####
 
@@ -200,6 +204,9 @@ sed 's_|_-_g' $PROJECTROOT/Trinitydevelopment.fasta > trinitydevelopment.fixed.f
 	0	Missing BUSCOs (M)
 	978	Total BUSCO groups searched
 
+## Early Development Annotation with dammit ##
+
+## Early Development Quantitative read mapping with Salmon ##
 
 #### Red Abalone Male Transcriptome Assembly Pipeline ####
 
@@ -305,6 +312,16 @@ SLURM_NODELIST = c8-65
 
 ## Male BUSCO ## - make sure to remove the pipe bricks from the Trinity assembly before feeding into BUSCO
 
+# Remove the pipe bricks
+
+```#!/bin/bash -l  
+#SBATCH -J male_BUSCO_pipe
+#SBATCH -t 700:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=16
+PROJECTROOT=/home/seboles/abaloneraw/male_lane456_diginorm/
+sed 's_|_-_g' $PROJECTROOT/Trinity.fasta > Trinitymale.fixed.fasta```
+
 # Run the BUSCO command - The esxact command used to generate data is included in the output. I will not repeat the command here. 
 
 # BUSCO version is: 3.0.2 
@@ -319,3 +336,7 @@ SLURM_NODELIST = c8-65
 	19	Fragmented BUSCOs (F)
 	0	Missing BUSCOs (M)
 	978	Total BUSCO groups searched
+	
+## Male Annotation with dammit ##
+
+## Male Quantitative read mapping with Salmon ##
