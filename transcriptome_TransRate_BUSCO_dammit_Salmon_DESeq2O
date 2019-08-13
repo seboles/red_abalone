@@ -525,4 +525,14 @@ echo R2 is $R2
    salmon quant -i maleredabalone_index -p 2 --libType IU -1 *R1_001.qc.fq.gz -2 *R2_001.qc.fq.gz ${i} -o ${sample}_quant --seqBias --gcBias --validateMappings
 done```
 
+# Work the Male Assembly Salmon Counts - these are the counts that will be fed into DESeq2
+# `cd` into `dir` containing *.quant `dirs`
+```cd /home/seboles/abaloneraw/salmon_quantification/SALMON_MALE```
+# Male Salmon working Counts - enter these line by line. 
+```curl -L -O https://raw.githubusercontent.com/dib-lab/eel-pond/master/gather-counts.py```
+```python ./gather-counts.py```
+
+
+
+
 ## Male Assemnbly DESeq2 Differential Expression Analysis ## Coming soon!
