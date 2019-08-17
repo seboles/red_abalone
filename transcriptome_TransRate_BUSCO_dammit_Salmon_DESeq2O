@@ -121,7 +121,7 @@ salmon index --index female_red_abalone_index --type quasi --transcripts /home/s
 
 ```#!/bin/bash -l  
 #SBATCH -J female_salmon_map
-#SBATCH -t 300:00:00
+#SBATCH -t 500:00:00
 #SBATCH -p high
 #SBATCH --cpus-per-task=24
 source ~/.bashrc
@@ -133,8 +133,15 @@ sample=$(basename $R1 extract.qc.fq.gz)
 echo sample is $sample, R1 is $R1
 R2=${R1/R1/R2}
 echo R2 is $R2
-   salmon quant -i female_red_abalone_index -p 2 --libType IU -1 *R1_001.qc.fq.gz -2 *R2_001.qc.fq.gz ${i} -o ${sample}_quant --seqBias --gcBias --validateMappings
+   salmon quant -i female_red_abalone_index -p 16 --libType IU -1 *R1_001.qc.fq.gz -2 *R2_001.qc.fq.gz ${i} -o ${sample}_quant --seqBias --gcBias --validateMappings
 done```
+
+# Work the Male Assembly Salmon Counts - these are the counts that will be fed into DESeq2
+# `cd` into `dir` containing *.quant `dirs`
+```cd /home/seboles/abaloneraw/salmon_quantification/SALMON_FEMALE/```
+# Enter these commands line-by-line
+```curl -L -O https://raw.githubusercontent.com/dib-lab/eel-pond/master/gather-counts.py```
+```python ./gather-counts.py```
 
 ## Female Assemnbly DESeq2 Differential Expression Analysis ## Coming soon!
 
@@ -308,7 +315,7 @@ dammit annotate /home/seboles/abaloneraw/Transcriptome_Assemblies/dammit/develop
 source ~/.bashrc
 source activate salmon
 cd /home/seboles/abaloneraw/salmon_quantification/SALMON_DEVELOPMENTAL/
-salmon index --index development_red_abalone_orfs --type quasi --transcripts /home/seboles/abaloneraw/salmon_quantification/SALMON_DEVELOPMENTAL/Trinitydevelopment.fasta```
+salmon index --index development_index --type quasi --transcripts /home/seboles/abaloneraw/salmon_quantification/SALMON_DEVELOPMENTAL/Trinitydevelopment.fasta```
 
 # Now run the Salmon quant command in the SalmonBeta.../SALMON `dir`. Make sure the name of the index is the same name used in the quant command. 
 
@@ -328,6 +335,13 @@ R2=${R1/R1/R2}
 echo R2 is $R2
    salmon quant -i developmental_index -p 16 --libType IU -1 *R1_001.qc.fq.gz -2 *R2_001.qc.fq.gz ${i} -o ${sample}_quant --seqBias --gcBias --validateMappings
 done```
+
+# Work the Early Development Assembly Salmon Counts - these are the counts that will be fed into DESeq2
+# `cd` into `dir` containing *.quant `dirs`
+```cd /home/seboles/abaloneraw/salmon_quantification/SALMON_DEVELOPMENTAL/```
+# Enter these commands line-by-line
+```curl -L -O https://raw.githubusercontent.com/dib-lab/eel-pond/master/gather-counts.py```
+```python ./gather-counts.py```
 
 ## Early Development Assemnbly DESeq2 Differential Expression Analysis ## Coming soon!
 
