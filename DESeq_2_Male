@@ -1,5 +1,0 @@
-#10/14/2019
-#Update most recent version of R 1.2.1335
-#When I try to install DESeq2, I get this error message. 
-```Error: With R version 3.5 or greater, install Bioconductor packages using BiocManager; see https://bioconductor.org/install
-Execution halted```

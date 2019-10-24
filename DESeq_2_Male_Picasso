@@ -1,0 +1,33 @@
+#10/14/2019
+#Update most recent version of R 1.2.1335
+#When I try to install DESeq2, I get this error message. 
+```Error: With R version 3.5 or greater, install Bioconductor packages using BiocManager; see https://bioconductor.org/install
+Execution halted```
+
+# Move the quant files into my directory into terminal dir with only male info
+```campus-012-095:~ saraelizabethboles$ scp -P 2022 seboles@farm.cse.ucdavis.edu:/home/seboles/abaloneraw/salmon_quantification/SALMON_MALE/*_quant/* .```
+
+# sample$run = under run, instert this info "mgonad-1_S120_L006_R2_001.qc.fq.gz_quant"
+# Make a data table with a column with the name of the sample and the name of the folder that corresponds to that sample save as a csv in ther DES2 terminal dir.
+# Once that is done, then I can load it into R as an object. tximport uses as samples. What ever the name of the sample in one column and the "run" name in the other column
+
+#files <- file.path(dir, "salmon", samples$run, "quant.sf.gz")
+names(files) <- paste0("sample", 1:6)
+all(file.exists(files))
+
+# The file path is the path to DESeq2 in the terminal dir for the MALE. Can probably ignore the Salmon. 
+# pwd will show the name of the directory and the files that are located in it. then insert pwd info where `dir`,"salmon
+
+#This will create an object where my quantification files are located and the name that I want to call that sample. 
+```files <- file.path("/Users/saraelizabethboles/Desktop/Terminal/DESeq2/Male", samples$run, "quant.sf")
+all(file.exists(files))```
+
+# If this comes back as true, then move on to the next step
+
+```library(tximport)
+txi <- tximport(files,type ="salmon",tx2gene=tx2gene)
+names(txi)```
+
+# load the gene name csv into R. Make sure that I only have two columns for my CSV file or R will shit it's pants. 
+
+#Condition column for tximport would be my specific tissue like mgonad-1 and have one column like mgonad w/o the replicate info. That way I can make the comparisons later on in the analyses. 
