@@ -8,7 +8,7 @@ Execution halted```
 ```campus-012-095:~ saraelizabethboles$ scp -P 2022 seboles@farm.cse.ucdavis.edu:/home/seboles/abaloneraw/salmon_quantification/SALMON_MALE/*_quant/* .```
 
 # sample$run = under run, instert this info "mgonad-1_S120_L006_R2_001.qc.fq.gz_quant"
-# Make a data table with a column with the name of the sample and the name of the folder that corresponds to that sample save as a csv in ther DES2 terminal dir.
+# Make a data table with a column with the name of the sample and the name of the folder that corresponds to that sample save as a csv in ther DES2 terminal dir. This file is called `malefiles.csv`
 # Once that is done, then I can load it into R as an object. tximport uses as samples. What ever the name of the sample in one column and the "run" name in the other column
 
 #files <- file.path(dir, "salmon", samples$run, "quant.sf.gz")
@@ -19,7 +19,7 @@ all(file.exists(files))
 # pwd will show the name of the directory and the files that are located in it. then insert pwd info where `dir`,"salmon
 
 #This will create an object where my quantification files are located and the name that I want to call that sample. 
-```files <- file.path("/Users/saraelizabethboles/Desktop/Terminal/DESeq2/Male", samples$run, "quant.sf")
+```malefiles.csv<- file.path("/Users/saraelizabethboles/Desktop/Terminal/DESeq2/Male", samples$run, "quant.sf")
 all(file.exists(files))```
 
 # If this comes back as true, then move on to the next step
