@@ -1,3 +1,46 @@
+
+#10/31/2019
+## In R, run these commands
+```{r}
+library(DESeq2)
+library(tximport)
+```
+```{r}
+samples<-read.csv(file.path("/Users/saraelizabethboles/Desktop/Terminal/DESeq2/Male","malefiles.csv"),header=TRUE)
+samples
+```
+##Here is the output for listing `samples`.
+```samples
+<fctr> run <fctr> condition1 <fctr> condition2 <fctr>
+Light Receptor	lightreceptor-1_S114_L004_R1_001.qc.fq.gz_quant	Light Receptor 1	Light Receptor 1-Lane 1	
+Light Receptor	lightreceptor-1_S114_L005_R1_001.qc.fq.gz_quant	Light Receptor 1	Light Receptor 1-Lane 2	
+Light Receptor	lightreceptor-1_S114_L006_R1_001.qc.fq.gz_quant	Light Receptor 1	Light Receptor 1-Lane 3	
+Light Receptor	lightreceptor-2_S115_L004_R1_001.qc.fq.gz_quant	Light Receptor 2	Light Receptor 2-Lane 1	
+Light Receptor	lightreceptor-2_S115_L005_R1_001.qc.fq.gz_quant	Light Receptor 2	Light Receptor 2-Lane 2	
+Light Receptor	lightreceptor-2_S115_L006_R1_001.qc.fq.gz_quant	Light Receptor 2	Light Receptor 2-Lane 3	
+Male Gonad	mgonad-1_S120_L004_R1_001.qc.fq.gz_quant	Male Gonad 1	Male Gonad 1-Lane 1	
+Male Gonad	mgonad-1_S120_L005_R1_001.qc.fq.gz_quant	Male Gonad 1	Male Gonad 1-Lane 2	
+Male Gonad	mgonad-1_S120_L006_R1_001.qc.fq.gz_quant	Male Gonad 1	Male Gonad 1-Lane 3	
+Male Gonad	mgonad-2_S121_L004_R1_001.qc.fq.gz_quant	Male Gonad 2	Male Gonad 2-Lane1	
+Male Gonad	mgonad-2_S121_L005_R1_001.qc.fq.gz_quant	Male Gonad 2	Male Gonad 2-Lane2	
+Male Gonad	mgonad-2_S121_L006_R1_001.qc.fq.gz_quant	Male Gonad 2	Male Gonad 2-Lane3	
+```
+````{r}
+malefiles.csv<-file.path("/Users/saraelizabethboles/Desktop/Terminal/DESeq2/Male",samples$run,"quant.sf")
+names(malefiles.csv)<-paste0("sample",1:6)
+all(file.exists(malefiles.csv))
+```
+# Here is the output. Should say `TRUE`. It does not. 
+```[1] FALSE```
+
+## Tried the same command, with different parameters, still `FALSE`.
+```
+files<-file.path("/Users/saraelizabethboles/Desktop/Terminal/DESeq2/Male",samples$run,"quant.sf")
+names(files)<-paste0(1:12)
+all(file.exists(files))
+```
+#```[1] FALSE```
+
 #10/14/2019
 #Update most recent version of R 1.2.1335
 #When I try to install DESeq2, I get this error message. 
