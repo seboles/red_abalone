@@ -1,0 +1,86 @@
+# 11/11/2019
+# Copy `csv` /home/seboles/annotation/female_annotation/abalone_female_gene_name_id.csv to local `dir` 
+# Copy `csv`  to  local `dir` 
+```~/Desktop/Terminal/DESEq2/Female/```
+
+# Create data table for `txtimport` & save to local computer 
+
+```sample	run	condition1	condition2
+Post-Esophagus	postesophagus-2_S123_L006_R1_001.qc.fq.gz_quant	Post-Esophagus 2	Post-Esophagus 2 Lane 3
+Post-Esophagus	postesophagus-2_S123_L005_R1_001.qc.fq.gz_quant	Post-Esophagus 2	Post-Esophagus 2 Lane 2
+Post-Esophagus	postesophagus-2_S123_L004_R1_001.qc.fq.gz_quant	Post-Esophagus 2	Post-Esophagus 2 Lane 1
+Post-Esophagus	postesophagus-1_S122_L006_R1_001.qc.fq.gz_quant	Post-Esophagus 1	Post-Esophagus 1 Lane 3
+Post-Esophagus	postesophagus-1_S122_L005_R1_001.qc.fq.gz_quant	Post-Esophagus 1	Post-Esophagus 1 Lane 2
+Post-Esophagus	postesophagus-1_S122_L004_R1_001.qc.fq.gz_quant	Post-Esophagus 1	Post-Esophagus 1 Lane 1
+Mantle	mantle-2_S119_L006_R1_001.qc.fq.gz_quant	Mantle 2	Mantle 2 Lane 3
+Mantle	mantle-2_S119_L005_R1_001.qc.fq.gz_quant	Mantle 2	Mantle 2 Lane 2
+Mantle	mantle-2_S119_L004_R1_001.qc.fq.gz_quant	Mantle 2	Mantle 2 Lane 1
+Mantle	mantle-1_S118_L006_R1_001.qc.fq.gz_quant	Mantle 1	Mantle 1 Lane 3
+Mantle	mantle-1_S118_L005_R1_001.qc.fq.gz_quant	Mantle 1	Mantle 1 Lane 2
+Mantle	mantle-1_S118_L004_R1_001.qc.fq.gz_quant	Mantle 1	Mantle 1 Lane 1
+Liver	liver-2_S117_L006_R1_001.qc.fq.gz_quant	Liver 2	Liver 2 Lane 3
+Liver	liver-2_S117_L005_R1_001.qc.fq.gz_quant	Liver 2	Liver 2 Lane 2
+Liver	liver-2_S117_L004_R1_001.qc.fq.gz_quant	Liver 2	Liver 2 Lane 1
+Liver	liver-1_S116_L006_R1_001.qc.fq.gz_quant	Liver 1	Liver 1 Lane 3
+Liver	liver-1_S116_L005_R1_001.qc.fq.gz_quant	Liver 1	Liver 1 Lane 2
+Liver	liver-1_S116_L004_R1_001.qc.fq.gz_quant	Liver 1	Liver 1 Lane 1
+Kidney	kidney-2_S113_L006_R1_001.qc.fq.gz_quant	Kidney 2	Kidney 2 Lane 3
+Kidney	kidney-2_S113_L005_R1_001.qc.fq.gz_quant	Kidney 2	Kidney 2 Lane 2
+Kidney	kidney-2_S113_L004_R1_001.qc.fq.gz_quant	Kidney 2	Kidney 2 Lane 1
+Kidney	kidney-1_S112_L006_R1_001.qc.fq.gz_quant	Kidney 1	Kidney 1 Lane 3
+Kidney	kidney-1_S112_L005_R1_001.qc.fq.gz_quant	Kidney 1	Kidney 1 Lane 2
+Kidney	kidney-1_S112_L004_R1_001.qc.fq.gz_quant	Kidney 1	Kidney 1 Lane 1
+Heart	heart-2_S110_L006_R1_001.qc.fq.gz_quant	Heart 2	Heart 2 Lane 3
+Heart	heart-2_S110_L005_R1_001.qc.fq.gz_quant	Heart 2	Heart 2 Lane 2
+Heart	heart-2_S110_L004_R1_001.qc.fq.gz_quant	Heart 2	Heart 2 Lane 1
+Heart	heart-1_S109_L006_R1_001.qc.fq.gz_quant	Heart 1	Heart 1 Lane 3
+Heart	heart-1_S109_L005_R1_001.qc.fq.gz_quant	Heart 1	Heart 1 Lane 2
+Heart	heart-1_S109_L004_R1_001.qc.fq.gz_quant	Heart 1	Heart 1 Lane 1
+Gill	gill-2_S108_L006_R1_001.qc.fq.gz_quant	Gill 2	Gill 2 Lane 3
+Gill	gill-2_S108_L005_R1_001.qc.fq.gz_quant	Gill 2	Gill 2 Lane 2
+Gill	gill-2_S108_L004_R1_001.qc.fq.gz_quant	Gill 2	Gill 2 Lane 1
+Gill	gill-1_S107_L006_R1_001.qc.fq.gz_quant	Gill 1	Gill 1 Lane 3
+Gill	gill-1_S107_L005_R1_001.qc.fq.gz_quant	Gill 1	Gill 1 Lane 2
+Gill	gill-1_S107_L004_R1_001.qc.fq.gz_quant	Gill 1	Gill 1 Lane 1
+Ganglion	ganglion-2_S106_L006_R1_001.qc.fq.gz_quant	Ganglion 2	Ganglion 2 Lane 3
+Ganglion	ganglion-2_S106_L005_R1_001.qc.fq.gz_quant	Ganglion 2	Ganglion 2 Lane 2
+Ganglion	ganglion-2_S106_L004_R1_001.qc.fq.gz_quant	Ganglion 2	Ganglion 2 Lane 1
+Ganglion	ganglion-1_S105_L006_R1_001.qc.fq.gz_quant	Ganglion 1	Ganglion 1 Lane 3
+Ganglion	ganglion-1_S105_L005_R1_001.qc.fq.gz_quant	Ganglion 1	Ganglion 1 Lane 2
+Ganglion	ganglion-1_S105_L004_R1_001.qc.fq.gz_quant	Ganglion 1	Ganglion 1 Lane 1
+Foot	foot-2_S104_L006_R1_001.qc.fq.gz_quant	Foot 2	Foot 2 Lane 3
+Foot	foot-2_S104_L005_R1_001.qc.fq.gz_quant	Foot 2	Foot 2 Lane 2
+Foot	foot-2_S104_L004_R1_001.qc.fq.gz_quant	Foot 2	Foot 2 Lane 1
+Foot	foot-1_S103_L006_R1_001.qc.fq.gz_quant	Foot 1	Foot 1 Lane 3
+Foot	foot-1_S103_L005_R1_001.qc.fq.gz_quant	Foot 1	Foot 1 Lane 2
+Foot	foot-1_S103_L004_R1_001.qc.fq.gz_quant	Foot 1	Foot 1 Lane 1
+Female Gonad	fgonad-2_S102_L006_R1_001.qc.fq.gz_quant	Female Gonad 2	Female Gonad 2 Lane 3
+Female Gonad	fgonad-2_S102_L005_R1_001.qc.fq.gz_quant	Female Gonad 2	Female Gonad 2 Lane 2
+Female Gonad	fgonad-2_S102_L004_R1_001.qc.fq.gz_quant	Female Gonad 2	Female Gonad 2 Lane 1
+Female Gonad	fgonad-1_S101_L006_R1_001.qc.fq.gz_quant	Female Gonad 1	Female Gonad 1 Lane 3
+Female Gonad	fgonad-1_S101_L005_R1_001.qc.fq.gz_quant	Female Gonad 1	Female Gonad 1 Lane 2
+Female Gonad	fgonad-1_S101_L004_R1_001.qc.fq.gz_quant	Female Gonad 1	Female Gonad 1 Lane 1
+Epipodal Tentacle	epitent-2_S100_L006_R1_001.qc.fq.gz_quant	Epipodal Tentacle 2	Epipodal Tentacle 2 Lane 3
+Epipodal Tentacle	epitent-2_S100_L005_R1_001.qc.fq.gz_quant	Epipodal Tentacle 2	Epipodal Tentacle 2 Lane 2
+Epipodal Tentacle	epitent-2_S100_L004_R1_001.qc.fq.gz_quant	Epipodal Tentacle 2	Epipodal Tentacle 2 Lane 1
+Epipodal Tentacle	epitent-1_S99_L006_R1_001.qc.fq.gz_quant	Epipodal Tentacle 1	Epipodal Tentacle 1 Lane 3
+Epipodal Tentacle	epitent-1_S99_L005_R1_001.qc.fq.gz_quant	Epipodal Tentacle 1	Epipodal Tentacle 1 Lane 2
+Epipodal Tentacle	epitent-1_S99_L004_R1_001.qc.fq.gz_quant	Epipodal Tentacle 1	Epipodal Tentacle 1 Lane 1
+Epipodal	epipodal-2_S98_L006_R1_001.qc.fq.gz_quant	Epipodal 2	Epipodal 2 Lane 3
+Epipodal	epipodal-2_S98_L005_R1_001.qc.fq.gz_quant	Epipodal 2	Epipodal 2 Lane 2
+Epipodal	epipodal-2_S98_L004_R1_001.qc.fq.gz_quant	Epipodal 2	Epipodal 2 Lane 1
+Epipodal	epipodal-1_S97_L006_R1_001.qc.fq.gz_quant	Epipodal 1	Epipodal 1 Lane 3
+Epipodal	epipodal-1_S97_L005_R1_001.qc.fq.gz_quant	Epipodal 1	Epipodal 1 Lane 2
+Epipodal	epipodal-1_S97_L004_R1_001.qc.fq.gz_quant	Epipodal 1	Epipodal 1 Lane 1
+Cephalic Tentacle	cephalictent-2_S94_L006_R1_001.qc.fq.gz_quant	Cephalic Tentacle 2	Cephalic Tentacle 2 Lane 3
+Cephalic Tentacle	cephalictent-2_S94_L005_R1_001.qc.fq.gz_quant	Cephalic Tentacle 2	Cephalic Tentacle 2 Lane 2
+Cephalic Tentacle	cephalictent-2_S94_L004_R1_001.qc.fq.gz_quant	Cephalic Tentacle 2	Cephalic Tentacle 2 Lane 1
+Cephalic Tentacle	cephalictent-1_S93_L006_R1_001.qc.fq.gz_quant	Cephalic Tentacle 1	Cephalic Tentacle 1 Lane 3
+Cephalic Tentacle	cephalictent-1_S93_L005_R1_001.qc.fq.gz_quant	Cephalic Tentacle 1	Cephalic Tentacle 1 Lane 2
+Cephalic Tentacle	cephalictent-1_S93_L004_R1_001.qc.fq.gz_quant	Cephalic Tentacle 1	Cephalic Tentacle 1 Lane 1```
+
+## `scp` `salmon_quant` files from remote farm cluster to local computer
+
+```Saras-MacBook-Pro-2:Female saraelizabethboles$ scp -P 2022 -r seboles@farm.cse.ucdavis.edu:/home/seboles/abaloneraw/salmon_quantification/SALMON_FEMALE/*.gz_quant  ~/Desktop/Terminal/DESEq2/Female/```
+
+## 
