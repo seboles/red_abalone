@@ -1,0 +1,5 @@
+## 11/11/2019 - to perform DESeq2, you need to `scp` your `*.qc.fq.gz_quant` files from the `salmon_out_dir` to local computer. 
+
+## From the local directory in which you want to `scp` the `quant` files, run this command
+
+```Saras-MacBook-Pro-2:Female saraelizabethboles$ scp -P 2022 -r seboles@farm.cse.ucdavis.edu:/home/seboles/abaloneraw/salmon_quantification/SALMON_FEMALE/*.gz_quant  ~/Desktop/Terminal/DESEq2/Female/```
