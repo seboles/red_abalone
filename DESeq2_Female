@@ -1,3 +1,41 @@
+## 11/12/2019
+
+## In R, run these commands
+```{r}
+library(DESeq2)
+library(tximport)
+```
+```{r}
+samples<-read.csv(file.path("/Users/saraelizabethboles/Desktop/Terminal/DESeq2/Female","femalefiles.csv"),header=TRUE)
+samples```
+```femalefiles.csv<-file.path("/Users/saraelizabethboles/Desktop/Terminal/DESeq2/Female",samples$run,"quant.sf")
+names(femalefiles.csv)<-paste0("sample",1:6)
+all(file.exists(femalefiles.csv))```
+## Output
+```[1] TRUE```
+## Copy in the data table containing the 1) Transcript ID 2) Gene ID. These are the only two columns that can be present in the .csv file or R will poop. You should get your data table in the table.df
+```library(readr)
+tx2gene <- read_csv(file.path("/Users/saraelizabethboles/Desktop/Terminal/DESeq2/Female", "abalone_female_gene_name_id.csv"))
+head(tx2gene)```
+
+## Partial Output
+
+```Transcript_1000	Ldl_recept_a			
+Transcript_10000	Halruf.T00051768.1_1			
+Transcript_1000000	Halruf.T00028195.1_1			
+Transcript_1000001	Halruf.T00028195.1_1			
+Transcript_1000002	Halruf.T00021019.1_1```
+
+## Now run tximport to get transcript -level estimates
+
+```library(tximport)
+txi<-tximport(femalefiles.csv,type="salmon",tx2gene=tx2gene)
+names(txi)```
+
+## Error Message
+
+```Error in .local(object, ...) : None of the transcripts in the quantification files are present in the first column of tx2gene. Check to see that you are using the same annotation for both. Example IDs (file): [TRINITY_DN252406_c0_g1_i1, TRINITY_DN252402_c0_g1_i1, TRINITY_DN252424_c0_g1_i1, ...] Example IDs (tx2gene): [Transcript_1000, Transcript_10000, Transcript_1000000, ...] This can sometimes (not always) be fixed using 'ignoreTxVersion' or 'ignoreAfterBar'.```
+
 # 11/11/2019
 # Copy `csv` /home/seboles/annotation/female_annotation/abalone_female_gene_name_id.csv to local `dir` 
 # Copy `csv`  to  local `dir` 
