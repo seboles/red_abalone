@@ -1,0 +1,39 @@
+## When I ran Trinity, there was a line of code that `rm` the necessary files for DESeq2, so I had to figure out how to splice the files together in order to move forward with DESEq. Here is what I did.
+
+## In the `cd` to the `dir` containing the Trinity.fasta file
+```cd /home/seboles/abaloneraw/CombinedDigiLane4Lane5Lane6FemaleDigi/Trinity```
+## Create nano text file containing the following perl script and name it `myscript.pl`
+
+```#!/usr/bin/env perl
+#SBATCH -J gene_trans_map
+#SBATCH -t 50:00:00
+#SBATCH -p high
+#SBATCH --cpus-per-task=24
+use strict;
+use warnings;
+
+while (<>) {
+    if (/>(\S+)/) {
+        my $acc = $1;
+        if ($acc =~ /^(.*c\d+_g\d+)(_i\d+)/) {
+            my $gene = $1;
+            my $trans = $1 . $2;
+
+            print "$gene\t$trans\n";
+        }
+        elsif ($acc =~ /^(.*comp\d+_c\d+)/) {
+            my $gene = $1;
+            my $trans = $acc;
+            print "$gene\t$trans\n";
+        }
+        else {
+            print STDERR "WARNING: cannot decipher accession $acc\n";
+        }
+    }
+}
+
+exit(0);
+```
+## In the same `dir` containing the fasta files, enter this command
+
+```perl  myscript.pl  redabalonefemale_trinity_out.Trinity.fasta >  gene-trans-map.txt```
