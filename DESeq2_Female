@@ -1,3 +1,10 @@
+## 12/30/2019 - Picasso figured out why I was getting the error message. When I ran the Trinity assembly, there was a line of code in command that 'rm' files that were necessary for me to run DESeq2, which the person I got the code from did not need to do. So, I emailed the Trinity help folks to figure out how to splice the `gene_trans_map` files together (See commit `splice_gene_trans_map_post-trinity` for the exact code that I used to splice the files together).
+
+## 12/30/2019 - Now, I need to code header columns into my `.csv` file bc it is too large to do it is too large to manually do it in excel... turd burgers. I tried some stuff and it didn't work, so I emailed Brian Haas for some help.
+
+
+
+
 ## 11/12/2019
 
 ## In R, run these commands
