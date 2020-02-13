@@ -1,0 +1,44 @@
+
+
+Hello! I having some issues running DESeq2 for differential expression analysis. I am wondering if anyone has any pointers or ideas of where I am going wrong?
+
+## In R, run these commands
+```{r}
+library(DESeq2)
+library(tximport)
+```
+```{r}
+samples<-read.csv(file.path("/Users/saraelizabethboles/Desktop/Terminal/DESeq2/Female","femalefiles.csv"),header=TRUE)
+samples```
+```femalefiles.csv<-file.path("/Users/saraelizabethboles/Desktop/Terminal/DESeq2/Female",samples$run,"quant.sf")
+names(femalefiles.csv)<-paste0("sample",1:6)
+all(file.exists(femalefiles.csv))```
+## Output
+```[1] TRUE```
+## Copy in the data table containing the 1) Transcript ID 2) Gene ID. These are the only two columns that can be present in the .csv file or R will poop. You should get your data table in the table.df
+```library(readr)
+tx2gene <- read_csv(file.path("/Users/saraelizabethboles/Desktop/Terminal/DESeq2/Female", "female_gene_trans_map.csv"))
+head(tx2gene)```
+
+## Partial Output
+
+TRINITY_DN252402_c0_g1\tTRINITY_DN252402_c0_g1_i1	
+TRINITY_DN252424_c0_g1\tTRINITY_DN252424_c0_g1_i1	
+TRINITY_DN252479_c0_g1\tTRINITY_DN252479_c0_g1_i1	
+TRINITY_DN252416_c0_g1\tTRINITY_DN252416_c0_g1_i1	
+TRINITY_DN252440_c0_g1\tTRINITY_DN252440_c0_g1_i1	
+TRINITY_DN252488_c0_g1\tTRINITY_DN252488_c0_g1_i1
+
+## Now run tximport to get transcript -level estimates
+
+```library(tximport)
+txi<-tximport(femalefiles.csv,type="salmon",tx2gene=tx2gene)
+names(txi)```
+
+## Out Put Error Message
+
+```reading in files with read_tsv
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 
+Error in attr(x, "names") <- as.character(value) : 
+  'names' attribute [2] must be the same length as the vector [1]```
+
