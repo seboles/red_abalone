@@ -177,10 +177,85 @@ gunzip -c postesophagus-2_S123_L006_R2_001.fastq.gz > postesophagus-2_S123_L006_
 
 ## Now I need to concatenate each sample across the lanes together
 
-##Epipodal
+##Post-Esophagus
+```cat postesophagus-1_S122_L004_R1_001.fastq postesophagus-1_S122_L005_R1_001.fastq postesophagus-1_S122_L006_R1_001.fastq > postesophagus_1_R1.fastq```
+```cat postesophagus-1_S122_L004_R2_001.fastq postesophagus-1_S122_L005_R2_001.fastq postesophagus-1_S122_L006_R2_001.fastq > postesophagus_1_R2.fastq```
+```cat postesophagus-2_S123_L004_R1_001.fastq postesophagus-2_S123_L005_R1_001.fastq postesophagus-2_S123_L006_R1_001.fastq > postesophagus_2_R1.fastq```
+```cat postesophagus-2_S123_L004_R2_001.fastq postesophagus-2_S123_L005_R2_001.fastq postesophagus-2_S123_L006_R2_001.fastq > postesophagus_2_R2.fastq```
+
+
+
+##Mantle 
+```cat mantle-1_S118_L004_R1_001.fastq mantle-1_S118_L005_R1_001.fastq mantle-1_S118_L006_R1_001.fastq > mantle_1_R1.fastq```
+```cat mantle-1_S118_L004_R2_001.fastq mantle-1_S118_L005_R2_001.fastq mantle-1_S118_L006_R2_001.fastq > mantle_1_R2.fastq```
+```cat mantle-2_S119_L004_R1_001.fastq mantle-2_S119_L005_R1_001.fastq mantle-2_S119_L006_R1_001.fastq > mantle_2_R1.fastq```
+```cat mantle-2_S119_L004_R2_001.fastq mantle-2_S119_L005_R2_001.fastq mantle-2_S119_L006_R2_001.fastq > mantle_2_R2.fastq```
+
+
+##Liver
+```cat liver-1_S116_L004_R1_001.fastq liver-1_S116_L005_R1_001.fastq liver-1_S116_L006_R1_001.fastq > liver_1_R1.fastq```
+```cat liver-1_S116_L004_R2_001.fastq liver-1_S116_L005_R2_001.fastq liver-1_S116_L006_R2_001.fastq > liver_1_R2.fastq```
+```cat liver-2_S117_L004_R1_001.fastq liver-2_S117_L005_R1_001.fastq liver-2_S117_L006_R1_001.fastq > liver_2_R1.fastq```
+```cat liver-2_S117_L004_R2_001.fastq liver-2_S117_L005_R2_001.fastq liver-2_S117_L006_R2_001.fastq > liver_2_R2.fastq```
+
+
+##Kidney -complete
+```cat kidney-1_S112_L004_R1_001.fastq kidney-1_S112_L005_R1_001.fastq kidney-1_S112_L006_R1_001.fastq > kidney_1_R1.fastq```
+```cat kidney-1_S112_L004_R2_001.fastq kidney-1_S112_L005_R2_001.fastq kidney-1_S112_L006_R2_001.fastq > kidney_1_R2.fastq```
+```cat kidney-2_S113_L004_R1_001.fastq kidney-2_S113_L005_R1_001.fastq kidney-2_S113_L006_R1_001.fastq > kidney_2_R1.fastq```
+```cat kidney-2_S113_L004_R2_001.fastq kidney-2_S113_L005_R2_001.fastq kidney-2_S113_L006_R2_001.fastq > kidney_2_R2.fastq```
+
+
+##Heart - complete
+```cat heart-1_S109_L004_R1_001.fastq heart-1_S109_L005_R1_001.fastq heart-1_S109_L006_R1_001.fastq > heart_1_R1.fastq```
+```cat heart-1_S109_L004_R2_001.fastq heart-1_S109_L005_R2_001.fastq heart-1_S109_L006_R2_001.fastq > heart_1_R2.fastq```
+```cat heart-2_S110_L004_R1_001.fastq heart-2_S110_L005_R1_001.fastq heart-2_S110_L006_R1_001.fastq > heart_2_R1.fastq```
+```cat heart-2_S110_L004_R2_001.fastq heart-2_S110_L005_R2_001.fastq heart-2_S110_L006_R2_001.fastq > heart_2_R2.fastq```
+
+##Gill -complete
+```cat gill-1_S107_L004_R1_001.fastq gill-1_S107_L005_R1_001.fastq gill-1_S107_L006_R1_001.fastq > gill_1_R1.fastq```
+```cat gill-1_S107_L004_R2_001.fastq gill-1_S107_L005_R2_001.fastq gill-1_S107_L006_R2_001.fastq > gill_1_R2.fastq```
+```cat gill-2_S108_L004_R1_001.fastq gill-2_S108_L005_R1_001.fastq gill-2_S108_L006_R1_001.fastq > gill_2_R1.fastq```
+```cat gill-2_S108_L004_R2_001.fastq gill-2_S108_L005_R2_001.fastq gill-2_S108_L006_R2_001.fastq > gill_2_R2.fastq```
+
+##Ganglion - complete
+
+```cat ganglion-1_S105_L004_R1_001.fastq ganglion-1_S105_L005_R1_001.fastq ganglion-1_S105_L006_R1_001.fastq > ganglion_1_R1.fastq```
+```cat ganglion-1_S105_L004_R2_001.fastq ganglion-1_S105_L005_R2_001.fastq ganglion-1_S105_L006_R2_001.fastq > ganglion_1_R2.fastq```
+```cat ganglion-2_S106_L004_R1_001.fastq ganglion-2_S106_L005_R1_001.fastq ganglion-2_S106_L006_R1_001.fastq > ganglion_2_R1.fastq```
+```cat ganglion-2_S106_L004_R2_001.fastq ganglion-2_S106_L005_R2_001.fastq ganglion-2_S106_L006_R2_001.fastq > ganglion_2_R2.fastq```
+
+##Foot - complete
+```cat foot-1_S103_L004_R1_001.fastq foot-1_S103_L005_R1_001.fastq foot-1_S103_L006_R1_001.fastq > foot_1_R1.fastq```
+```cat foot-1_S103_L004_R2_001.fastq foot-1_S103_L005_R2_001.fastq foot-1_S103_L006_R2_001.fastq > foot_1_R2.fastq```
+```cat foot-2_S104_L004_R1_001.fastq foot-2_S104_L005_R1_001.fastq foot-2_S104_L006_R1_001.fastq > foot_2_R1.fastq```
+```cat foot-2_S104_L004_R2_001.fastq foot-2_S104_L005_R2_001.fastq foot-2_S104_L006_R2_001.fastq > foot_2_R2.fastq```
+
+
+##Female Gonad - complete
+
+```cat fgonad-1_S101_L004_R1_001.fastq fgonad-1_S101_L005_R1_001.fastq fgonad-1_S101_L006_R1_001.fastq > fgonad_1_R1.fastq```
+```cat fgonad-1_S101_L004_R2_001.fastq fgonad-1_S101_L005_R2_001.fastq fgonad-1_S101_L006_R2_001.fastq > fgonad_1_R2.fastq```
+```cat fgonad-2_S102_L004_R1_001.fastq fgonad-2_S102_L005_R1_001.fastq fgonad-2_S102_L006_R1_001.fastq > fgonad_2_R1.fastq```
+```cat fgonad-2_S102_L004_R2_001.fastq fgonad-2_S102_L005_R2_001.fastq fgonad-2_S102_L006_R2_001.fastq > fgonad_2_R2.fastq```
+
+##EpiTent - complete
+
+```cat epitent-1_S99_L004_R1_001.fastq epitent-1_S99_L005_R1_001.fastq epitent-1_S99_L006_R1_001.fastq > epitent_1_R1.fastq```
+```cat epitent-1_S99_L004_R2_001.fastq epitent-1_S99_L005_R2_001.fastq epitent-1_S99_L006_R2_001.fastq > epitent_1_R2.fastq```
+```cat epitent-2_S100_L004_R1_001.fastq epitent-2_S100_L005_R1_001.fastq epitent-2_S100_L006_R1_001.fastq > epitent_2_R1.fastq```
+```cat epitent-2_S100_L004_R2_001.fastq epitent-2_S100_L005_R2_001.fastq epitent-2_S100_L006_R2_001.fastq > epitent_2_R2.fastq```
+
+##Epipodal - complete
 ```cat epipodal-1_S97_L004_R1_001.fastq epipodal-1_S97_L005_R1_001.fastq epipodal-1_S97_L006_R1_001.fastq > epipodal_1_R1.fastq```
 
-## Cephalic Tentacle
+```cat epipodal-1_S97_L004_R2_001.fastq epipodal-1_S97_L005_R2_001.fastq epipodal-1_S97_L006_R2_001.fastq > epipodal_1_R2.fastq```
+
+```cat epipodal-2_S98_L004_R1_001.fastq epipodal-2_S98_L005_R1_001.fastq epipodal-2_S98_L006_R1_001.fastq > epipodal_2_R1.fastq```
+
+```cat epipodal-2_S98_L004_R2_001.fastq epipodal-2_S98_L005_R2_001.fastq epipodal-2_S98_L006_R2_001.fastq > epipodal_2_R2.fastq```
+
+## Cephalic Tentacle - complete
 ```cat cephalictent-1_S93_L004_R1_001.fastq cephalictent-1_S93_L005_R1_001.fastq cephalictent-1_S93_L006_R1_001.fastq > cephalictent_1_R1.fastq```
 
 ```cat cephalictent-1_S93_L004_R2_001.fastq cephalictent-1_S93_L005_R2_001.fastq cephalictent-1_S93_L006_R2_001.fastq > cephalictent_1_R2.fastq```
