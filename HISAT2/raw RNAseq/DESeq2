@@ -177,7 +177,7 @@ gunzip -c postesophagus-2_S123_L006_R2_001.fastq.gz > postesophagus-2_S123_L006_
 
 ## Now I need to concatenate each sample across the lanes together
 
-##Post-Esophagus
+##Post-Esophagus - complete
 ```cat postesophagus-1_S122_L004_R1_001.fastq postesophagus-1_S122_L005_R1_001.fastq postesophagus-1_S122_L006_R1_001.fastq > postesophagus_1_R1.fastq```
 ```cat postesophagus-1_S122_L004_R2_001.fastq postesophagus-1_S122_L005_R2_001.fastq postesophagus-1_S122_L006_R2_001.fastq > postesophagus_1_R2.fastq```
 ```cat postesophagus-2_S123_L004_R1_001.fastq postesophagus-2_S123_L005_R1_001.fastq postesophagus-2_S123_L006_R1_001.fastq > postesophagus_2_R1.fastq```
@@ -185,14 +185,14 @@ gunzip -c postesophagus-2_S123_L006_R2_001.fastq.gz > postesophagus-2_S123_L006_
 
 
 
-##Mantle 
+##Mantle - complete
 ```cat mantle-1_S118_L004_R1_001.fastq mantle-1_S118_L005_R1_001.fastq mantle-1_S118_L006_R1_001.fastq > mantle_1_R1.fastq```
 ```cat mantle-1_S118_L004_R2_001.fastq mantle-1_S118_L005_R2_001.fastq mantle-1_S118_L006_R2_001.fastq > mantle_1_R2.fastq```
 ```cat mantle-2_S119_L004_R1_001.fastq mantle-2_S119_L005_R1_001.fastq mantle-2_S119_L006_R1_001.fastq > mantle_2_R1.fastq```
 ```cat mantle-2_S119_L004_R2_001.fastq mantle-2_S119_L005_R2_001.fastq mantle-2_S119_L006_R2_001.fastq > mantle_2_R2.fastq```
 
 
-##Liver
+##Liver - complete
 ```cat liver-1_S116_L004_R1_001.fastq liver-1_S116_L005_R1_001.fastq liver-1_S116_L006_R1_001.fastq > liver_1_R1.fastq```
 ```cat liver-1_S116_L004_R2_001.fastq liver-1_S116_L005_R2_001.fastq liver-1_S116_L006_R2_001.fastq > liver_1_R2.fastq```
 ```cat liver-2_S117_L004_R1_001.fastq liver-2_S117_L005_R1_001.fastq liver-2_S117_L006_R1_001.fastq > liver_2_R1.fastq```
@@ -264,3 +264,145 @@ gunzip -c postesophagus-2_S123_L006_R2_001.fastq.gz > postesophagus-2_S123_L006_
 
 ```cat cephalictent-2_S94_L004_R2_001.fastq cephalictent-2_S94_L005_R2_001.fastq cephalictent-2_S94_L006_R2_001.fastq > cephalictent_2_R2.fastq```
 
+gunzip -c cephalictent-1_S93_L006_R1_001.fastq.gz > cephalictent-1_S93_L006_R1_001.fastq
+
+## Male Lane uncompression
+#Lane 1
+gunzip -c lightreceptor-1_S114_L004_R1_001.fastq.gz > lightreceptor-1_S114_L004_R1_001.fastq
+gunzip -c lightreceptor-1_S114_L004_R2_001.fastq.gz > lightreceptor-1_S114_L004_R2_001.fastq
+gunzip -c lightreceptor-2_S115_L004_R1_001.fastq.gz > lightreceptor-2_S115_L004_R1_001.fastq
+gunzip -c lightreceptor-2_S115_L004_R2_001.fastq.gz > lightreceptor-2_S115_L004_R2_001.fastq
+gunzip -c mgonad-1_S120_L004_R1_001.fastq.gz > mgonad-1_S120_L004_R1_001.fastq
+gunzip -c mgonad-1_S120_L004_R2_001.fastq.gz > mgonad-1_S120_L004_R2_001.fastq
+gunzip -c mgonad-2_S121_L004_R1_001.fastq.gz > mgonad-2_S121_L004_R1_001.fastq
+gunzip -c mgonad-2_S121_L004_R2_001.fastq.gz > mgonad-2_S121_L004_R2_001.fastq
+
+#Lane 2
+gunzip -c lightreceptor-1_S114_L005_R1_001.fastq.gz > lightreceptor-1_S114_L005_R1_001.fastq
+gunzip -c lightreceptor-1_S114_L005_R2_001.fastq.gz > lightreceptor-1_S114_L005_R2_001.fastq
+gunzip -c lightreceptor-2_S115_L005_R1_001.fastq.gz > lightreceptor-2_S115_L005_R1_001.fastq
+gunzip -c lightreceptor-2_S115_L005_R2_001.fastq.gz > lightreceptor-2_S115_L005_R2_001.fastq
+gunzip -c mgonad-1_S120_L005_R1_001.fastq.gz > mgonad-1_S120_L005_R1_001.fastq
+gunzip -c mgonad-1_S120_L005_R2_001.fastq.gz > mgonad-1_S120_L005_R2_001.fastq
+gunzip -c mgonad-2_S121_L005_R1_001.fastq.gz > mgonad-2_S121_L005_R1_001.fastq
+gunzip -c mgonad-2_S121_L005_R2_001.fastq.gz > mgonad-2_S121_L005_R2_001.fastq
+
+#Lane 3
+gunzip -c lightreceptor-1_S114_L006_R1_001.fastq.gz > lightreceptor-1_S114_L006_R1_001.fastq
+gunzip -c lightreceptor-1_S114_L006_R2_001.fastq.gz > lightreceptor-1_S114_L006_R2_001.fastq
+gunzip -c lightreceptor-2_S115_L006_R1_001.fastq.gz > lightreceptor-2_S115_L006_R1_001.fastq
+gunzip -c lightreceptor-2_S115_L006_R2_001.fastq.gz > lightreceptor-2_S115_L006_R2_001.fastq
+gunzip -c mgonad-1_S120_L006_R1_001.fastq.gz > mgonad-1_S120_L006_R1_001.fastq
+gunzip -c mgonad-1_S120_L006_R2_001.fastq.gz > mgonad-1_S120_L006_R2_001.fastq
+gunzip -c mgonad-2_S121_L006_R1_001.fastq.gz > mgonad-2_S121_L006_R1_001.fastq
+gunzip -c mgonad-2_S121_L006_R2_001.fastq.gz > mgonad-2_S121_L006_R2_001.fastq
+
+## Move Lane 3 files to new directory
+```mv lightreceptor-1_S114_L006_R1_001.fastq lightreceptor-1_S114_L006_R2_001.fastq lightreceptor-2_S115_L006_R1_001.fastq lightreceptor-2_S115_L006_R2_001.fastq mgonad-1_S120_L006_R1_001.fastq mgonad-1_S120_L006_R2_001.fastq mgonad-2_S121_L006_R1_001.fastq mgonad-2_S121_L006_R2_001.fastq /home/seboles/HISAT2/male/rawrnaseq/```
+
+##Move files Lane 2 to new directory
+
+```mv lightreceptor-1_S114_L005_R1_001.fastq lightreceptor-1_S114_L005_R2_001.fastq lightreceptor-2_S115_L005_R1_001.fastq lightreceptor-2_S115_L005_R2_001.fastq mgonad-1_S120_L005_R1_001.fastq mgonad-1_S120_L005_R2_001.fastq mgonad-2_S121_L005_R1_001.fastq mgonad-2_S121_L005_R2_001.fastq /home/seboles/HISAT2/male/rawrnaseq/```
+
+## Move lane 1 files to a new directory
+```mv lightreceptor-1_S114_L004_R1_001.fastq lightreceptor-1_S114_L004_R2_001.fastq lightreceptor-2_S115_L004_R1_001.fastq lightreceptor-2_S115_L004_R2_001.fastq mgonad-1_S120_L004_R1_001.fastq mgonad-1_S120_L004_R2_001.fastq mgonad-2_S121_L004_R1_001.fastq mgonad-2_S121_L004_R2_001.fastq /home/seboles/HISAT2/male/rawrnaseq/```
+
+
+##Concatenate files in the new directory
+##Light Receptor - complete
+```cat lightreceptor-1_S114_L006_R1_001.fastq lightreceptor-1_S114_L005_R1_001.fastq lightreceptor-1_S114_L004_R1_001.fastq > lightreceptor_1_R1.fastq```
+```cat lightreceptor-1_S114_L006_R2_001.fastq lightreceptor-1_S114_L005_R2_001.fastq lightreceptor-1_S114_L004_R2_001.fastq > lightreceptor_1_R2.fastq```
+```cat lightreceptor-2_S115_L006_R1_001.fastq lightreceptor-2_S115_L005_R1_001.fastq lightreceptor-2_S115_L004_R1_001.fastq > lightreceptor_2_R1.fastq```
+```cat lightreceptor-2_S115_L006_R2_001.fastq lightreceptor-2_S115_L005_R2_001.fastq lightreceptor-2_S115_L004_R2_001.fastq > lightreceptor_2_R2.fastq```
+#Male Gonad - complete
+```cat mgonad-1_S120_L006_R1_001.fastq mgonad-1_S120_L005_R1_001.fastq mgonad-1_S120_L004_R1_001.fastq > mgonad_1_R1.fastq```
+```cat mgonad-1_S120_L006_R2_001.fastq mgonad-1_S120_L005_R2_001.fastq mgonad-1_S120_L004_R2_001.fastq > mgonad_1_R2.fastq```
+```cat mgonad-2_S121_L006_R1_001.fastq mgonad-2_S121_L005_R1_001.fastq mgonad-2_S121_L004_R1_001.fastq > mgonad_2_R1.fastq```
+```cat mgonad-2_S121_L006_R2_001.fastq mgonad-2_S121_L005_R2_001.fastq mgonad-2_S121_L004_R2_001.fastq > mgonad_2_R2.fastq```
+
+
+##Developmental Lane 1 uncompression
+##Lane 1
+gunzip -c 1dpf-1_S84_L004_R1_001.fastq.gz > 1dpf-1_S84_L004_R1_001.fastq
+gunzip -c 1dpf-1_S84_L004_R2_001.fastq.gz > 1dpf-1_S84_L004_R2_001.fastq
+gunzip -c 2dps-1_S85_L004_R1_001.fastq.gz > 2dps-1_S85_L004_R1_001.fastq
+gunzip -c 2dps-1_S85_L004_R2_001.fastq.gz > 2dps-1_S85_L004_R2_001.fastq
+gunzip -c 2dps-2_S86_L004_R1_001.fastq.gz > 2dps-2_S86_L004_R1_001.fastq
+gunzip -c 2dps-2_S86_L004_R2_001.fastq.gz > 2dps-2_S86_L004_R2_001.fastq
+gunzip -c 6dpf-1_S87_L004_R1_001.fastq.gz > 6pf-1_S87_L004_R1_001.fastq
+gunzip -c 6dpf-1_S87_L004_R2_001.fastq.gz > 6dpf-1_S87_L004_R2_001.fastq
+gunzip -c 6dpf-2_S88_L004_R1_001.fastq.gz > 6dpf-2_S88_L004_R1_001.fastq
+gunzip -c 6dpf-2_S88_L004_R2_001.fastq.gz > 6dpf-2_S88_L004_R2_001.fastq
+gunzip -c 7dphHco2-1_S89_L004_R1_001.fastq.gz > 7dphHco2-1_S89_L004_R1_001.fastq
+gunzip -c 7dphHco2-1_S89_L004_R2_001.fastq.gz > 7dphHco2-1_S89_L004_R2_001.fastq 
+gunzip -c 7dphHco2-2_S90_L004_R1_001.fastq.gz > 7dphHco2-2_S90_L004_R1_001.fastq
+gunzip -c 7dphHco2-2_S90_L004_R2_001.fastq.gz > 7dphHco2-2_S90_L004_R2_001.fastq
+gunzip -c 7dphLco2-1_S91_L004_R1_001.fastq.gz > 7dphLco2-1_S91_L004_R1_001.fastq
+gunzip -c 7dphLco2-1_S91_L004_R2_001.fastq.gz > 7dphLco2-1_S91_L004_R2_001.fastq
+gunzip -c 7dphLco2-2_S92_L004_R1_001.fastq.gz > 7dphLco2-2_S92_L004_R1_001.fastq
+gunzip -c 7dphLco2-2_S92_L004_R2_001.fastq.gz > 7dphLco2-2_S92_L004_R2_001.fastq
+gunzip -c hscontrol-2_S111_L004_R1_001.fastq.gz > hscontrol-2_S111_L004_R1_001.fastq
+gunzip -c hscontrol-2_S111_L004_R2_001.fastq.gz > hscontrol-2_S111_L004_R2_001.fastq
+
+#Developmental Lane 2
+gunzip -c 1dpf-1_S84_L005_R1_001.fastq.gz > 1dpf-1_S84_L005_R1_001.fastq
+gunzip -c 1dpf-1_S84_L005_R2_001.fastq.gz > dpf-1_S84_L005_R2_001.fastq
+gunzip -c 2dps-1_S85_L005_R1_001.fastq.gz > 2dps-1_S85_L005_R1_001.fastq
+gunzip -c 2dps-1_S85_L005_R2_001.fastq.gz > 2dps-1_S85_L005_R2_001.fastq
+gunzip -c 2dps-2_S86_L005_R1_001.fastq.gz > 2dps-2_S86_L005_R1_001.fastq
+gunzip -c 2dps-2_S86_L005_R2_001.fastq.gz > 2dps-2_S86_L005_R2_001.fastq
+gunzip -c 6dpf-1_S87_L005_R1_001.fastq.gz > 6dpf-1_S87_L005_R1_001.fastq
+gunzip -c 6dpf-1_S87_L005_R2_001.fastq.gz > 6dpf-1_S87_L005_R2_001.fastq
+gunzip -c 6dpf-2_S88_L005_R1_001.fastq.gz > 6dpf-2_S88_L005_R1_001.fastq
+gunzip -c 6dpf-2_S88_L005_R2_001.fastq.gz > 6dpf-2_S88_L005_R2_001.fastq
+gunzip -c 7dphHco2-1_S89_L005_R1_001.fastq.gz > 7dphHco2-1_S89_L005_R1_001.fastq
+gunzip -c 7dphHco2-1_S89_L005_R2_001.fastq.gz > 7dphHco2-1_S89_L005_R2_001.fastq
+gunzip -c 7dphHco2-2_S90_L005_R1_001.fastq.gz > 7dphHco2-2_S90_L005_R1_001.fastq
+gunzip -c 7dphHco2-2_S90_L005_R2_001.fastq.gz > 7dphHco2-2_S90_L005_R2_001.fastq
+gunzip -c 7dphLco2-1_S91_L005_R1_001.fastq.gz > 7dphLco2-1_S91_L005_R1_001.fastq
+gunzip -c 7dphLco2-1_S91_L005_R2_001.fastq.gz > 7dphLco2-1_S91_L005_R2_001.fastq
+gunzip -c 7dphLco2-2_S92_L005_R1_001.fastq.gz > 7dphLco2-2_S92_L005_R1_001.fastq
+gunzip -c 7dphLco2-2_S92_L005_R2_001.fastq.gz > 7dphLco2-2_S92_L005_R2_001.fastq
+gunzip -c egg-1_S95_L005_R1_001.fastq.gz > egg-1_S95_L005_R1_001.fastq
+gunzip -c egg-1_S95_L005_R2_001.fastq.gz > egg-1_S95_L005_R2_001.fastq
+gunzip -c egg-2_S96_L005_R1_001.fastq.gz > egg-2_S96_L005_R1_001.fastq
+gunzip -c egg-2_S96_L005_R2_001.fastq.gz > egg-2_S96_L005_R2_001.fastq
+gunzip -c hscontrol-2_S111_L005_R1_001.fastq.gz > hscontrol-2_S111_L005_R1_001.fastq
+gunzip -c hscontrol-2_S111_L005_R2_001.fastq.gz > hscontrol-2_S111_L005_R2_001.fastq
+
+##Developmental uncompressed lane 3
+gunzip -c 1dpf-1_S84_L006_R1_001.fastq.gz > 1dpf-1_S84_L006_R1_001.fastq
+gunzip -c 1dpf-1_S84_L006_R2_001.fastq.gz > 1dpf-1_S84_L006_R2_001.fastq
+gunzip -c 2dps-1_S85_L006_R1_001.fastq.gz > 2dps-1_S85_L006_R1_001.fastq
+gunzip -c 2dps-1_S85_L006_R2_001.fastq.gz > 2dps-1_S85_L006_R2_001.fastq
+gunzip -c 2dps-2_S86_L006_R1_001.fastq.gz > 2dps-2_S86_L006_R1_001.fastq
+gunzip -c 2dps-2_S86_L006_R2_001.fastq.gz > 2dps-2_S86_L006_R2_001.fastq
+gunzip -c 6dpf-1_S87_L006_R1_001.fastq.gz > 6dpf-1_S87_L006_R1_001.fastq
+gunzip -c 6dpf-1_S87_L006_R2_001.fastq.gz > 6dpf-1_S87_L006_R2_001.fastq
+gunzip -c 6dpf-2_S88_L006_R1_001.fastq.gz > 6dpf-2_S88_L006_R1_001.fastq
+gunzip -c 6dpf-2_S88_L006_R2_001.fastq.gz > 6dpf-2_S88_L006_R2_001.fastq
+gunzip -c 7dphHco2-1_S89_L006_R1_001.fastq.gz > 7dphHco2-1_S89_L006_R1_001.fastq
+gunzip -c 7dphHco2-1_S89_L006_R2_001.fastq.gz > 7dphHco2-1_S89_L006_R2_001.fastq
+gunzip -c 7dphHco2-2_S90_L006_R1_001.fastq.gz > 7dphHco2-2_S90_L006_R1_001.fastq
+gunzip -c 7dphHco2-2_S90_L006_R2_001.fastq.gz > 7dphHco2-2_S90_L006_R2_001.fastq
+gunzip -c 7dphLco2-1_S91_L006_R1_001.fastq.gz > 7dphLco2-1_S91_L006_R1_001.fastq
+gunzip -c 7dphLco2-1_S91_L006_R2_001.fastq.gz > 7dphLco2-1_S91_L006_R2_001.fastq
+gunzip -c 7dphLco2-2_S92_L006_R1_001.fastq.gz > 7dphLco2-2_S92_L006_R1_001.fastq
+gunzip -c 7dphLco2-2_S92_L006_R2_001.fastq.gz > 7dphLco2-2_S92_L006_R2_001.fastq
+gunzip -c egg-1_S95_L006_R1_001.fastq.gz > egg-1_S95_L006_R1_001.fastq
+gunzip -c egg-1_S95_L006_R2_001.fastq.gz > egg-1_S95_L006_R2_001.fastq
+gunzip -c egg-2_S96_L006_R1_001.fastq.gz > egg-2_S96_L006_R1_001.fastq
+gunzip -c egg-2_S96_L006_R2_001.fastq.gz > egg-2_S96_L006_R2_001.fastq
+gunzip -c hscontrol-2_S111_L006_R1_001.fastq.gz > hscontrol-2_S111_L006_R1_001.fastq
+gunzip -c hscontrol-2_S111_L006_R2_001.fastq.gz > hscontrol-2_S111_L006_R2_001.fastq
+
+
+```mv 6pf-1_S87_L004_R1_001.fastq /home/seboles/HISAT2/developmental/```
+## Move developmental fastq files to new directory
+```mv 1dpf-1_S84_L004_R1_001.fastq 1dpf-1_S84_L004_R2_001.fastq 2dps-1_S85_L004_R1_001.fastq 2dps-1_S85_L004_R2_001.fastq 2dps-2_S86_L004_R1_001.fastq 2dps-2_S86_L004_R2_001.fastq 6pf-1_S87_L004_R1_001.fastq 6dpf-1_S87_L004_R2_001.fastq 6dpf-2_S88_L004_R1_001.fastq 6dpf-2_S88_L004_R2_001.fastq 7dphHco2-1_S89_L004_R1_001.fastq 7dphHco2-1_S89_L004_R2_001.fastq  7dphHco2-2_S90_L004_R1_001.fastq 7dphHco2-2_S90_L004_R2_001.fastq 7dphLco2-1_S91_L004_R1_001.fastq 7dphLco2-1_S91_L004_R2_001.fastq 7dphLco2-2_S92_L004_R1_001.fastq 7dphLco2-2_S92_L004_R2_001.fastq hscontrol-2_S111_L004_R1_001.fastq hscontrol-2_S111_L004_R2_001.fastq /home/seboles/HISAT2/developmental/```
+
+##Move Lane 2 Developmental File to new Directory
+```mv 1dpf-1_S84_L005_R1_001.fastq dpf-1_S84_L005_R2_001.fastq 2dps-1_S85_L005_R1_001.fastq 2dps-1_S85_L005_R2_001.fastq 2dps-2_S86_L005_R1_001.fastq 2dps-2_S86_L005_R2_001.fastq 6dpf-1_S87_L005_R1_001.fastq 6dpf-1_S87_L005_R2_001.fastq 6dpf-2_S88_L005_R1_001.fastq 6dpf-2_S88_L005_R2_001.fastq 7dphHco2-1_S89_L005_R1_001.fastq 7dphHco2-1_S89_L005_R2_001.fastq 7dphHco2-2_S90_L005_R1_001.fastq 7dphHco2-2_S90_L005_R2_001.fastq 7dphLco2-1_S91_L005_R1_001.fastq 7dphLco2-1_S91_L005_R2_001.fastq 7dphLco2-2_S92_L005_R2_001.fastq egg-1_S95_L005_R1_001.fastq egg-1_S95_L005_R2_001.fastq egg-2_S96_L005_R1_001.fastq egg-2_S96_L005_R2_001.fastq hscontrol-2_S111_L005_R1_001.fastq hscontrol-2_S111_L005_R2_001.fastq /home/seboles/HISAT2/developmental/```
+
+##Move Lane 3 Developmental Files
+``mv 1dpf-1_S84_L006_R1_001.fastq 1dpf-1_S84_L006_R2_001.fastq 2dps-1_S85_L006_R1_001.fastq 2dps-1_S85_L006_R2_001.fastq 2dps-2_S86_L006_R1_001.fastq 2dps-2_S86_L006_R2_001.fastq 6dpf-1_S87_L006_R1_001.fastq 6dpf-1_S87_L006_R2_001.fastq 6dpf-2_S88_L006_R1_001.fastq 6dpf-2_S88_L006_R2_001.fastq 7dphHco2-1_S89_L006_R1_001.fastq 7dphHco2-1_S89_L006_R2_001.fastq 7dphHco2-2_S90_L006_R1_001.fastq 7dphHco2-2_S90_L006_R2_001.fastq 7dphLco2-1_S91_L006_R1_001.fastq 7dphLco2-1_S91_L006_R2_001.fastq 7dphLco2-2_S92_L006_R1_001.fastq 7dphLco2-2_S92_L006_R2_001.fastq egg-1_S95_L006_R1_001.fastq egg-1_S95_L006_R2_001.fastq egg-2_S96_L006_R1_001.fastq egg-2_S96_L006_R2_001.fastq hscontrol-2_S111_L006_R1_001.fastq hscontrol-2_S111_L006_R2_001.fastq /home/seboles/HISAT2/developmental/```
