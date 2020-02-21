@@ -2,12 +2,22 @@
 ```mv halruf.fasta /home/seboles/HISAT2/read_alignment_HISAT2/```
 ## Now I downloaded the annotated genes
 ```wget https://abalone.dbgenome.org/files/download/halruf.gff3```
+lightreceptor_1_R1.fastq  mgonad_1_R1.fastq
+lightreceptor_1_R2.fastq  mgonad_1_R2.fastq
+lightreceptor_2_R1.fastq  mgonad_2_R1.fastq
+lightreceptor_2_R2.fastq  mgonad_2_R2.fastq
+
+##Red abalone hisat2
+/home/seboles/HISAT2/male/hisat2male/lightreceptor_1_R1.fastq -2 /home/seboles/HISAT2/male/hisat2male/lightreceptor_1_R2.fastq -S lightreceptor_1.sam
+/home/seboles/HISAT2/male/hisat2male/lightreceptor_2_R1.fastq -2 /home/seboles/HISAT2/male/hisat2male/lightreceptor_2_R2.fastq -S
+lightreceptor_2.sam
+/home/seboles/HISAT2/male/hisat2male/mgonad_1_R1.fastq -2 /home/seboles/HISAT2/male/hisat2male/mgonad_1_R2.fastq -S mgonad_1.sam
+/home/seboles/HISAT2/male/hisat2male/mgonad_2_R1.fastq -2 /home/seboles/HISAT2/male/hisat2male/mgonad_2_R2.fastq -S mgonad_2.sam
 
 ## These are Tony's commands for his differential expression
 C## job title
-nano test_hisat2_well1_L004_paired.sh
+
 #!/bin/bash
-#
 #SBATCH -D /home/jagill/ref_genome_CH/index
 #SBATCH -t 24:00:00
 #SBATCH -N 1
