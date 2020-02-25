@@ -1,4 +1,43 @@
+## 25.Feb.2020 Met with Tony and got some clairifcation on how to use HISAT2 to index. 
+
+
+## First, I need to index the red abalone genome
+```#!/bin/bash
+#SBATCH -D /home/seboles/HISAT2/redabalone_genome/index
+#SBATCH -t 100:00:00
+#SBATCH -N 1
+#SBATCH -n 1
+#SBATCH -p high
+#SBATCH -c 8
+#SBATCH --mem=4G
+#SBATCH -J genome_index
+module load hisat2/2.1.0
+hisat2-build -f /home/seboles/HISAT2/redabalone_genome/halruf.fasta /home/seboles/HISAT2/redabalone_genome/index```
+
+## Then I need to map each to the indexed genome so that I can do tissue specific differential analyses on my concatentated files. 
+Male Light Receptor 1
+
+```#!/bin/bash
+#SBATCH -D home/seboles/HISAT2/redabalone_genome/index
+#SBATCH -t 24:00:00
+#SBATCH -N 1
+#SBATCH -n 1
+#SBATCH -p high
+#SBATCH -c 8
+#SBATCH --mem=4G
+#SBATCH -J male_light_receptor
+module load hisat2/2.1.0
+module load samtools/1.9
+hisat2 --qc-filter -q -x /home/seboles/HISAT2/redabalone_genome/index -1 /home/seboles/HISAT2/male/hisat2male/lightreceptor_1_R1.fastq -2 /home/seboles/HISAT2/male/hisat2male/lightreceptor_1_R2.fastq -S lightreceptor_1.sam```
+
+
+/home/seboles/HISAT2/male/hisat2male/lightreceptor_2_R1.fastq -2 /home/seboles/HISAT2/male/hisat2male/lightreceptor_2_R2.fastq -S
+lightreceptor_2.sam
+/home/seboles/HISAT2/male/hisat2male/mgonad_1_R1.fastq -2 /home/seboles/HISAT2/male/hisat2male/mgonad_1_R2.fastq -S mgonad_1.sam
+/home/seboles/HISAT2/male/hisat2male/mgonad_2_R1.fastq -2 /home/seboles/HISAT2/male/hisat2male/mgonad_2_R2.fastq -S mgonad_2.sam
+
 ## 21.Feb.2020 I downloaded the abalone genome a while ago, but I need to move it into the HISAT directory.
+
 ```mv halruf.fasta /home/seboles/HISAT2/read_alignment_HISAT2/```
 ## Now I downloaded the annotated genes
 ```wget https://abalone.dbgenome.org/files/download/halruf.gff3```
@@ -8,16 +47,18 @@ lightreceptor_2_R1.fastq  mgonad_2_R1.fastq
 lightreceptor_2_R2.fastq  mgonad_2_R2.fastq
 
 ##Red abalone hisat2
-/home/seboles/HISAT2/male/hisat2male/lightreceptor_1_R1.fastq -2 /home/seboles/HISAT2/male/hisat2male/lightreceptor_1_R2.fastq -S lightreceptor_1.sam
+ -1 /home/seboles/HISAT2/male/hisat2male/lightreceptor_1_R1.fastq, -2 /home/seboles/HISAT2/male/hisat2male/lightreceptor_1_R2.fastq -S lightreceptor_1.sam
 /home/seboles/HISAT2/male/hisat2male/lightreceptor_2_R1.fastq -2 /home/seboles/HISAT2/male/hisat2male/lightreceptor_2_R2.fastq -S
 lightreceptor_2.sam
 /home/seboles/HISAT2/male/hisat2male/mgonad_1_R1.fastq -2 /home/seboles/HISAT2/male/hisat2male/mgonad_1_R2.fastq -S mgonad_1.sam
 /home/seboles/HISAT2/male/hisat2male/mgonad_2_R1.fastq -2 /home/seboles/HISAT2/male/hisat2male/mgonad_2_R2.fastq -S mgonad_2.sam
 
+
+
 ## These are Tony's commands for his differential expression
 C## job title
 
-#!/bin/bash
+```#!/bin/bash
 #SBATCH -D /home/jagill/ref_genome_CH/index
 #SBATCH -t 24:00:00
 #SBATCH -N 1
@@ -28,7 +69,8 @@ C## job title
 #SBATCH -J align_plate2_well1_L004
 module load hisat2/2.1.0
 module load samtools/1.9
-hisat2 --qc-filter -q -x /home/jagill/ref_genome_CH/index/index -1 /home/jagill/results/oil18/prjct1_plate2_4lanes/trim_files/well1_S121_L004_R1_001_paired.fastq -2 /home/jagill/results/oil18/prjct1_plate2_4lanes/trim_files/well1_S121_L004_R2_001_paired.fastq -S plate2_well1_L004_paired.sam
+hisat2 --qc-filter -q -x /home/jagill/ref_genome_CH/index/index -1 
+/home/jagill/results/oil18/prjct1_plate2_4lanes/trim_files/well1_S121_L004_R1_001_paired.fastq -2 /home/jagill/results/oil18/prjct1_plate2_4lanes/trim_files/well1_S121_L004_R2_001_paired.fastq -S plate2_well1_L004_paired.sam
 
 samtools view -S -b /home/jagill/snakemake_test/hisat2_out/p2s1.sam/p2s1.sam > /home/jagill/snakemake_test/hisat2_out/p2s1.bam
 samtools sort -n /home/jagill/snakemake_test/hisat2_out/p2s1.bam /home/jagill/snakemake_test/hisat2_out/p2s1.sorted.bam
