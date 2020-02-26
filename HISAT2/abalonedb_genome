@@ -1,6 +1,8 @@
 ## 25.Feb.2020 Met with Tony and got some clairifcation on how to use HISAT2 to index. 
 
 
+
+
 ## First, I need to index the red abalone genome
 ```#!/bin/bash
 #SBATCH -D /home/seboles/HISAT2/redabalone_genome/index
@@ -14,21 +16,24 @@
 module load hisat2/2.1.0
 hisat2-build -f /home/seboles/HISAT2/redabalone_genome/halruf.fasta /home/seboles/HISAT2/redabalone_genome/index```
 
+
 ## Then I need to map each to the indexed genome so that I can do tissue specific differential analyses on my concatentated files. 
-Male Light Receptor 1
+Male Light Receptor 1. This is to be done in the direcotry containging the concatenated R1 &R2 files.
 
 ```#!/bin/bash
-#SBATCH -D home/seboles/HISAT2/redabalone_genome/index
-#SBATCH -t 24:00:00
+#SBATCH -t 48:00:00
 #SBATCH -N 1
 #SBATCH -n 1
 #SBATCH -p high
 #SBATCH -c 8
 #SBATCH --mem=4G
-#SBATCH -J male_light_receptor
+#SBATCH -J male_light_receptor_1
 module load hisat2/2.1.0
 module load samtools/1.9
-hisat2 --qc-filter -q -x /home/seboles/HISAT2/redabalone_genome/index -1 /home/seboles/HISAT2/male/hisat2male/lightreceptor_1_R1.fastq -2 /home/seboles/HISAT2/male/hisat2male/lightreceptor_1_R2.fastq -S lightreceptor_1.sam```
+hisat2 --qc-filter -q -x /home/seboles/HISAT2/redabalone_genome_index/index -1 /home/seboles/HISAT2/male/hisat2male/lightreceptor_1_R1.fastq -2 /home/seboles/HISAT2/male/hisat2male/lightreceptor_1_R2.fastq -S lightreceptor_1.sam```
+
+
+
 
 
 /home/seboles/HISAT2/male/hisat2male/lightreceptor_2_R1.fastq -2 /home/seboles/HISAT2/male/hisat2male/lightreceptor_2_R2.fastq -S
