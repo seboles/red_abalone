@@ -18,9 +18,13 @@ hisat2-build -f /home/seboles/HISAT2/redabalone_genome/halruf.fasta /home/sebole
 
 
 ## Then I need to map each to the indexed genome so that I can do tissue specific differential analyses on my concatentated files. 
-Male Light Receptor 1. This is to be done in the direcotry containging the concatenated R1 &R2 files.
+Male Light Receptor 1. This is to be done in the directory containging the concatenated R1 &R2 files. ##Update 2/27/2020 - Now I am trying this with all of the .ht2 files and the R1&R2 in the same `dir`
+##This is the command that I used to cp files into the same `dir`
+```cp -/home/seboles/HISAT2/redabalone_genome_index/index/*.ht2 .```
+##2/27/2020 - Now I am going to run this command in the directory containing the index files and the 
 
 ```#!/bin/bash
+#SBATCH -D /home/seboles/HISAT2/male/hisat2male/index
 #SBATCH -t 48:00:00
 #SBATCH -N 1
 #SBATCH -n 1
@@ -30,9 +34,7 @@ Male Light Receptor 1. This is to be done in the direcotry containging the conca
 #SBATCH -J male_light_receptor_1
 module load hisat2/2.1.0
 module load samtools/1.9
-hisat2 --qc-filter -q -x /home/seboles/HISAT2/redabalone_genome_index/index -1 /home/seboles/HISAT2/male/hisat2male/lightreceptor_1_R1.fastq -2 /home/seboles/HISAT2/male/hisat2male/lightreceptor_1_R2.fastq -S lightreceptor_1.sam```
-
-
+hisat2 --qc-filter -q -x /home/seboles/HISAT2/male/hisat2male/index -1 /home/seboles/HISAT2/male/hisat2male/lightreceptor_1_R1.fastq -2 /home/seboles/HISAT2/male/hisat2male/lightreceptor_1_R2.fastq -S lightreceptor_1.sam```
 
 
 
