@@ -1,6 +1,6 @@
 ## 25.Feb.2020 Met with Tony and got some clairifcation on how to use HISAT2 to index. 
 
-
+module load hisat2/2.1.0
 
 
 ## First, I need to index the red abalone genome
